@@ -1,118 +1,285 @@
 ---
-layout: page
-title: Little Shop of Orders
-sidebar: true
+title: The Pivot
+length: 2 weeks
+tags:
+type: project
 ---
 
-# Little Shop of Orders
+## Project Description
 
-In this project you'll use Ruby on Rails to build an online commerce platform to facilitate online ordering.
+Your Little Shop of Orders application was *almost* great, but it turns out that we need to *pivot* the business model.
 
-## Introduction
+In this project, you'll build upon an existing implementation of Little Shop. You will transform your restaurant ordering site into a platform that handles multiple, simultaneous businesses. Each business will have their own name, unique URL pattern, items, orders, and administrators.
 
-### Learning Goals
+The project requirements are listed below:
 
-* Use TDD to drive all layers of Rails development including unit, integration, and user acceptance tests
-* Design a system of models which use one-to-one, one-to-many, and many-to-many relationships
-* Practice mixing HTML, CSS, and Rails templates to create an inviting and usable User Interface
-* Differentiate responsibilities between components of the Rails stack
-* Build a logical user-flow that moves across multiple controllers and models
-* Practice an agile workflow and improve communication skills working within a team
+* [Learning Goals](#learning-goals)
+* [Teams](#teams)
+* [Setup](#setup)
+* [Workflow](#workflow)
+* [Technical Expectations](#technical-expectations)
+* [Pivots](#pivots)
+* [Base Data](#base-data)
+* [Evaluation](#evaluation)
 
-### Restrictions
+## <a name="learning-goals"></a> Learning Goals
 
-Project implementation may **not** use:
+During this project, you'll learn about:
 
-* Any external library for authentication except `bcrypt`
+* Working with Multitenancy
+* Implementing JavaScript
+* Securing a Rails App
+* Sending Email
+* Creating Seed files
 
-### Getting Started
+## <a name="teams"></a> Teams
 
-1. One team member creates a repository with the name of your online ordering platform
-2. Add the other team members and your instructor(s) as collaborators
-3. Add your project to Waffle.io
-4. Configure [Hound](https://houndci.com/) for style guide violations
-5. Use [waffle.io](http://waffle.io) to write and track user stories
+The project will be completed by teams of three to four developers over the span of two weeks.
 
-## Base Expectations
+You will name a team leader that will:
 
-You will build an online ordering platform. Customers should be able to place orders and view placed order details. The site owner should be able to manage products and categories in addition to processing and completing orders.
+* Transform business requirements into user stories.
+* Work with the customer to establish team priorities.
+* Seek clarification from the customer when a user story is not clear.
+* Make sure that all the team members are on track and collaborating following a professional workflow.
 
-## Process
+Like all projects, individual team members are expected to:
 
-Each team will have an assigned project manager that will be the primary point of contact between the product owner (instructor) and the rest of the team.
+* Seek out features and responsibilities that are uncomfortable.
+* Support your teammates so that everyone can collaborate and contribute.
+* Follow a professional workflow when developing a feature.
 
-Most initial stories will be provided by the product owner. You will be asked to write your own stories over the course of the project and they should follow the same format as the ones that are provided to you.
+## <a name="setup"></a> Setup
 
-You should not write code or migrations until a story calls for it.
+### Project Starting Point
 
-Teams will meet with the product owner regularly and demo completed stories. The product owner will request additional features at each meeting and those stories should be completed prior to your next meeting. Project scope and requirements can change at the discretion of the product owner so following an agile approach is really important.
+You'll build upon an existing code base assigned by the instructors. You need to work on adapting and improving this codebase, not building your own thing from scratch. This is sometimes called "brownfield" development, and you'll soon know why.
 
-It is expected that teams will have meaningful discussions and code reviews using comments on Github. Your instructors will be looking for this. Commits should also have meaningful messages. If you have commits that say things like "Fixing hound complaints.", you will likely be asked to [squash](http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html) those commits. Rebasing should be done _before_ the branch is merged into master or you will run into problems.
+### Exploring the Little Shop App
 
-The master branch of your project should always remain in a state where it can demoed and deployed... yes, even days that you don't have any _planned_ meetings.
+As a group, dig into the code base and pay particular attention to:
 
-Everyone will provide feedback for group members at the end of the project.
+* Test coverage and quality
+* Architectural concerns
+* Components that are particularly strong or weak
+* General strengths and weaknesses
 
-## Extensions
+### Beginning The Pivot
 
-The extensions listed below are a non-exhaustive list of extension ideas.
+Once you've explored the base project, the team leader will:
 
-* product reviews
-* product recommendations based on past orders
-* product and category search
-* credit card processing with Stripe or Paypal
-* phone or text message order confirmation
+* Create a new, blank repository on GitHub named `the_pivot`
+* Clone the Little Shop project that you'll be working with to your local machine
+* Go into that project directory and `git remote rm origin`
+* Add the new repository as a remote `git remote add origin git://new_repo_url`
+* Push the code `git push origin master`
+* Add the other team members as collaborators in Github
 
-## Evaluation Process
+Once the team leader has done this, the other team members can fork the new repo.
 
-For the evaluation we'll work through the expectations above and look at the
-following criteria:
+### Tagging the Start Point
 
-### 1. Feature Completeness
+We want to be able to easily compare the change between the start of the project and the end. For that purpose, create a tag in the repo and push it to GitHub:
 
-* 4: All features are correctly implemented along with two extensions
-* 3: All features defined in the assignment are correctly implemented
-* 2: There are one or two features missing or incorrectly implemented
-* 1: There are bugs/crashes in the features present
+* $ git tag -a little_shop_v1
+* $ git push --tags
 
-### 2. Views
+### Restrictions & Outside Code
 
-* 4: Views show logical refactoring into layout(s), partials and helpers, with no logic present
-* 3: Views make use of layout(s), partials and helpers, but some logic leaks through
-* 2: Views don't make use of partials or show weak understanding of `render`
-* 1: Views are poorly organized
+Your project should evolve, refactor, and clean up the code you inherit. This includes deleting redundant, broken, or obsolete code. However, you should **not** throw out the previous work wholesale.
 
-### 3. Controllers
+Furthermore, there should be *no reduction in functionality* except when explicitly called for by new requirements.
 
-* 4: Controllers show significant effort to push logic down the stack
-* 3: Controllers are generally well organized with three or fewer particularly ugly parts
-* 2: There are four to seven ugly controller methods that should have been refactored
-* 1: There are more than seven unsatisfactory controller methods
+### Project Management Tool
 
-### 4. Models
+There are many popular project management tools out there. For this project we'll use a lightweight tool that wraps GitHub issues: [Waffle.io](https://waffle.io/)
 
-* 4: Models show excellent organization, refactoring, and appropriate use of Rails features
-* 3: Models show an effort to push logic down the stack, but need more internal refactoring
-* 2: Models are somewhat messy and/or make poor use of Rails features
-* 1: Models show weak use of Ruby and weak structure
+Setup a Waffle project for your new repo. Your team members and instructors should be added to the project so they can create, edit, and comment on issues.
 
-### 5. Testing
+## <a name="workflow"></a> Workflow
 
-* 4: Project has a running test suite that exercises the application at multiple levels
-* 3: Project has a running test suite that tests and multiple levels but fails to cover some features
-* 2: Project has sporadic use of tests and multiple levels
-* 1: Project did not really attempt to use TDD
+### Client Interaction
 
-### 6. Usability
+You will meet with the client frequently to obtain his/her business needs and correct course. You will transform these requirements into user stories.
 
-* 4: Project is highly usable and ready to deploy to customers
-* 3: Project is highly usable, but needs more polish before it'd be customer-ready
-* 2: Project needs more attention to the User Experience, but works
-* 1: Project is difficult or unpleasant to use, or needs significantly more attention to user experience
+A feature will not be considered complete until it is working on production. You must assume that your client doesn't have any programming experience. You will have to learn how to manage expectations.
 
-### 7. Workflow
+The stories as written and prioritized in your project management tool will be the authoritative project requirements. They may go against and likely go beyond the general requirements in this project description.
 
-* 4: Excellent use of branches, pull requests, and a project management tool.
-* 3: Good use of branches, pull requests, and a project-management tool.
-* 2: Sporadic use of branches, pull requests, and/or project-management tool.
-* 1: Little use of branches, pull requests, and/or a project-management tool.
+As the stories clearly define the customer's expectations, your application needs to **exactly** follow the stories as they've been developed with your customer. A 95% implementation is wrong.
+
+If you want to deviate from the story as it's written, you need to discuss that with your client and get approval to change the story *first*.
+
+### User Stories
+
+User stories follow this pattern:
+
+*As a [user], when I [do something], I [expect something].*
+
+Examples:
+
+* As an admin, when I click on dashboard, I can see all the users listed in the page.
+* As a store admin, when I visit the orders page, I can see the orders listed there by status.
+
+### Working with Git
+
+Once you have written the user stories with your client, each team member should:
+
+1. Select a story from the project management tool.
+2. If the story is not clear, add comments or request clarification.
+3. Create a feature branch in your *local* repo.
+4. Write a feature test.
+5. Implement the requested feature.
+6. Merge the latest master into the requested feature to make sure that all the tests are passing.
+7. Commit referencing the issue that you are working on in the commit message. Check this [guide](https://help.github.com/articles/closing-issues-via-commit-messages/) for more information.
+8. Push the *feature* branch to the *remote* repo.
+9. Submit a pull request asking to merge the branch into *master*.
+10. A teammate reviews the code for quality and functionality.
+11. The teammate merges the pull request and deletes the remote branch.
+
+## <a name="technical-expectations"></a> Technical Expectations
+
+You are to extend Little Shop so that it can handle multiple, simultaneous businesses. Each business should have:
+
+* A unique name
+* A unique URL pattern (http://example.com/name-of-business)
+* Unique items
+* Unique orders
+* Unique administrators
+
+The Pivot should be able to handle the following users:
+
+### Guest Customer
+
+As a guest customer, I should be able to:
+
+* Visit different businesses.
+* Add items from multiple businesses into a single cart.
+* Log in or create an account before completing checkout.
+
+### Registered Customer
+
+As an registered customer, I should be able to:
+
+* Make purchases on any business
+* Manage my account information
+* View my purchase history
+
+### Business Admin
+
+As a business admin, I should be able to:
+
+* Manage items on my business
+* Update my business information
+* Manage other business admins for your store
+
+### Platform Admin
+
+As a platform admin, I should be able to:
+
+* Approve or decline the creation of new businesses
+* Take a business offline / online
+* Perform any functionality restricted to business admins
+
+## <a name="pivots"></a> Pivots
+
+Your group will be assigned one of the following problem domains to pivot Little Shop:
+
+### Collector Items
+
+How many times did you want to buy that old Pacman arcade so that you could put it next to that Atari console? Let's rework Little Shop into a platform to bid on collectors' items.
+
+### Farmers' Market
+
+Organic vegetables that grow in innercity sidewalks are a great source of vitamins. Let's rework Little Shop into a marketplace for local produce.
+
+### Lending
+
+Micro-lending is a powerful tool for social progress. Let's rework Little Shop
+into a micro-lending platform.
+
+### Jobs
+
+Employment is key to quality of life. Let's rework our Little Shop into a platform
+to help people find great jobs.
+
+### Lodging
+
+Experiencing other cultures is one of the strongest ways to build our understanding
+of humanity. Let's make it easier for people to open their homes to travelers.
+
+### Photos
+
+People hated our restaurant, but they loved our product photos. Let's pivot
+the platform to sell photography, providing our customers a "whitelabel" experience.
+
+### Tickets
+
+Who wants to stand in line for tickets the day they come out? Nobody. Instead you
+can just pay 50-500% more to buy them from someone else.
+
+## <a name="base-data"></a> Base Data
+
+You should have the following data pre-loaded in your marketplace:
+
+* 20 total businesses
+* 10 categories
+* 50 items per category
+* 100 registered customers, one with the following data:
+  * Username: josh@turing.io
+  * Password: password
+* 10 orders per registered customer
+* 1 business admins per business
+  * Username: andrew@turing.io
+  * Password: password
+* 1 platform administrators
+  * Username: jorge@turing.io
+  * Password: password
+
+It creates a much stronger impression of your site if the data is plausible. We recommend creating a few "template" businesses that have real listings, then replicating those as needed. You could also use the [Faker](https://github.com/stympy/faker) gem.
+
+## <a name="evaluation"></a> Evaluation
+
+You'll be graded on each of the criteria below with a score of (1) well below
+expectations, (2) below expectations, (3) as expected, (4) better than expected.
+
+### Feature Delivery
+
+**1. Completion**
+
+* 4: Team completed all the user stories and requirements set by the client in timely manner.
+* 3: Team completed all the user stories and requirements set by the client.
+* 2: Team completed most of the user stories and requirements set by the client.
+* 1: Team completed the user stories and requirements partially.
+
+**2. Organization**
+
+* 4: Team used a project management tool and updated their progress in real-time.
+* 3: Team used a project management tool to keep their project organized.
+* 2: Team used a project management tool but didn't update the progress frequently.
+* 1: Team failed to use a project management tool to track its progress.
+
+### Technical Quality
+
+**1. Test-Driven Development**
+
+* 4: Project shows exceptional use of testing at different layers (above 95% coverage).
+* 3: Project shows adequate testing (90% - 95% coverage).
+* 2: Project shows gaps in test usage/coverage/design (85 - 90% coverage).
+* 1: Project lacks sufficient testing (under 85% coverage).
+
+**2. Code Quality**
+
+* 4: Project demonstrates exceptionally well factored code.
+* 3: Project demonstrates solid code quality and MVC principles.
+* 2: Project demonstrates some gaps in code quality and/or application of MVC principles.
+* 1: Project demonstrates poor factoring and/or understanding of MVC.
+
+### Product Experience
+
+**1. User Experience**
+
+* 4: Project exhibits a production-ready and polished UX.
+* 3: Project exhibits a production-ready user experience.
+* 2: Project exhibits some gaps in the UX.
+* 1: Project exhibits inattention to the user experience.
