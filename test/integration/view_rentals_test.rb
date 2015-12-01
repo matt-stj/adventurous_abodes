@@ -1,12 +1,27 @@
 require "test_helper"
 
 class ViewRentalsTest < ActionDispatch::IntegrationTest
-  test "guest can view rentals" do
+  test "guest can view rental type page" do
     treehouse = RentalType.create(name: "Treehouse")
     visit '/'
 
     assert page.has_button?('View Rental Properties')
     assert page.has_link?("Login")
+
+    click_button'View Rental Properties'
+
+    assert_equal rental_types_path, current_path
+    assert page.has_content?('Rental Types')
+    assert page.has_content?('Treehouse')
+  end
+
+  test "regstered user can view rental type page" do
+    create_and_login_user
+    treehouse = RentalType.create(name: "Treehouse")
+    visit '/'
+
+    assert page.has_button?('View Rental Properties')
+    assert page.has_link?("Logout")
 
     click_button'View Rental Properties'
 
