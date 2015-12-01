@@ -24,11 +24,11 @@ class ActionDispatch::IntegrationTest
     click_button "Login"
   end
 
-  def create_pursuits(num, activity)
+  def create_rentals(num, activity)
     num.times do |i|
       i += 1
       activity = Activity.find_or_create_by(name: activity)
-      activity.pursuits.create(name: "Hiking the Alps #{i}",
+      activity.rentals.create(name: "Hiking the Alps #{i}",
                                description: "Go hike the alps! #{i}",
                                price: 1000 + i)
     end
@@ -37,10 +37,10 @@ class ActionDispatch::IntegrationTest
   def add_items_to_cart(num)
     num.times do |i|
       i += 1
-      create_pursuits(1, "Hiking #{i}")
-      pursuit = Activity.find_by_name("Hiking #{i}").pursuits.first
+      create_rentals(1, "Hiking #{i}")
+      rental = Activity.find_by_name("Hiking #{i}").rentals.first
 
-      visit pursuit_path(pursuit)
+      visit rental_path(rental)
       click_link "Purchase Trip"
 
       fill_in "travellers", with: i

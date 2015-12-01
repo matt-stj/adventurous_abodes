@@ -1,24 +1,24 @@
 module OrdersHelper
-  def order_pursuits_list(order)
-    pursuits = pursuits_names_and_travellers(order)
-    pursuits.join(",  <br>")
+  def order_rentals_list(order)
+    rentals = rentals_names_and_travellers(order)
+    rentals.join(",  <br>")
   end
 
-  def pursuits_names_and_travellers(order)
-    order.pursuits.map { |pursuit| format_name_and_travellers(order, pursuit) }
+  def rentals_names_and_travellers(order)
+    order.rentals.map { |rental| format_name_and_travellers(order, rental) }
   end
 
-  def pursuit_name_and_travellers(order, target_pursuit)
-    pursuit_name = order.pursuits.map do |pursuit|
-      next unless target_pursuit.id.to_i == pursuit.id
-      format_name_and_travellers(order, pursuit)
+  def rental_name_and_travellers(order, target_rental)
+    rental_name = order.rentals.map do |rental|
+      next unless target_rental.id.to_i == rental.id
+      format_name_and_travellers(order, rental)
     end
-    pursuit_name.compact[0]
+    rental_name.compact[0]
   end
 
-  def format_name_and_travellers(order, pursuit)
-    num_travellers = OrderedTrip.find_by(pursuit_id: pursuit.id, order_id: order.id).travellers
-    "#{pursuit.name} (Travellers: #{num_travellers || 1})"
+  def format_name_and_travellers(order, rental)
+    num_travellers = OrderedTrip.find_by(rental_id: rental.id, order_id: order.id).travellers
+    "#{rental.name} (Travellers: #{num_travellers || 1})"
   end
 
   def filter_by_status

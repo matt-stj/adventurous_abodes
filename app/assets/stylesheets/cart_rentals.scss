@@ -1,0 +1,21 @@
+// Place all the styles related to the CartRentals controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body .cart_rentals .no-items {
+  margin: 21%;
+}
+
+.no-items a {
+  font-size: 130%;
+  color: #64b5f6;
+}
+
+.no-items a:hover {
+  color: #2196f3;
+}
+
+.cart h2 {
+  font-size: 150%;
+  color: black;
+}

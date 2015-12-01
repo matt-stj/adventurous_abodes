@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_cart
   helper_method :format_url_name, :count_of_trips,
-                :pursuits_in_cart, :current_user, :current_admin
+                :rentals_in_cart, :current_user, :current_admin
 
   def set_cart
     @cart = Cart.new(session[:cart])
