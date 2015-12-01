@@ -1,7 +1,7 @@
 require "test_helper"
 
-class VisitorSeesRentalsByActivitiesTest < ActionDispatch::IntegrationTest
-  test "visitor can see list of activities" do
+class VisitorSeesRentalsByRentalTypesTest < ActionDispatch::IntegrationTest
+  test "visitor can see list of rental_types" do
     create_rentals(2, "Hiking")
     create_rentals(2, "Fishing")
 
@@ -11,7 +11,7 @@ class VisitorSeesRentalsByActivitiesTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Fishing")
   end
 
-  test "visitor can see rentals sorted by activities" do
+  test "visitor can see rentals sorted by rental_types" do
     create_rentals(2, "Hiking")
     create_rentals(2, "Fishing")
 

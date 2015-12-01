@@ -31,9 +31,9 @@ class CartTest < ActiveSupport::TestCase
   end
 
   test "cart can return total price of all trips" do
-    activity = Activity.create(name: "Hiking")
-    activity.rentals.create(name: "Hiking in FL", description: "hiking", price: 10)
-    activity.rentals.create(name: "Hiking in LA", description: "hiking", price: 1)
+    rental_type = RentalType.create(name: "Hiking")
+    rental_type.rentals.create(name: "Hiking in FL", description: "hiking", price: 10)
+    rental_type.rentals.create(name: "Hiking in LA", description: "hiking", price: 1)
 
     @cart.add_trip(Rental.first.id)
     @cart.add_trip(Rental.last.id)

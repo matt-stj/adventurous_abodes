@@ -1,6 +1,6 @@
 %h1.white-text.center-align Rentals
 
-- @activities.each do |activity|
-  %h2.center-align= link_to("#{activity.name}", "/#{format_url_name(activity.name)}")
+- @rental_types.each do |rental_type|
+  %h2.center-align= link_to("#{rental_type.name}", "/#{format_url_name(rental_type.name)}")
   .row
-    = render activity.rentals
+    = render rental_type.rentals
