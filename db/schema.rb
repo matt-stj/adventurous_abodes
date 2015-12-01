@@ -28,11 +28,11 @@ ActiveRecord::Schema.define(version: 20151118205250) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "order_id"
-    t.integer  "pursuit_id"
+    t.integer  "rental_id"
   end
 
   add_index "ordered_trips", ["order_id"], name: "index_ordered_trips_on_order_id", using: :btree
-  add_index "ordered_trips", ["pursuit_id"], name: "index_ordered_trips_on_pursuit_id", using: :btree
+  add_index "ordered_trips", ["rental_id"], name: "index_ordered_trips_on_rental_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20151118205250) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
-  create_table "pursuits", force: :cascade do |t|
+  create_table "rentals", force: :cascade do |t|
     t.text     "name"
     t.text     "description"
     t.integer  "price"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20151118205250) do
     t.string   "image"
   end
 
-  add_index "pursuits", ["activity_id"], name: "index_pursuits_on_activity_id", using: :btree
+  add_index "rentals", ["activity_id"], name: "index_rentals_on_activity_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20151118205250) do
   end
 
   add_foreign_key "ordered_trips", "orders"
-  add_foreign_key "ordered_trips", "pursuits"
+  add_foreign_key "ordered_trips", "rentals"
   add_foreign_key "orders", "users"
-  add_foreign_key "pursuits", "activities"
+  add_foreign_key "rentals", "activities"
 end

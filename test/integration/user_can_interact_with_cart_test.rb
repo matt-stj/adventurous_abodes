@@ -2,26 +2,26 @@ require "test_helper"
 
 class UserCanInteractWithCartTest < ActionDispatch::IntegrationTest
   test "user can add item to cart" do
-    create_pursuits(1, "Hiking")
-    pursuit = Activity.find_by_name("Hiking").pursuits.first
-    visit pursuit_path(pursuit)
+    create_rentals(1, "Hiking")
+    rental = Activity.find_by_name("Hiking").rentals.first
+    visit rental_path(rental)
 
     assert page.has_content?("Trips: 0")
 
     click_link "Purchase Trip"
 
-    assert_equal new_cart_pursuit_path, current_path
+    assert_equal new_cart_rental_path, current_path
 
     fill_in "travellers", with: 2
     click_button "Place Order"
 
     assert page.has_content?("Trips: 1")
-    assert_equal pursuits_path, current_path
+    assert_equal rentals_path, current_path
     assert page.has_content?("You have added Hiking the Alps 1 to your cart.")
   end
 
   test "user can view cart" do
-    visit pursuits_path
+    visit rentals_path
     add_items_to_cart(2)
     click_link "Trips: 2"
 
@@ -36,10 +36,10 @@ class UserCanInteractWithCartTest < ActionDispatch::IntegrationTest
 
   test "user can delete item from cart" do
     add_items_to_cart(1)
-    removed_pursuit = Pursuit.find_by_name("Hiking the Alps 1")
+    removed_rental = Rental.find_by_name("Hiking the Alps 1")
     visit "/cart"
 
-    within(".pursuit_card") do
+    within(".rental_card") do
       click_button("Remove")
     end
 
@@ -48,7 +48,7 @@ class UserCanInteractWithCartTest < ActionDispatch::IntegrationTest
     assert page.has_content?("No items in cart.")
 
     click_link("Hiking the Alps 1")
-    assert_equal pursuit_path(removed_pursuit), current_path
+    assert_equal rental_path(removed_rental), current_path
   end
 
   test "user can edit the number of travellers in cart" do
@@ -85,11 +85,11 @@ class UserCanInteractWithCartTest < ActionDispatch::IntegrationTest
   end
 
   test "if user adds negative number of travellers the absolute value is taken instead" do
-    create_pursuits(1, "Hiking")
+    create_rentals(1, "Hiking")
     create_and_login_user
 
-    pursuit = Activity.find_by_name("Hiking").pursuits.first
-    visit pursuit_path(pursuit)
+    rental = Activity.find_by_name("Hiking").rentals.first
+    visit rental_path(rental)
 
     click_link "Purchase Trip"
     fill_in "travellers", with: -2

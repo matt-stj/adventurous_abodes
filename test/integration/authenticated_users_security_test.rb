@@ -30,8 +30,8 @@ class AuthenticatedUsersSecurityTest < ActionDispatch::IntegrationTest
     create_and_login_user
 
     refute page.has_content?("Admin Dashboard")
-    refute page.has_content?("Create Pursuits")
-    refute page.has_content?("Edit Pursuits")
-    refute page.has_content?("Delete Pursuits")
+    refute page.has_content?("Create Rentals")
+    refute page.has_content?("Edit Rentals")
+    refute page.has_content?("Delete Rentals")
   end
 end

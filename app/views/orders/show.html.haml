@@ -21,10 +21,10 @@
         %th Sub-total
         %th Retired?
 
-      - @order.pursuits.each do |pursuit|
+      - @order.rentals.each do |rental|
         %tr
-          = content_tag :td, link_to(pursuit_name_and_travellers(@order, pursuit), pursuit_path(pursuit))
-          = content_tag :td, format_currency(pursuit.price * @order.ordered_trips.find_by(pursuit_id: pursuit.id).travellers)
+          = content_tag :td, link_to(rental_name_and_travellers(@order, rental), rental_path(rental))
+          = content_tag :td, format_currency(rental.price * @order.ordered_trips.find_by(rental_id: rental.id).travellers)
           -# number of travellers method
   %br
   %br

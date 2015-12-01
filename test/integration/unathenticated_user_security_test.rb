@@ -44,7 +44,7 @@ class UnathenticatedUserSecurityTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("Welcome, Cole!")
     refute page.has_content?("Admin Dashboard")
-    refute page.has_content?("Create Pursuit")
+    refute page.has_content?("Create Rental")
     refute page.has_content?("Create User")
   end
 

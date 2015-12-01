@@ -14,12 +14,12 @@ class UserCanSeePastOrdersTest < ActionDispatch::IntegrationTest
     order2 = user.orders.create(total: 200,
                                 created_at: Time.new(2012, 11, 12, 15, 25, 0))
 
-    order1.pursuits.create(name: "Hiking",
+    order1.rentals.create(name: "Hiking",
                            description: "Hike the Alps",
                            price: 1001,
                            activity_id: activity_id)
 
-    order2.pursuits.create(name: "Jet Skiing",
+    order2.rentals.create(name: "Jet Skiing",
                            description: "Jet Skiing in Jamaica",
                            price: 200,
                            activity_id: activity_id)
@@ -86,18 +86,18 @@ class UserCanSeePastOrdersTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Retired?")
 
     click_link("Hiking the Alps 1 (Travellers: 1)")
-    assert_equal pursuit_path(Pursuit.find_by_name("Hiking the Alps 1")), current_path
+    assert_equal rental_path(Rental.find_by_name("Hiking the Alps 1")), current_path
   end
 
-  test "user can access a retired pursuit page from their order history" do
+  test "user can access a retired rental page from their order history" do
     checkout_user(1)
-    pursuit = Pursuit.first
-    pursuit.retire
+    rental = Rental.first
+    rental.retire
 
     visit order_path(Order.first)
     click_link("Hiking the Alps 1 (Travellers: 1)")
 
-    assert_equal pursuit_path(pursuit), current_path
+    assert_equal rental_path(rental), current_path
     refute page.has_content?("Purchase Trip")
   end
 

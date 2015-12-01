@@ -1,0 +1,20 @@
+.rental{ :id => "#{format_url_name(rental.name)}" }
+  .col.s12.m4
+    .card
+      .card-image
+        = image_tag(rental.image.url)
+        %span.card-title= "#{ rental.name}"
+      .card-content
+        %p= "#{rental.description}"
+        %br
+        = "#{format_currency(rental.price)}"
+      .card-action
+        = link_to "Details", rental_path(rental)
+        %br
+        %br
+
+        - if current_admin
+          = "Status: #{rental.status.upcase}"
+          %br
+          %br
+          = button_to "Edit", edit_admin_rental_path(rental), method: :get
