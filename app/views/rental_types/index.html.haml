@@ -1,0 +1,10 @@
+%h1.white-text.center-align Rental Types
+
+.white
+  %table.cart-table.highlight
+    %tr
+      %th Locations
+
+    - @rental_types.each do |rental_type|
+      %tr
+        = content_tag :td, rental_type.name

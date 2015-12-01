@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :cart_rentals, only: [:new, :create]
   resources :users, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :orders, only: [:index, :show]
+  resources :rental_types, only: [:index]
 
   get "/admin/dashboard", to: "admin#dashboard"
 
@@ -22,5 +23,5 @@ Rails.application.routes.draw do
   get "/dashboard", to: "users#dashboard"
   post "/checkout", to: "orders#create"
 
-  get "/:rental_type_name", to: "rental_type#show" # keep at bottom of routes
+  get "/:rental_type_name", to: "rental_types#show" # keep at bottom of routes
 end
