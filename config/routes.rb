@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :cart_rentals, only: [:new, :create]
   resources :users, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :orders, only: [:index, :show]
-  resources :rental_types, only: [:index]
+  resources :rental_types, only: [:index, :show]
 
   get "/admin/dashboard", to: "admin#dashboard"
 
