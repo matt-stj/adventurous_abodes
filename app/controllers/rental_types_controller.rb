@@ -4,6 +4,6 @@ class RentalTypesController < ApplicationController
   end
 
   def show
-    @rental_type = RentalType.find(params[:id])
+    @rental_type = RentalType.find_by(slug: params[:slug])
   end
 end
