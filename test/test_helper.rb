@@ -24,11 +24,11 @@ class ActionDispatch::IntegrationTest
     click_button "Login"
   end
 
-  def create_rentals(num, activity)
+  def create_rentals(num, rental_type)
     num.times do |i|
       i += 1
-      activity = Activity.find_or_create_by(name: activity)
-      activity.rentals.create(name: "Hiking the Alps #{i}",
+      rental_type = RentalType.find_or_create_by(name: rental_type)
+      rental_type.rentals.create(name: "Hiking the Alps #{i}",
                                description: "Go hike the alps! #{i}",
                                price: 1000 + i)
     end
@@ -38,7 +38,7 @@ class ActionDispatch::IntegrationTest
     num.times do |i|
       i += 1
       create_rentals(1, "Hiking #{i}")
-      rental = Activity.find_by_name("Hiking #{i}").rentals.first
+      rental = RentalType.find_by_name("Hiking #{i}").rentals.first
 
       visit rental_path(rental)
       click_link "Purchase Trip"

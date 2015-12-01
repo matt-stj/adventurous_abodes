@@ -1,6 +1,6 @@
 class RentalsController < ApplicationController
   def index
-    @activities = Activity.all
+    @rental_types = RentalType.all
   end
 
   def show

@@ -1,6 +1,6 @@
 class Admin::RentalsController < Admin::BaseController
   def index
-    @activities = Activity.all
+    @rental_types = RentalType.all
   end
 
   def show
@@ -12,8 +12,8 @@ class Admin::RentalsController < Admin::BaseController
   end
 
   def create
-    activity = Activity.find_or_create_by(name: params[:rental][:activity])
-    @rental = activity.rentals.new(rental_params)
+    rental_type = RentalType.find_or_create_by(name: params[:rental][:rental_type])
+    @rental = rental_type.rentals.new(rental_params)
     if @rental.save
       flash[:notice] = "The rental '#{@rental.name}' has been created"
       redirect_to admin_rentals_path

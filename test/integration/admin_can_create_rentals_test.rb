@@ -12,7 +12,7 @@ class AdminCanCreateRentalsTest < ActionDispatch::IntegrationTest
     fill_in "Name", with: "Hiking in the Alps"
     fill_in "Description", with: "Have a ball hiking in the alps!"
     fill_in "Price", with: "1000"
-    fill_in "Activity", with: "Hiking"
+    fill_in "Rental type", with: "Hiking"
     click_button "Create Rental"
 
     assert_equal "/admin/rentals", current_path

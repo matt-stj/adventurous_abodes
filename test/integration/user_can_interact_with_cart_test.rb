@@ -3,7 +3,7 @@ require "test_helper"
 class UserCanInteractWithCartTest < ActionDispatch::IntegrationTest
   test "user can add item to cart" do
     create_rentals(1, "Hiking")
-    rental = Activity.find_by_name("Hiking").rentals.first
+    rental = RentalType.find_by_name("Hiking").rentals.first
     visit rental_path(rental)
 
     assert page.has_content?("Trips: 0")
@@ -88,7 +88,7 @@ class UserCanInteractWithCartTest < ActionDispatch::IntegrationTest
     create_rentals(1, "Hiking")
     create_and_login_user
 
-    rental = Activity.find_by_name("Hiking").rentals.first
+    rental = RentalType.find_by_name("Hiking").rentals.first
     visit rental_path(rental)
 
     click_link "Purchase Trip"

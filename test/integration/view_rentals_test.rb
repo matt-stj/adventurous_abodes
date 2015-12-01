@@ -26,7 +26,7 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
 
   test "visitor can view rental details" do
     create_rentals(1, "Hiking")
-    rental = Activity.find_by_name("Hiking").rentals.first
+    rental = RentalType.find_by_name("Hiking").rentals.first
     visit "/hiking"
     click_link "Details"
 

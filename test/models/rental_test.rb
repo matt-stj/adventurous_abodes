@@ -2,7 +2,7 @@ require "test_helper"
 
 class RentalTest < ActiveSupport::TestCase
   def setup
-    Activity.create(name: "Hiking")
+    RentalType.create(name: "Hiking")
   end
 
   def default_image_url
@@ -14,7 +14,7 @@ class RentalTest < ActiveSupport::TestCase
       name: "Hiking in the Alps",
       description: "Hike The Alps!",
       price: 1001,
-      activity_id: Activity.find_by_name("Hiking").id
+      rental_type_id: RentalType.find_by_name("Hiking").id
     }
   end
 
@@ -26,7 +26,7 @@ class RentalTest < ActiveSupport::TestCase
   test "it is invalid with missing name" do
     rental = Rental.new(description: "Hike The Alps!",
                           price: 1001,
-                          activity_id: Activity.find_by_name("Hiking").id)
+                          rental_type_id: RentalType.find_by_name("Hiking").id)
 
     refute rental.valid?
   end
@@ -34,7 +34,7 @@ class RentalTest < ActiveSupport::TestCase
   test "it is invalid with missing description" do
     rental = Rental.new(name: "Hiking in the alps",
                           price: 1001,
-                          activity_id: Activity.find_by_name("Hiking").id)
+                          rental_type_id: RentalType.find_by_name("Hiking").id)
 
     refute rental.valid?
   end
@@ -42,12 +42,12 @@ class RentalTest < ActiveSupport::TestCase
   test "it is invalid with missing price" do
     rental = Rental.new(name: "Hiking in the alps",
                           description: "Hike The Alps!",
-                          activity_id: Activity.find_by_name("Hiking").id)
+                          rental_type_id: RentalType.find_by_name("Hiking").id)
 
     refute rental.valid?
   end
 
-  test "it must belong to an activity" do
+  test "it must belong to an rental_type" do
     rental = Rental.new(name: "Hiking in the alps",
                           description: "Hike the Alps!",
                           price: 1000)
@@ -66,7 +66,7 @@ class RentalTest < ActiveSupport::TestCase
     rental = Rental.new( { name: "Hiking in the Alps",
                              description: "Hike The Alps!",
                              price: -1,
-                             activity_id: Activity.find_by_name("Hiking").id
+                             rental_type_id: RentalType.find_by_name("Hiking").id
                            })
 
     refute rental.valid?

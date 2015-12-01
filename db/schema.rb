@@ -16,12 +16,6 @@ ActiveRecord::Schema.define(version: 20151118205250) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "activities", force: :cascade do |t|
-    t.text     "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "ordered_trips", force: :cascade do |t|
     t.integer  "travellers"
     t.integer  "price"
@@ -44,13 +38,19 @@ ActiveRecord::Schema.define(version: 20151118205250) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
+  create_table "rental_types", force: :cascade do |t|
+    t.text     "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "rentals", force: :cascade do |t|
     t.text     "name"
     t.text     "description"
     t.integer  "price"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
-    t.integer  "activity_id"
+    t.integer  "rental_type_id"
     t.text     "status",             default: "active"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20151118205250) do
     t.string   "image"
   end
 
-  add_index "rentals", ["activity_id"], name: "index_rentals_on_activity_id", using: :btree
+  add_index "rentals", ["rental_type_id"], name: "index_rentals_on_rental_type_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -73,5 +73,5 @@ ActiveRecord::Schema.define(version: 20151118205250) do
   add_foreign_key "ordered_trips", "orders"
   add_foreign_key "ordered_trips", "rentals"
   add_foreign_key "orders", "users"
-  add_foreign_key "rentals", "activities"
+  add_foreign_key "rentals", "rental_types"
 end

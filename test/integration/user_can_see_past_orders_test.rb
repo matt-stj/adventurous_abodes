@@ -5,8 +5,8 @@ class UserCanSeePastOrdersTest < ActionDispatch::IntegrationTest
     create_and_login_user
     user = User.first
 
-    Activity.create(name: "General")
-    activity_id = Activity.first.id
+    RentalType.create(name: "General")
+    rental_type_id = RentalType.first.id
 
     # TO DO: MOCHA GEM STUB DATE
     order1 = user.orders.create(total: 1001,
@@ -17,12 +17,12 @@ class UserCanSeePastOrdersTest < ActionDispatch::IntegrationTest
     order1.rentals.create(name: "Hiking",
                            description: "Hike the Alps",
                            price: 1001,
-                           activity_id: activity_id)
+                           rental_type_id: rental_type_id)
 
     order2.rentals.create(name: "Jet Skiing",
                            description: "Jet Skiing in Jamaica",
                            price: 200,
-                           activity_id: activity_id)
+                           rental_type_id: rental_type_id)
 
     visit orders_path
 
