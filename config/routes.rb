@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :show, :edit, :update, :destroy]
   resources :orders, only: [:index, :show]
   resources :rental_types, only: [:index]
+  resources :rental_types, param: :slug, only: [:show]
 
   get "/admin/dashboard", to: "admin#dashboard"
-
   namespace :admin do
     resources :rentals
     resources :orders
@@ -23,5 +23,5 @@ Rails.application.routes.draw do
   get "/dashboard", to: "users#dashboard"
   post "/checkout", to: "orders#create"
 
-  get "/:rental_type_name", to: "rental_types#show" # keep at bottom of routes
+  #get "/:rental_type_name", to: "rental_types#show" # keep at bottom of routes
 end

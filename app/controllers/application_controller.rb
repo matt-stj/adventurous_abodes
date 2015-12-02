@@ -12,11 +12,6 @@ class ApplicationController < ActionController::Base
     name.downcase.gsub(" ", "_")
   end
 
-  def find_rental_type_by_name(name)
-    formatted_name = name.tr("_"," ").titleize
-    RentalType.find_by_name(formatted_name)
-  end
-
   def count_of_trips
     @cart.total_trips
   end

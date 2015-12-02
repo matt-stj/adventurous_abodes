@@ -7,4 +7,4 @@
 
     - @rental_types.each do |rental_type|
       %tr
-        = content_tag :td, rental_type.name
+        = content_tag :td, link_to(rental_type.name, rental_type_path(slug: rental_type.slug))
