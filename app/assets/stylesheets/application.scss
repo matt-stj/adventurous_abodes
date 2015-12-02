@@ -30,17 +30,6 @@
 
 @import "materialize";
 
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  background-color: #303030;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
 nav {
   color: black;
 }
@@ -91,3 +80,13 @@ h3 {
 .page-footer {
   font-size: 80%;
 }
+
+body {
+   display: flex;
+   min-height: 100vh;
+   flex-direction: column;
+ }
+
+ main {
+   flex: 1 0 auto;
+ }
