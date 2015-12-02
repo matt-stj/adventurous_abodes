@@ -1,6 +1,6 @@
-%h1.white-text.center-align Rentals
+%h1.black-text.center-align Featured Rentals
 
 - @rental_types.each do |rental_type|
-  %h2.center-align= link_to("#{rental_type.name}", "/rental_types/#{rental_type.slug}")
+  %h2.center-align= link_to("#{rental_type.name}", "/rental_types/#{rental_type.slug}", class: "black-text")
   .row
     = render rental_type.rentals

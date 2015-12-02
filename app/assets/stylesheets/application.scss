@@ -30,17 +30,6 @@
 
 @import "materialize";
 
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  background-color: #303030;
-}
-
-main {
-  flex: 1 0 auto;
-}
-
 nav {
   color: black;
 }
@@ -56,9 +45,12 @@ h3 {
 .brand-logo {
   margin-left: 25px;
 }
-​
-.footer-copyright {
-  font-size: 18px
+
+footer.page-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 25px;
+    margin-bottom: -25px;
 }
 ​
 .icon-block {
@@ -90,4 +82,18 @@ h3 {
 
 .page-footer {
   font-size: 80%;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+.footer-copyright {
+  margin-bottom: -25px !important;
 }

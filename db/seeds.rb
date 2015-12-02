@@ -16,7 +16,9 @@ rental_types.each do |rental_type|
 end
 
 Rental.create!(name: "Castle Rental",  description: "Live it up like Royalty!",     price: 150,  rental_type_id: RentalType.first.id)
-Rental.create!(name: "Dungeon Rental", description: "For the coder in your life.",  price: 750,  rental_type_id: RentalType.second.id)
+Rental.create!(name: "Dungeon Rental 1", description: "For the coder in your life.",  price: 750,  rental_type_id: RentalType.second.id)
+Rental.create!(name: "Dungeon Rental 2", description: "For the coder in your life.",  price: 750,  rental_type_id: RentalType.second.id)
+Rental.create!(name: "Dungeon Rental 3", description: "For the coder in your life.",  price: 750,  rental_type_id: RentalType.second.id)
 Rental.create!(name: "Shack Rental",   description: "When amenities don't matter.", price: 1150, rental_type_id: RentalType.third.id)
 
 User.create!(username: "shannon", name: "Shannon", password: "pass")
