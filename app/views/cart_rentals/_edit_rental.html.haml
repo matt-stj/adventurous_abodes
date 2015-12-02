@@ -8,17 +8,12 @@
               = image_tag(rental.image.url, class: "responsive-img")
             .col.s6
               %h2= rental.name
-              %p= "Price: #{format_currency(rental.price)}"
-              %p= "Travellers: #{@cart.count_of(rental.id)}"
-              %p= "Sub-total: #{format_currency(rental.price * @cart.count_of(rental.id))}"
               %p= rental.description
+              %p= "Price: #{format_currency(rental.price)}"
+              %p= "Dates: INSERT DATES FROM SELECTOR"
+              %p= "Number of Nights: NUMBER OF NIGHTS SELECTED"
+              %p= "Sub-total: NUMBER OF NIGHTS * PRICE"
 
-              = form_tag(cart_path, method: :put) do
-                = label_tag "Travellers: "
-                = text_field_tag "travellers", @cart.count_of(rental.id)
-
-                = hidden_field_tag "rental_id", rental.id
-                = submit_tag "Update"
             .col.s2
               %br
               %br

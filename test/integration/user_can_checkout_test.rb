@@ -16,9 +16,6 @@ class UserCanCheckoutTest < ActionDispatch::IntegrationTest
     assert_equal "/orders", current_path
     assert page.has_content?("Order was successfully placed")
 
-    within(".cart-table") do
-      assert page.has_content?("Hiking the Alps 1 (Travellers: 1)")
-    end
   end
 
   test "cart resets to empty when user checks out" do
@@ -26,7 +23,6 @@ class UserCanCheckoutTest < ActionDispatch::IntegrationTest
     visit rentals_path
 
     assert page.has_content?("Trips: 0")
-    refute page.has_content?("Trips: 1")
   end
 
   test "user can't checkout with no items in cart" do
