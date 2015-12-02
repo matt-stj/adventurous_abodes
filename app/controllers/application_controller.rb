@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_cart
   helper_method :format_url_name, :count_of_trips,
-                :rentals_in_cart, :current_user, :current_admin
+                :rentals_in_cart, :current_user, :current_owner
 
   def set_cart
     @cart = Cart.new(session[:cart])
@@ -20,11 +20,11 @@ class ApplicationController < ActionController::Base
     @user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def current_admin
+  def current_owner
     current_user && current_user.role == 1
   end
 
-  def require_admin
-    render file: "./test/public/404" unless current_admin
+  def require_owner
+    render file: "./test/public/404" unless current_owner
   end
 end

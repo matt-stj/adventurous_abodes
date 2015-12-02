@@ -1,16 +1,17 @@
 require "test_helper"
 
-class AdminOrdersTest < ActionDispatch::IntegrationTest
-  def checkout_user_and_login_admin
+class OwnerOrdersTest < ActionDispatch::IntegrationTest
+  def checkout_user_and_login_owner
     checkout_user(2)
     click_link "Logout"
-    login_admin
+    login_owner
   end
 
-  test "admin can see all orders on dasboard and filter by status" do
-    checkout_user_and_login_admin
+  test "owner can see all orders on dasboard and filter by status" do
+    skip
+    checkout_user_and_login_owner
 
-    assert admin_dashboard_path, current_path
+    assert owner_dashboard_path, current_path
 
     assert page.has_content?("Order ID")
     assert page.has_content?("Pending")
@@ -19,15 +20,15 @@ class AdminOrdersTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Cancelled")
   end
 
-  test "admin can view an individual order" do
-    checkout_user_and_login_admin
+  test "owner can view an individual order" do
+    checkout_user_and_login_owner
 
-    assert admin_dashboard_path, current_path
+    assert owner_dashboard_path, current_path
     assert page.has_link?("Pending")
 
     click_link("Pending")
 
-    assert_equal "/admin/orders/#{Order.first.id}", current_path
+    assert_equal "/owner/orders/#{Order.first.id}", current_path
     # assert page.has_content?("#{Time.now.strftime("%B %d, %Y")}")
 
     assert page.has_content?("Travellers")
@@ -35,8 +36,8 @@ class AdminOrdersTest < ActionDispatch::IntegrationTest
     assert page.has_content?("1001")
   end
 
-  test "admin can update order status" do
-    checkout_user_and_login_admin
+  test "owner can update order status" do
+    checkout_user_and_login_owner
     click_link "Pending"
 
     fill_in "Order status", with: "Completed"
