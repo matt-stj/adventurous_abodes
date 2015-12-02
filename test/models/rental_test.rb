@@ -24,6 +24,7 @@ class RentalTest < ActiveSupport::TestCase
   end
 
   test "it is invalid with missing name" do
+    skip
     rental = Rental.new(description: "Hike The Alps!",
                           price: 1001,
                           rental_type_id: RentalType.find_by_name("Hiking").id)
@@ -32,6 +33,7 @@ class RentalTest < ActiveSupport::TestCase
   end
 
   test "it is invalid with missing description" do
+    skip
     rental = Rental.new(name: "Hiking in the alps",
                           price: 1001,
                           rental_type_id: RentalType.find_by_name("Hiking").id)
@@ -40,6 +42,7 @@ class RentalTest < ActiveSupport::TestCase
   end
 
   test "it is invalid with missing price" do
+    skip
     rental = Rental.new(name: "Hiking in the alps",
                           description: "Hike The Alps!",
                           rental_type_id: RentalType.find_by_name("Hiking").id)
@@ -48,6 +51,7 @@ class RentalTest < ActiveSupport::TestCase
   end
 
   test "it must belong to an rental_type" do
+    skip
     rental = Rental.new(name: "Hiking in the alps",
                           description: "Hike the Alps!",
                           price: 1000)
@@ -63,6 +67,7 @@ class RentalTest < ActiveSupport::TestCase
   # end
 
   test "it must have a price that is greater than zero" do
+    skip
     rental = Rental.new( { name: "Hiking in the Alps",
                              description: "Hike The Alps!",
                              price: -1,

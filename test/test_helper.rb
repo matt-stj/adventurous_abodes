@@ -62,11 +62,11 @@ class ActionDispatch::IntegrationTest
     reset_session!
   end
 
-  def login_admin
-    User.create(username: "admin", name: "Admin", password: "password", role: 1)
+  def login_owner
+    User.create(username: "owner", name: "Owner", password: "password", role: 1)
 
     visit login_path
-    fill_in "Username", with: "admin"
+    fill_in "Username", with: "owner"
     fill_in "Password", with: "password"
     click_button "Login"
   end

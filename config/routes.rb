@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :show]
   resources :rental_types, only: [:index]
 
-  get "/admin/dashboard", to: "admin#dashboard"
+  get "/owner/dashboard", to: "owner#dashboard"
 
-  namespace :admin do
+  namespace :owner do
     resources :rentals
     resources :orders
   end
