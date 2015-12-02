@@ -1,0 +1,41 @@
+<h1>Owner Dashboard</h1>
+
+<div class="center-align">
+  <div class="waves-effect waves-light btn">
+    <%= link_to "Edit Account", edit_user_path(@user) %>
+  </div>
+  <div class="waves-effect waves-light btn">
+    <%= link_to "Delete Account", user_path(@user), method: :delete %>
+  </div>
+  <br/>
+  <br/>
+  <div class="waves-effect waves-light btn">
+    <%= link_to "View All Rentals", owner_rentals_path %>
+  </div>
+  <div class="waves-effect waves-light btn">
+    <%= link_to "Add Rental",  new_owner_rental_path %>
+  </div>
+</div>
+
+<h2>Rentals</h2>
+<ol>
+  <% @owner.rentals.each do |rental| %>
+    <li><%= rental.name %> - <%= link_to "edit", edit_owner_rental_path(rental) %></li>
+  <% end %>
+</ol>
+
+<div class="white">
+  <table class="cart-table highlight">
+    <tr>
+      <th>Order ID</th>
+      <th>Date Ordered</th>
+      <th>Status</th>
+      <th>Total</th>
+    </tr>
+
+<% Order.all.each do |order| %>
+<tr class = "order" data-status = "#{order.status}"><%= content_tag :td, link_to("#{order.id}", owner_order_path(order.id)) %>
+<%=  content_tag :td, format_date(order.created_at)%>
+<%=  content_tag :td, link_to("#{order.status}", owner_order_path(order.id))%>
+<%=  content_tag :td, format_currency(order.total || 0)%></tr>
+<% end %>

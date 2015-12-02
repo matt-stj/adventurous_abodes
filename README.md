@@ -9,7 +9,7 @@ type: project
 
 Your Little Shop of Orders application was *almost* great, but it turns out that we need to *pivot* the business model.
 
-In this project, you'll build upon an existing implementation of Little Shop. You will transform your restaurant ordering site into a platform that handles multiple, simultaneous businesses. Each business will have their own name, unique URL pattern, items, orders, and administrators.
+In this project, you'll build upon an existing implementation of Little Shop. You will transform your restaurant ordering site into a platform that handles multiple, simultaneous businesses. Each business will have their own name, unique URL pattern, items, orders, and owneristrators.
 
 The project requirements are listed below:
 
@@ -118,8 +118,8 @@ User stories follow this pattern:
 
 Examples:
 
-* As an admin, when I click on dashboard, I can see all the users listed in the page.
-* As a store admin, when I visit the orders page, I can see the orders listed there by status.
+* As an owner, when I click on dashboard, I can see all the users listed in the page.
+* As a store owner, when I visit the orders page, I can see the orders listed there by status.
 
 ### Working with Git
 
@@ -145,7 +145,7 @@ You are to extend Little Shop so that it can handle multiple, simultaneous busin
 * A unique URL pattern (http://example.com/name-of-business)
 * Unique items
 * Unique orders
-* Unique administrators
+* Unique owneristrators
 
 The Pivot should be able to handle the following users:
 
@@ -165,21 +165,21 @@ As an registered customer, I should be able to:
 * Manage my account information
 * View my purchase history
 
-### Business Admin
+### Business Owner
 
-As a business admin, I should be able to:
+As a business owner, I should be able to:
 
 * Manage items on my business
 * Update my business information
-* Manage other business admins for your store
+* Manage other business owners for your store
 
-### Platform Admin
+### Platform Owner
 
-As a platform admin, I should be able to:
+As a platform owner, I should be able to:
 
 * Approve or decline the creation of new businesses
 * Take a business offline / online
-* Perform any functionality restricted to business admins
+* Perform any functionality restricted to business owners
 
 ## <a name="pivots"></a> Pivots
 
@@ -229,10 +229,10 @@ You should have the following data pre-loaded in your marketplace:
   * Username: josh@turing.io
   * Password: password
 * 10 orders per registered customer
-* 1 business admins per business
+* 1 business owners per business
   * Username: andrew@turing.io
   * Password: password
-* 1 platform administrators
+* 1 platform owneristrators
   * Username: jorge@turing.io
   * Password: password
 

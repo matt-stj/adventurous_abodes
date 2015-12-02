@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>GlobalRental</title>
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <%= stylesheet_link_tag 'application' %>
-    <%= javascript_include_tag 'application' %>
-    <%= csrf_meta_tags %>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<head>
+  <title>Adventure Abodes</title>
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <%= stylesheet_link_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <style>
-      nav ul li a {
-        color: black;
-      }
-    </style>
-  </head>
+  <style>
+  nav ul li a {
+    color: black;
+  }
+  </style>
+</head>
+  <main>
 
-<body>
+<body class="Site">
   <div class = "<%= params[:controller] %>">
     <header class="nav">
       <nav>
         <div class="nav-wrapper white">
-          <a href="/" class="brand-logo black-text">GlobalRental</a>
+          <a href="/" class="brand-logo black-text">Adventurous Abodes</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><%= link_to "Rentals", rentals_path %></li>
             <li><%= join_dashboard_path %></li>
@@ -30,7 +31,6 @@
         </div>
       </nav>
     </header>
-
     <div class="row">
       <div class="col s5 offset-s3 m10 offset-m3">
         <% flash.each do |type, msg| %>
@@ -44,6 +44,8 @@
     <div class='container'>
       <%= yield %>
     </div>
-    <%= render "shared/footer" %>
+  </main>
+    <%= render "shared/footer" %>    ​
+
   </body>
-</html>
+  </html>

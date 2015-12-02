@@ -1,4 +1,4 @@
-%h1.white-text.center-align Admin Dashboard
+%h1.white-text.center-align Owner Dashboard
 
 .center-align
   .waves-effect.waves-light.btn
@@ -8,16 +8,13 @@
   %br
   %br
   .waves-effect.waves-light.btn
-    = link_to "View All Rentals", admin_rentals_path
+    = link_to "View All Rentals", owner_rentals_path
   .waves-effect.waves-light.btn
-    = link_to "Add Rental",  new_admin_rental_path
-
-%br
-%br
+    = link_to "Add Rental",  new_owner_rental_path
 
 %h2.white-text.center-align Orders
 
-= render partial: "/admin/orders/filter"
+= render partial: "/owner/orders/filter"
 %br
 .white
   %table.cart-table.highlight
@@ -29,7 +26,7 @@
 
     - Order.all.each do |order|
       %tr.order{ data: {status: "#{order.status}"} }
-        = content_tag :td, link_to("#{order.id}", admin_order_path(order.id))
+        = content_tag :td, link_to("#{order.id}", owner_order_path(order.id))
         = content_tag :td, format_date(order.created_at)
-        = content_tag :td, link_to("#{order.status}", admin_order_path(order.id))
+        = content_tag :td, link_to("#{order.status}", owner_order_path(order.id))
         = content_tag :td, format_currency(order.total || 0)

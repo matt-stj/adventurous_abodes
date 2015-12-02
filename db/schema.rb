@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118205250) do
+ActiveRecord::Schema.define(version: 20151201234811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20151118205250) do
     t.text     "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
   end
 
   create_table "rentals", force: :cascade do |t|
@@ -57,9 +58,11 @@ ActiveRecord::Schema.define(version: 20151118205250) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "image"
+    t.integer  "user_id"
   end
 
   add_index "rentals", ["rental_type_id"], name: "index_rentals_on_rental_type_id", using: :btree
+  add_index "rentals", ["user_id"], name: "index_rentals_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -74,4 +77,5 @@ ActiveRecord::Schema.define(version: 20151118205250) do
   add_foreign_key "ordered_trips", "rentals"
   add_foreign_key "orders", "users"
   add_foreign_key "rentals", "rental_types"
+  add_foreign_key "rentals", "users"
 end

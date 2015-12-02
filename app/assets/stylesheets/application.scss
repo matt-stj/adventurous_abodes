@@ -45,9 +45,12 @@ h3 {
 .brand-logo {
   margin-left: 25px;
 }
-​
-.footer-copyright {
-  font-size: 18px
+
+footer.page-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 25px;
+    margin-bottom: -25px;
 }
 ​
 .icon-block {
@@ -82,11 +85,15 @@ h3 {
 }
 
 body {
-   display: flex;
-   min-height: 100vh;
-   flex-direction: column;
- }
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
- main {
-   flex: 1 0 auto;
- }
+main {
+  flex: 1 0 auto;
+}
+
+.footer-copyright {
+  margin-bottom: -25px !important;
+}
