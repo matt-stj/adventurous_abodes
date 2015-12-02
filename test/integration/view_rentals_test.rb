@@ -53,22 +53,17 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "visitor can view rental details" do
-    create_rentals(1, "Hiking")
-    rental = RentalType.find_by_name("Hiking").rentals.first
-    visit "/hiking"
-    click_link "Details"
+  test "visitor can see rentals sorted by rental_types" do
+    create_rentals(2, "Castle")
+    create_rentals(2, "Igloo")
 
-    assert_equal rental_path(rental), current_path
+    visit rental_types_path
+    click_link "Castle"
+
+    assert_equal '/rental_types/castle', current_path
 
     within("h1") do
-      assert page.has_content?("Hiking the Alps 1")
+      assert page.has_content?("Castle")
     end
-
-    within("p.rental-description") do
-      assert page.has_content?("Go hike the alps! 1")
-    end
-
-    assert page.has_content?("$1,001")
   end
 end
