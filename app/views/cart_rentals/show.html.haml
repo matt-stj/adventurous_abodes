@@ -9,6 +9,6 @@
 
   .card-panel.grey.lighten-5.right-align
     .col.s6.offset-s6
-      = "Total: #{format_currency(@cart.total_cost)}"
+      = "Total: $NUMBER OF NIGHTS * PRICE"
       .waves-effect.waves-light.btn.white-text
         = button_to "Checkout", checkout_path, method: :post
