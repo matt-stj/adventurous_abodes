@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   resources :rental_types, only: [:index]
   resources :rental_types, param: :slug, only: [:show]
 
-  get "/admin/dashboard", to: "admin#dashboard"
-  namespace :admin do
+  get "/owner/dashboard", to: "owner#dashboard"
+
+  namespace :owner do
     resources :rentals
     resources :orders
   end

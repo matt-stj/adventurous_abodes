@@ -13,8 +13,8 @@
         %br
         %br
 
-        - if current_admin
+        - if current_owner
           = "Status: #{rental.status.upcase}"
           %br
           %br
-          = button_to "Edit", edit_admin_rental_path(rental), method: :get
+          = button_to "Edit", edit_owner_rental_path(rental), method: :get

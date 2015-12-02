@@ -28,7 +28,7 @@ class UnathenticatedUserSecurityTest < ActionDispatch::IntegrationTest
     assert page.has_content?("The page you were looking for doesn't exist")
   end
 
-  test "unathenticated user cannot make themself an admin account" do
+  test "unathenticated user cannot make themself an owner account" do
     visit root_path
 
     click_button "Apply for Membership"
@@ -43,7 +43,7 @@ class UnathenticatedUserSecurityTest < ActionDispatch::IntegrationTest
     click_button ("Create Account")
 
     assert page.has_content?("Welcome, Cole!")
-    refute page.has_content?("Admin Dashboard")
+    refute page.has_content?("Owner Dashboard")
     refute page.has_content?("Create Rental")
     refute page.has_content?("Create User")
   end
