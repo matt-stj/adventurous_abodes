@@ -25,15 +25,12 @@ class OwnerOrdersTest < ActionDispatch::IntegrationTest
 
     assert owner_dashboard_path, current_path
     assert page.has_link?("Pending")
-
     click_link("Pending")
 
     assert_equal "/owner/orders/#{Order.first.id}", current_path
     # assert page.has_content?("#{Time.now.strftime("%B %d, %Y")}")
-
-    assert page.has_content?("Travellers")
     assert page.has_content?("Total")
-    assert page.has_content?("1001")
+    assert page.has_content?("$0")
   end
 
   test "owner can update order status" do
