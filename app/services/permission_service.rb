@@ -49,6 +49,7 @@ class PermissionService
       return true if controller == "rentals"      && action.in?(%w(index show))
       return true if controller == "home"         && action == "index"
       return true if controller == "owners" && action == "show"
+      return true if controller == "owners" && action == "index"
     end
 
 end
