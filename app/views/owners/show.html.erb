@@ -1,7 +1,18 @@
 <h2><%= @owner.name %>'s Rentals:</h2>
 
-<ol>
-  <% @owner.rentals.each do |rental| %>
-    <li><%= link_to rental.name, rental_path(rental) %></li>
-  <% end %>
-</ol>
+<div class="row">
+
+<% @owner.rentals.each do |rental| %>
+  <div class="col m4">
+  <div class="card medium">
+    <div class="card-image waves-effect waves-block waves-light">
+      <%= image_tag "house-06.jpg" %>
+    </div>
+    <div class="card-content">
+      <span class="card-title grey-text text-darken-4"><%= link_to rental.name, rental_path(rental), class: "btn" %>
+</span>
+    </div>
+  </div>
+</div>
+<% end %>
+</div>

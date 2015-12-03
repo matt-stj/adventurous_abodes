@@ -1,12 +1,12 @@
 %br
 %br
 
-.white-text.center-align
+.black-text.center-align
   %h1.center-align Place Your Order
   %br
 
   .row
-    .col.s2.offset-s5.white-text
+    .col.s2.offset-s5.black-text
       = form_tag(cart_rentals_path, method: :post) do
         = hidden_field_tag "rental_id", params[:id]
         .input-field
