@@ -1,4 +1,4 @@
-class Owner::OrdersController < Owner::BaseController
+class Owners::OrdersController < Owners::BaseController
   def index
     @orders = Order.all
   end
@@ -15,6 +15,6 @@ class Owner::OrdersController < Owner::BaseController
     else
       flash[:notice] = "Invalid Order Status"
     end
-    redirect_to owner_order_path(@order)
+    redirect_to owners_order_path(@order)
   end
 end

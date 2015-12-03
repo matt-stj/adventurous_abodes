@@ -1,4 +1,4 @@
-class Owner::RentalsController < Owner::BaseController
+class Owners::RentalsController < Owners::BaseController
   def index
     @rental_types = RentalType.all
   end
@@ -18,10 +18,10 @@ class Owner::RentalsController < Owner::BaseController
     # @rental = rental_type.rentals.new(rental_params)
     if @rental.save
       flash[:notice] = "The rental '#{@rental.name}' has been created"
-      redirect_to owner_dashboard_path
+      redirect_to owners_dashboard_path
     else
       flash[:notice] = @rental.errors.full_messages.join(", ")
-      redirect_to new_owner_rental_path
+      redirect_to new_owners_rental_path
     end
   end
 
@@ -33,7 +33,7 @@ class Owner::RentalsController < Owner::BaseController
     @rental = Rental.find(params[:id])
     if @rental.update(rental_params)
       flash.notice = "Rental Updated!"
-      redirect_to owner_rentals_path
+      redirect_to owners_rentals_path
     else
       flash.now[:errors] = @rental.errors.full_messages.join(" ,")
       render :edit
@@ -43,7 +43,7 @@ class Owner::RentalsController < Owner::BaseController
   def destroy
     @rental = Rental.find(params[:id])
     @rental.destroy
-    redirect_to owner_rentals_path
+    redirect_to owners_rentals_path
   end
 
   private

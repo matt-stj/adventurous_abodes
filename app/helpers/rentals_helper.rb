@@ -2,7 +2,7 @@ module RentalsHelper
   def purchase_link_or_retired_notice
     if current_user
       if current_user.owner?
-        link_to "Edit Rental", edit_owner_rental_path(@rental.id)
+        link_to "Edit Rental", edit_owners_rental_path(@rental.id)
       else
         get_purchase_link_or_retired_notice
       end

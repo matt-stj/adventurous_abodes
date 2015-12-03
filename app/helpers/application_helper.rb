@@ -13,7 +13,7 @@ module ApplicationHelper
 
   def join_dashboard_path
     if current_owner
-      link_to "Logged in as #{current_user.name}", owner_dashboard_path
+      link_to "Logged in as #{current_user.name}", owners_dashboard_path
     elsif current_user
       link_to "Logged in as #{current_user.name}", dashboard_path
     else

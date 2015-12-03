@@ -8,13 +8,13 @@
   %br
   %br
   .waves-effect.waves-light.btn
-    = link_to "View All Rentals", owner_rentals_path
+    = link_to "View All Rentals", owners_rentals_path
   .waves-effect.waves-light.btn
-    = link_to "Add Rental",  new_owner_rental_path
+    = link_to "Add Rental",  new_owners_rental_path
 
 %h2.white-text.center-align Orders
 
-= render partial: "/owner/orders/filter"
+= render partial: "/owners/orders/filter"
 %br
 .white
   %table.cart-table.highlight
@@ -26,7 +26,7 @@
 
     - Order.all.each do |order|
       %tr.order{ data: {status: "#{order.status}"} }
-        = content_tag :td, link_to("#{order.id}", owner_order_path(order.id))
+        = content_tag :td, link_to("#{order.id}", owners_order_path(order.id))
         = content_tag :td, format_date(order.created_at)
-        = content_tag :td, link_to("#{order.status}", owner_order_path(order.id))
+        = content_tag :td, link_to("#{order.status}", owners_order_path(order.id))
         = content_tag :td, format_currency(order.total || 0)

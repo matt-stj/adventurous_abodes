@@ -11,7 +11,7 @@ class OwnerOrdersTest < ActionDispatch::IntegrationTest
     skip
     checkout_user_and_login_owner
 
-    assert owner_dashboard_path, current_path
+    assert owners_dashboard_path, current_path
 
     assert page.has_content?("Order ID")
     assert page.has_content?("Pending")
@@ -23,11 +23,11 @@ class OwnerOrdersTest < ActionDispatch::IntegrationTest
   test "owner can view an individual order" do
     checkout_user_and_login_owner
 
-    assert owner_dashboard_path, current_path
+    assert owners_dashboard_path, current_path
     assert page.has_link?("Pending")
     click_link("Pending")
 
-    assert_equal "/owner/orders/#{Order.first.id}", current_path
+    assert_equal "/owners/orders/#{Order.first.id}", current_path
     # assert page.has_content?("#{Time.now.strftime("%B %d, %Y")}")
     assert page.has_content?("Total")
     assert page.has_content?("$0")

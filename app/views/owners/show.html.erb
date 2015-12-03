@@ -1,0 +1,7 @@
+<h2><%= @owner.name %>'s Rentals:</h2>
+
+<ol>
+  <% @owner.rentals.each do |rental| %>
+    <li><%= link_to rental.name, rental_path(rental) %></li>
+  <% end %>
+</ol>

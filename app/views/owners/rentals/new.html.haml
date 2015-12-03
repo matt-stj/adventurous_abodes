@@ -1,7 +1,7 @@
 %h1.white-text.center-align Add a New Rental:
 
 .white-text
-  = form_for(@rental, url: owner_rentals_path)  do |f|
+  = form_for(@rental, url: owners_rentals_path)  do |f|
     .hidden-field
       = f.hidden_field(:user_id, :value => current_user.id) if current_user
 
