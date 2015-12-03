@@ -14,8 +14,8 @@ class User < ActiveRecord::Base
     roles.exists?(title: "platform_admin")
   end
 
-  def store_admin?
-    roles.exists?(title: "store_admin")
+  def owner?
+    roles.exists?(title: "owner")
   end
 
   def registered_user?

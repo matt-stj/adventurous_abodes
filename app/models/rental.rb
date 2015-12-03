@@ -1,8 +1,8 @@
 class Rental < ActiveRecord::Base
   belongs_to :rental_type
   belongs_to :user
-  has_many :ordered_trips
-  has_many :orders, through: :ordered_trips
+  has_many :reservations
+  has_many :orders, through: :reservations
   has_attached_file :image, default_url: "http://robbielane.net/works/haines/photos/HainesLutakRoad.jpg"
 
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]

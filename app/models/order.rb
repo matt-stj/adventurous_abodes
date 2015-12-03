@@ -1,12 +1,12 @@
 class Order < ActiveRecord::Base
   belongs_to :user
-  has_many :ordered_trips
-  has_many :rentals, through: :ordered_trips
+  has_many :reservations
+  has_many :rentals, through: :reservations
 
   def self.make_new(cart, current_user)
     order = current_user.orders.create(total: cart.total_cost)
     cart.ordered_rentals.each do |rental|
-      order.ordered_trips.create(rental_id: rental.rental_id,
+      order.reservations.create(rental_id: rental.rental_id,
                                  travellers: rental.travellers,
                                  price: rental.price)
     end

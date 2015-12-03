@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OrderedTripTest < ActiveSupport::TestCase
+class ReservationTest < ActiveSupport::TestCase
   def valid_attributes
     {
       travellers: 2,
@@ -9,14 +9,14 @@ class OrderedTripTest < ActiveSupport::TestCase
   end
 
   test "a valid ordered trip can be created" do
-    ordered_trip = OrderedTrip.new(valid_attributes)
-    assert ordered_trip.valid?
+    reservation = Reservation.new(valid_attributes)
+    assert reservation.valid?
   end
 
   test "it can't have a negative number of travellers" do
-    ordered_trip = OrderedTrip.new(travellers: -1,
+    reservation = Reservation.new(travellers: -1,
                                    price: 100)
 
-    refute ordered_trip.valid?
+    refute reservation.valid?
   end
 end

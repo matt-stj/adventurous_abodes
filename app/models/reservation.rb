@@ -1,4 +1,4 @@
-class OrderedTrip < ActiveRecord::Base
+class Reservation < ActiveRecord::Base
   belongs_to :order
   belongs_to :rental
 

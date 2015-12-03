@@ -2,7 +2,9 @@ require 'test_helper'
 
 class GuestCanViewRentalsByOwnerTest < ActionDispatch::IntegrationTest
   test "guest can view rentals by owner" do
-    owner = User.create!(username: "owner", name: "owner", password: "password", role: 1)
+    create_roles
+    owner = User.create(username: "owner", name: "Owner", password: "password")
+    owner.roles << Role.find_by(title: "owner")
 
     2.times do |i|
       i += 1

@@ -2,7 +2,7 @@ class PermissionService
   extend Forwardable
 
   attr_reader :user, :controller, :action
-  def_delegators :user, :platform_admin?, :store_admin?, :registered_user?
+  def_delegators :user, :platform_admin?, :owner?, :registered_user?
 
   def initialize(user)
     @user = user || User.new
@@ -13,7 +13,7 @@ class PermissionService
     @action = action
     case
     when platform_admin?      then platform_admin_permissions
-    when store_admin?         then store_admin_permissions
+    when owner?               then owner_permissions
     when registered_user?     then registered_user_permissions
     else
       default_permissions
@@ -23,10 +23,10 @@ class PermissionService
   private
 
     def platform_admin_permissions
-      store_admin_permissions
+      owner_permissions
     end
 
-    def store_admin_permissions
+    def owner_permissions
       return true if controller == "owners/users" && action == "dashboard"
       return true if controller == "owners/rentals" && action.in?(%w(index show new create edit update destroy))
       return true if controller == "owners/orders" && action.in?(%w(index show new create edit update destroy))

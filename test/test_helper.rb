@@ -11,7 +11,7 @@ SimpleCov.start "rails"
 class ActiveSupport::TestCase
   def create_roles
     Role.create(title: "platform_admin")
-    Role.create(title: "store_admin")
+    Role.create(title: "owner")
     Role.create(title: "registered_user")
   end
 
@@ -113,14 +113,14 @@ class ActionDispatch::IntegrationTest
 
   def create_roles
     Role.create(title: "platform_admin")
-    Role.create(title: "store_admin")
+    Role.create(title: "owner")
     Role.create(title: "registered_user")
   end
 
   def login_owner
     create_roles
     owner = User.create(username: "owner", name: "Owner", password: "password")
-    owner.roles << Role.find_by(title: "store_admin")
+    owner.roles << Role.find_by(title: "owner")
     visit login_path
     fill_in "Username", with: "owner"
     fill_in "Password", with: "password"

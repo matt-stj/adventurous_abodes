@@ -37,7 +37,7 @@
       %th Travellers
       %th Subtotal
 
-    - @order.ordered_trips.each do |trip|
+    - @order.reservations.each do |trip|
       %tr
         = content_tag :td, link_to( Rental.find(trip.rental_id).name, owners_rental_path(trip.rental_id))
         = content_tag :td, trip.travellers

@@ -57,16 +57,16 @@ class UserTest < ActiveSupport::TestCase
   test "user knows if it is a store admin" do
     create_roles
     user = User.create(valid_attributes)
-    user.roles << Role.find_by(title: "store_admin")
+    user.roles << Role.find_by(title: "owner")
 
-    assert user.store_admin?
+    assert user.owner?
   end
 
   test "user knows if it is not a store admin" do
     create_roles
     user = User.create(valid_attributes)
 
-    refute user.store_admin?
+    refute user.owner?
   end
 
   test "user knows if it is a registered user" do

@@ -11,22 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203175621) do
+ActiveRecord::Schema.define(version: 20151203213052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "ordered_trips", force: :cascade do |t|
-    t.integer  "travellers"
-    t.integer  "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "order_id"
-    t.integer  "rental_id"
-  end
-
-  add_index "ordered_trips", ["order_id"], name: "index_ordered_trips_on_order_id", using: :btree
-  add_index "ordered_trips", ["rental_id"], name: "index_ordered_trips_on_rental_id", using: :btree
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
@@ -64,6 +52,18 @@ ActiveRecord::Schema.define(version: 20151203175621) do
   add_index "rentals", ["rental_type_id"], name: "index_rentals_on_rental_type_id", using: :btree
   add_index "rentals", ["user_id"], name: "index_rentals_on_user_id", using: :btree
 
+  create_table "reservations", force: :cascade do |t|
+    t.integer  "travellers"
+    t.integer  "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "order_id"
+    t.integer  "rental_id"
+  end
+
+  add_index "reservations", ["order_id"], name: "index_reservations_on_order_id", using: :btree
+  add_index "reservations", ["rental_id"], name: "index_reservations_on_rental_id", using: :btree
+
   create_table "roles", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
@@ -81,19 +81,19 @@ ActiveRecord::Schema.define(version: 20151203175621) do
   add_index "user_roles", ["user_id"], name: "index_user_roles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
+    t.string   "username"
     t.string   "name"
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "username"
     t.string   "image_url"
   end
 
-  add_foreign_key "ordered_trips", "orders"
-  add_foreign_key "ordered_trips", "rentals"
   add_foreign_key "orders", "users"
   add_foreign_key "rentals", "rental_types"
   add_foreign_key "rentals", "users"
+  add_foreign_key "reservations", "orders"
+  add_foreign_key "reservations", "rentals"
   add_foreign_key "user_roles", "roles"
   add_foreign_key "user_roles", "users"
 end

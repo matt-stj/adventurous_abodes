@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_owner
-    current_user && current_user.store_admin?
+    current_user && current_user.owner?
   end
 
   def current_permission
