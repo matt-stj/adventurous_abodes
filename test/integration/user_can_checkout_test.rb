@@ -15,7 +15,14 @@ class UserCanCheckoutTest < ActionDispatch::IntegrationTest
 
     assert_equal "/orders", current_path
     assert page.has_content?("Order was successfully placed")
+  end
 
+  test "cart remains after a guest logs in" do
+    add_items_to_cart(1)
+    create_and_login_user
+    visit "/cart"
+
+    assert page.has_content?("Castle 1")
   end
 
   test "cart resets to empty when user checks out" do
