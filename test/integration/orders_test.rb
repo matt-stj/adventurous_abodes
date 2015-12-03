@@ -1,6 +1,6 @@
 require "test_helper"
 
-class UserCanSeePastOrdersTest < ActionDispatch::IntegrationTest
+class OrdersTest < ActionDispatch::IntegrationTest
   test "user can see past orders" do
     create_orders
     visit orders_path

@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   namespace :owners do
     resources :rentals
     resources :orders
-    resources :users, only: [:show]
   end
 
   get "/cart", to: "cart_rentals#show"
@@ -26,5 +25,5 @@ Rails.application.routes.draw do
   post "/checkout", to: "orders#create"
 
   #get "/:rental_type_name", to: "rental_types#show" # keep at bottom of routes
-  resources :owners, only: [:show]
+  resources :owners, only: [:index, :show]
 end

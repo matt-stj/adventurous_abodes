@@ -1,10 +1,10 @@
 - if @rentals.empty?
-  .white-text.center-align.no-items
-    %h3 No items in cart.
+  .black-text.center-align.no-items
+    %h3.black-text No items in cart.
     = link_to "View Rentals", rentals_path
 
 - if !@rentals.empty?
-  %h2.center-align.white-text Checkout
+  %h2.center-align.black-text Checkout
   = render partial: "edit_rental", locals: { :rentals => @rentals }
 
   .card-panel.grey.lighten-5.right-align

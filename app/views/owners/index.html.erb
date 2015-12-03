@@ -1,0 +1,17 @@
+<h2>All Property Owners</h2>
+
+
+ <div class="row">
+  <% @owners.each do |owner| %>
+   <div class="col s2">
+   <div class="card medium">
+     <div class="card-image waves-effect waves-block waves-light">
+       <img src="https://robohash.org/<%= owner.name%>.png" alt="" class="circle">
+     </div>
+     <div class="card-content">
+      <%= link_to "#{owner.name.pluralize} properties", owner_path(owner)%>
+     </div>
+   </div>
+ </div>
+ <% end %>
+ </div>

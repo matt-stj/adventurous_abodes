@@ -14,10 +14,6 @@ class ActiveSupport::TestCase
     Role.create(title: "owner")
     Role.create(title: "registered_user")
   end
-
-  def login_user
-
-  end
 end
 
 class ActionDispatch::IntegrationTest
@@ -30,8 +26,13 @@ class ActionDispatch::IntegrationTest
     user
   end
 
-  def create_owner
-    User.create!(username: "owner", name: "owner", password: "password", role: 1)
+  def create_owners(number_of_owners)
+    create_roles
+    number_of_owners.times do |i|
+      user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password")
+      user.roles << Role.find_by(title: "store_admin")
+    end
+    User.last
   end
 
   def create_and_login_user
@@ -54,7 +55,7 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_rentals_for_owner(num, rental_type)
-    owner = create_owner
+    owner = create_owners(1)
 
     num.times do |i|
       i += 1

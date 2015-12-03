@@ -1,49 +1,18 @@
 require "test_helper"
 
 class ViewRentalsTest < ActionDispatch::IntegrationTest
-  test "guest can view rental types page" do
-    RentalType.create(name: "Treehouse")
-    visit "/"
-    click_button "View Rental Properties"
-
-    assert_equal rental_types_path, current_path
-    assert page.has_content?("Rental Types")
-    assert page.has_content?("Treehouse")
-  end
-
-  test "registered user can view rental types page" do
-    create_and_login_user
-    RentalType.create(name: "Treehouse")
-    visit "/"
-    click_button "View Rental Properties"
-
-    assert_equal rental_types_path, current_path
-    assert page.has_content?("Rental Types")
-    assert page.has_content?("Treehouse")
-  end
-
-  test "visitor can view rentals" do
-    create_rentals(2, "Castle")
+  test "guest can view rentals" do
+    create_rentals(1, "Castle")
     visit rentals_path
 
-    within("h1") do
-      assert page.has_content?("Rental")
-    end
-
-    within("#castle_1") do
-      assert page.has_content?("Castle 1")
-      assert page.has_content?("$1,001")
-    end
-
-    within("#castle_2") do
-      assert page.has_content?("Castle 2")
-      assert page.has_content?("$1,002")
-    end
+    assert page.has_content?("Rental")
+    assert page.has_content?("Castle 1")
+    assert page.has_content?("$1,001")
   end
 
-  test "visitor can see rentals sorted by rental_types" do
-    create_rentals(2, "Castle")
-    create_rentals(2, "Igloo")
+  test "guest can view rentals sorted by rental_type" do
+    create_rentals(1, "Castle")
+    create_rentals(1, "Igloo")
     visit rental_types_path
     click_link "Castle"
 
@@ -52,5 +21,37 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
       assert page.has_content?("Castle")
       refute page.has_content?("Igloo")
     end
+  end
+
+  test "logged in user can view rentals" do
+    create_and_login_user
+    create_rentals(1, "Castle")
+    visit rentals_path
+
+    assert page.has_content?("Rental")
+    assert page.has_content?("Castle 1")
+    assert page.has_content?("$1,001")
+  end
+
+  test "logged in user can view rentals sorted by rental_type" do
+    create_and_login_user
+    create_rentals(1, "Castle")
+    create_rentals(1, "Igloo")
+    visit rental_types_path
+    click_link "Castle"
+
+    assert_equal "/rental_types/castle", current_path
+    within("h1") do
+      assert page.has_content?("Castle")
+      refute page.has_content?("Igloo")
+    end
+  end
+
+  test "guest can view rentals by owner" do
+    create_rentals_for_owner(1, "Castle")
+    visit owner_path(User.last)
+
+    assert page.has_content?("Rentals")
+    assert page.has_content?("Castle 1")
   end
 end

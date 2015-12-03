@@ -36,7 +36,7 @@ class PermissionService
     def registered_user_permissions
       return true if controller == "orders" && action.in?(%w(index show))
       return true if controller == "users" && action.in?(%w(index show edit update destroy dashboard))
-      return true if controller == "sessions" && action.in?(%w(delete))
+      return true if controller == "sessions" && action == "delete"
       default_permissions
     end
 
@@ -49,6 +49,7 @@ class PermissionService
       return true if controller == "rentals"      && action.in?(%w(index show))
       return true if controller == "home"         && action == "index"
       return true if controller == "owners" && action == "show"
+      return true if controller == "owners" && action == "index"
     end
 
 end
