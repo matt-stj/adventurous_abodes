@@ -23,15 +23,14 @@ class PermissionService
   private
 
     def platform_admin_permissions
-      default_permissions
+      store_admin_permissions
     end
 
     def store_admin_permissions
       return true if controller == "owner" && action.in?(%w(dashboard))
       return true if controller == "owner/rentals" && action.in?(%w(index show new create edit update destroy))
       return true if controller == "owner/orders" && action.in?(%w(index show new create edit update destroy))
-
-      default_permissions
+      registered_user_permissions
     end
 
     def registered_user_permissions
