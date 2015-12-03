@@ -9,13 +9,25 @@ require "simplecov"
 SimpleCov.start "rails"
 
 class ActiveSupport::TestCase
+  def create_roles
+    Role.create(title: "platform_admin")
+    Role.create(title: "store_admin")
+    Role.create(title: "registered_user")
+  end
+
+  def login_user
+
+  end
 end
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
   def create_user
-    User.create!(username: "cole", name: "Nicole", password: "password")
+    create_roles
+    user = User.create!(username: "cole", name: "Nicole", password: "password")
+    user.roles << Role.find_by(title: "registered_user")
+    user
   end
 
   def create_owner
@@ -99,8 +111,16 @@ class ActionDispatch::IntegrationTest
     reset_session!
   end
 
+  def create_roles
+    Role.create(title: "platform_admin")
+    Role.create(title: "store_admin")
+    Role.create(title: "registered_user")
+  end
+
   def login_owner
-    User.create(username: "owner", name: "Owner", password: "password", role: 1)
+    create_roles
+    owner = User.create(username: "owner", name: "Owner", password: "password")
+    owner.roles << Role.find_by(title: "store_admin")
     visit login_path
     fill_in "Username", with: "owner"
     fill_in "Password", with: "password"

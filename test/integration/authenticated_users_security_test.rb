@@ -14,18 +14,6 @@ class AuthenticatedUsersSecurityTest < ActionDispatch::IntegrationTest
     assert_equal "/login", current_path
   end
 
-  test "authenticated user cannot make themself an owner" do
-    visit root_path
-    click_button "Apply for Membership"
-
-    fill_in "Username", with: "cole"
-    fill_in "Name", with: "Cole"
-    fill_in "Password", with: "pass"
-
-    refute page.has_content?("Role")
-    click_button "Create Account"
-  end
-
   test "authenticated user cannot access owner dashboard and create/update/delete trips" do
     create_and_login_user
 

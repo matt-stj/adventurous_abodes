@@ -35,6 +35,7 @@ class OwnerOrdersTest < ActionDispatch::IntegrationTest
 
   test "owner can update order status" do
     checkout_user_and_login_owner
+    save_and_open_page
     click_link "Pending"
 
     fill_in "Order status", with: "Completed"

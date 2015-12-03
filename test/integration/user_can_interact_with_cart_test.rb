@@ -1,11 +1,10 @@
 require "test_helper"
 
 class UserCanInteractWithCartTest < ActionDispatch::IntegrationTest
-  test "user can add item to cart" do
+  test "guest can add item to cart" do
     create_rentals(1, "Castle")
     rental = RentalType.find_by_name("Castle").rentals.first
     visit rental_path(rental)
-
     assert page.has_content?("Trips: 0")
     click_link "Purchase Trip"
 
@@ -17,7 +16,7 @@ class UserCanInteractWithCartTest < ActionDispatch::IntegrationTest
     assert page.has_content?("You have added Castle 1 to your cart.")
   end
 
-  test "user can view cart" do
+  test "guest can view cart" do
     visit rentals_path
     add_items_to_cart(2)
     click_link "Trips: 2"
@@ -27,14 +26,12 @@ class UserCanInteractWithCartTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Price: $1,001")
   end
 
-  test "user can delete item from cart" do
+  test "guest can delete item from cart" do
     add_items_to_cart(1)
     removed_rental = Rental.find_by_name("Castle 1")
     visit "/cart"
 
-    within(".rental_card") do
-      click_button("Remove")
-    end
+    click_button("Remove")
 
     assert_equal "/cart", current_path
     assert page.has_content?("You have removed the trip Castle 1 from your cart.")
@@ -44,14 +41,18 @@ class UserCanInteractWithCartTest < ActionDispatch::IntegrationTest
     assert_equal rental_path(removed_rental), current_path
   end
 
-  test "user can view items in cart after logging in" do
+  test "guest can view items in cart after logging in" do
     add_items_to_cart(2)
-    create_and_login_user
+    visit '/cart'
+    click_button("Checkout")
+
+    @user = create_user
+    fill_in "Username", with: @user.username
+    fill_in "Password", with: "password"
+    click_button "Login"
+    visit '/cart'
 
     assert page.has_content?("Trips: 2")
-    click_link "Logout"
-    assert page.has_content?("Login")
-    refute page.has_content?("Logout")
   end
 
 end

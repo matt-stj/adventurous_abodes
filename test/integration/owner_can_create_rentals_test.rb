@@ -24,7 +24,7 @@ class OwnerCanCreateRentalsTest < ActionDispatch::IntegrationTest
     create_and_login_user
     visit new_owners_rental_path
 
-    assert page.has_content?("The page you were looking for doesn't exist")
+    assert page.has_content?("Back Off")
     refute page.has_content?("Add a New Rental")
   end
 end

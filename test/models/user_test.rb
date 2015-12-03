@@ -38,4 +38,50 @@ class UserTest < ActiveSupport::TestCase
 
     refute user.valid?
   end
+
+  test "user knows if it is a platform admin" do
+    create_roles
+    user = User.create(valid_attributes)
+    user.roles << Role.find_by(title: "platform_admin")
+
+    assert user.platform_admin?
+  end
+
+  test "user knows if it is not a platform admin" do
+    create_roles
+    user = User.create(valid_attributes)
+
+    refute user.platform_admin?
+  end
+
+  test "user knows if it is a store admin" do
+    create_roles
+    user = User.create(valid_attributes)
+    user.roles << Role.find_by(title: "store_admin")
+
+    assert user.store_admin?
+  end
+
+  test "user knows if it is not a store admin" do
+    create_roles
+    user = User.create(valid_attributes)
+
+    refute user.store_admin?
+  end
+
+  test "user knows if it is a registered user" do
+    create_roles
+    user = User.create(valid_attributes)
+    user.roles << Role.find_by(title: "registered_user")
+
+    assert user.registered_user?
+  end
+
+  test "user knows if it is not a registered user" do
+    create_roles
+    user = User.create(valid_attributes)
+
+    refute user.registered_user?
+  end
+
 end
