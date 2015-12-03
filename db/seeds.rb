@@ -1,37 +1,127 @@
-Role.create!(title: "platform_admin")
-Role.create!(title: "store_admin")
-Role.create!(title: "registered_user")
+class Seeds
+  def self.start
+    seed = Seed.new
+    seed.generate_roles
+    seed.generate_platform_admin
+    seed.generate_owners
+    seed.generate_registered_users
+    seed.generate_rental_types
+  end
 
-rental_types = ["Castle",
-                "Dungeon",
-                "Shack",
-                "Treehouse",
-                "Penthouse",
-                "Spaceship",
-                "Submarine",
-                "Mansion",
-                "Capsule",
-                "Igloo",
-                "Attic",
-                "Storage Container"]
+  def generate_roles
+    role_titles = %w(platform_admin store_admin registered_user)
 
-rental_types.each do |rental_type|
-  RentalType.create!(name: "#{rental_type}")
+    role_titles.each do |title|
+      Role.create!(title: title)
+    end
+  end
+
+  def generate_platform_admin
+    platform_admin =  User.create!(username: "jorge@turing.io",  name: "Platform Admin",   password: "password")
+    platform.roles  << Role.find_by_name(title: "platform_admin")
+    puts "Platform Admin created!"
+  end
+
+  def generate_owners
+    20.times do |i|
+      name  = Faker::Name.name.first_name
+      username = "andrew@turing.io"
+      password = "password"
+      image_url = Faker::Avatar.image
+      user = User.create!(name: name,
+                          username: username,
+                          password: password,
+                          image_url: image_url)
+      user.roles << Role.find_by_name(title: "store_admin")
+      puts "Owner #{i} created!"
+    end
+  end
+
+  def generate_registered_users
+    registered_user = User.create!(username: "josh@turing.io", name: "Registered User",       password: "password")
+    registered_user.roles << Role.find_by_name(title: "registered_user")
+
+    99.times do |i|
+      name  = Faker::Name.name.first_name
+      username = Faker::Internet.email(name)
+      password = "password"
+      image_url = Faker::Avatar.image
+      user = User.create!(name:     name,
+                   username: username,
+                   password: password,
+                   image_url: image_url)
+      user.roles << Role.find_by_name(title: "registered_user")
+      puts "Registered User #{i+1} created!"
+    end
+  end
+
+
+  def generate_rental_types
+    rental_types = ["Castle",
+                    "Dungeon",
+                    "Shack",
+                    "Treehouse",
+                    "Penthouse",
+                    "Spaceship",
+                    "Submarine",
+                    "Mansion",
+                    "Capsule",
+                    "Igloo",
+                    "Attic",
+                    "Storage Container"]
+
+    rental_types.each do |rental_type|
+      RentalType.create!(name: rental_type)
+      puts "Rental Type #{i} created!"
+    end
+  end
+
+  def generate_rentals
+    50.times do |i|
+      name  = Faker::Name.name.first_name + "'s " + rental_type
+      description = Faker::Hipster.paragraph
+      price = Faker::Commerce.price
+      status = "active"
+      image_file_name = ""
+      image_content_type = ""
+      image_file_size = ""
+      image_updated_at = ""
+      image = ""
+      rental = Rental.create!(name: name,
+                              description: description,
+                              price: price,
+                              status: status
+                              image_file_name: image_file_name
+                              image_content_type: image_content_type
+                              image_file_size: image_file_size
+                              image_updated_at: image_updated_at
+                              image: image)
+      puts "#{rental_type} #{i} created!"
+    end
+  end
+
+  def generate_orders
+    users = User.joins(:roles).where("title = ?", "platform_admin")
+    users.each do |user|
+      10.times do |i|
+        status = "active"
+        total = Faker::Commerce.price
+        order = Order.create!(total: total,
+                              status: status,
+                              user_id: user.id)
+        add_items(order)
+        puts "Order #{i}: Order for #{user.name} created!"
+      end
+    end
+  end
+
+  private
+
+    def add_items(order)
+      2.times do |i|
+        item = Rental.find(Random.new.rand(1..500))
+        order.items << item
+        puts "#{i}: Added item #{item.name} to order #{order.id}."
+      end
+    end
 end
-
-Rental.create!(name: "Castle Rental",  description: "Live it up like Royalty!",     price: 150,  rental_type_id: RentalType.first.id)
-Rental.create!(name: "Dungeon Rental 1", description: "For the coder in your life.",  price: 750,  rental_type_id: RentalType.second.id)
-Rental.create!(name: "Dungeon Rental 2", description: "For the coder in your life.",  price: 750,  rental_type_id: RentalType.second.id)
-Rental.create!(name: "Dungeon Rental 3", description: "For the coder in your life.",  price: 750,  rental_type_id: RentalType.second.id)
-Rental.create!(name: "Shack Rental",   description: "When amenities don't matter.", price: 1150, rental_type_id: RentalType.third.id)
-
-User.create!(username: "shannon", name: "Shannon", password: "pass")
-User.create!(username: "michael", name: "Michael", password: "pass")
-User.create!(username: "matt",    name: "Matt",    password: "pass")
-User.create!(username: "cole",    name: "Cole",    password: "pass")
-User.create!(username: "owner",   name: "Owner",   password: "pass", role: 1)
-
-Order.create!(user_id: 1, status: "Completed", total: 1000,  created_at: "2015-10-18 21:56:18", updated_at: "2015-10-18 21:56:18")
-Order.create!(user_id: 2, status: "Paid",      total: 10000, created_at: "2015-09-18 21:56:18", updated_at: "2015-09-18 21:56:18")
-Order.create!(user_id: 3, status: "Cancelled", total: 8000,  created_at: "2015-11-18 21:56:18", updated_at: "2015-11-18 21:56:18")
-Order.create!(user_id: 4, status: "Pending",   total: 3000,  created_at: "2015-08-18 21:56:18", updated_at: "2015-08-18 21:56:18")
