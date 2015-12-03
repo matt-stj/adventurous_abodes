@@ -9,9 +9,11 @@ class GuestCanCreateAccountTest < ActionDispatch::IntegrationTest
   end
 
   test "account can be created" do
+    create_roles
     visit root_path
     assert page.has_content?("Adventurous Abodes")
     click_button "Apply for Membership"
+
     assert_equal new_user_path, current_path
 
     fill_in "Username", with: "Nicole@gmail.com"
@@ -30,6 +32,7 @@ class GuestCanCreateAccountTest < ActionDispatch::IntegrationTest
   end
 
   test "a registered user can login" do
+
     user = create_user
     visit root_path
     click_link "Login"

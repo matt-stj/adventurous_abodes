@@ -2,31 +2,18 @@ require "test_helper"
 
 class OwnerDashboardTest < ActionDispatch::IntegrationTest
   test "owner can login and access owner dashboard path" do
-    User.create(username: "aaron", name: "Aaron", password: "pass", role: 1)
-    visit login_path
+    login_owner
 
-    fill_in "Username", with: "aaron"
-    fill_in "Password", with: "pass"
-
-    click_button "Login"
     assert owner_dashboard_path, current_path
     assert page.has_content?("Owner Dashboard")
   end
 
   test "user cannot access owner dashboard" do
-    User.create(username: "cole", name: "Cole Hall", password: "password", role: 0)
-    visit login_path
-
-    fill_in "Username", with: "cole"
-    fill_in "Password", with: "password"
-    click_button "Login"
-
-    assert page.has_content?("Welcome, Cole Hall!")
-    assert "/dashboard", current_path
+    create_and_login_user
 
     visit owner_dashboard_path
 
-    assert page.has_content?("404")
+    assert page.has_content?("Back Off")
   end
 
   test "unregistered user cannot access owner dashboard" do
@@ -36,16 +23,11 @@ class OwnerDashboardTest < ActionDispatch::IntegrationTest
 
     visit '/owner/dashboard'
 
-    assert page.has_content?("404")
+    assert page.has_content?("Back Off")
   end
 
   test "owner sees their rentals on the dashboard" do
-    matt = User.create!(username: "matt", name: "Matt", password: "password", role: 1)
-
-    visit login_path
-    fill_in "Username", with: "matt"
-    fill_in "Password", with: "password"
-    click_button "Login"
+    login_owner
 
     click_link("Add Rental")
 

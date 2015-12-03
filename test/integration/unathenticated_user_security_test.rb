@@ -25,27 +25,8 @@ class UnathenticatedUserSecurityTest < ActionDispatch::IntegrationTest
     other_users_order_id = Order.first.id
 
     visit order_path(other_users_order_id)
-    assert page.has_content?("The page you were looking for doesn't exist")
-  end
 
-  test "unathenticated user cannot make themself an owner account" do
-    visit root_path
-
-    click_button "Apply for Membership"
-
-    assert_equal new_user_path, current_path
-    refute page.has_content?("role")
-
-    fill_in "Username", with: "Nicole"
-    fill_in "Password", with: "pass"
-    fill_in "Name", with: "Cole"
-
-    click_button ("Create Account")
-
-    assert page.has_content?("Welcome, Cole!")
-    refute page.has_content?("Owner Dashboard")
-    refute page.has_content?("Create Rental")
-    refute page.has_content?("Create User")
+    assert page.has_content?("Back Off")
   end
 
   test "unathenticated user is redirected to login page when they try checkout" do

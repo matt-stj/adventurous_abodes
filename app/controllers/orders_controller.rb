@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    if current_user.owner?
+    if current_user.store_admin?
       @orders = Order.all
     else
       @orders = current_user.orders

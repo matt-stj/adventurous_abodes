@@ -1,3 +1,7 @@
+Role.create!(title: "platform_admin")
+Role.create!(title: "store_admin")
+Role.create!(title: "registered_user")
+
 rental_types = ["Castle",
                 "Dungeon",
                 "Shack",

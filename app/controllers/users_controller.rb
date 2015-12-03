@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
+      @user.roles << Role.find_by(title: "registered_user")
       redirect_to "/dashboard"
     else
       flash[:notice] = "Invalid user credentials. Please try again."
@@ -39,6 +40,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    current_user.roles = []
     current_user.destroy
     session.clear
     redirect_to root_path

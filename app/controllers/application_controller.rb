@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_cart
+  before_action :authorize!
+
   helper_method :format_url_name, :count_of_trips,
                 :rentals_in_cart, :current_user, :current_owner
 
@@ -21,8 +23,24 @@ class ApplicationController < ActionController::Base
   end
 
   def current_owner
-    current_user && current_user.role == 1
+    current_user && current_user.store_admin?
   end
+
+  def current_permission
+    @current_permission ||= PermissionService.new(current_user)
+  end
+
+  def authorize!
+    unless authorized?
+      flash[:notice] = "Back Off!"
+      redirect_to root_path
+    end
+  end
+
+  def authorized?
+    current_permission.allow?(params[:controller], params[:action])
+  end
+
 
   def require_owner
     render file: "./test/public/404" unless current_owner
