@@ -9,7 +9,7 @@
         %br
         = "#{format_currency(rental.price)}"
       .card-action
-        = link_to "Details", rental_path(rental)
+        = link_to "Details", owners_rental_path(rental)
         %br
         %br
         = "Status: #{rental.status.upcase}"

@@ -42,8 +42,16 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Rentals")
     assert page.has_content?("Castle 1")
     assert page.has_content?("Castle 2")
-    assert page.has_content?("ACTIVE")
-    assert page.has_button?("Edit")
+  end
+
+  test "owner can view a single rentals details" do
+    create_rentals(1, "Castle")
+    login_owner
+    click_link ("View All Rentals")
+    click_link ("Details")
+
+    assert "/owners/rentals/castle_1", current_path
+    assert page.has_content?("No dragons allowed.")
   end
 
   test "owner can edit an existing rental" do
