@@ -1,6 +1,12 @@
 require "test_helper"
 
 class UserDashboardTest < ActionDispatch::IntegrationTest
+  test "user must be logged in to view dashboard" do
+    visit dashboard_path
+
+    assert_equal root_path, current_path
+    assert page.has_content?("Back Off!")
+  end
 
   test "user can edit account details and password" do
     create_and_login_user
@@ -22,4 +28,5 @@ class UserDashboardTest < ActionDispatch::IntegrationTest
     assert root_path, current_path
     assert page.has_content?("Pursue Your Passion")
   end
+
 end

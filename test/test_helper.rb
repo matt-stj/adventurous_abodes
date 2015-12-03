@@ -14,10 +14,6 @@ class ActiveSupport::TestCase
     Role.create(title: "store_admin")
     Role.create(title: "registered_user")
   end
-
-  def login_user
-
-  end
 end
 
 class ActionDispatch::IntegrationTest

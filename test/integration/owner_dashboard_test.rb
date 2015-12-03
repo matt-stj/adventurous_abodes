@@ -31,7 +31,7 @@ class OwnerDashboardTest < ActionDispatch::IntegrationTest
 
     fill_in "Name", with: "Attic"
     fill_in "Description", with: "Secret Treasure not included.!"
-    fill_in "Price", with: "1000"
+    fill_in "Price", with: 1000
     fill_in "Rental type", with: "Castle"
     click_button "Create Rental"
 

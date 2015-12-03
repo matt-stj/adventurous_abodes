@@ -2,7 +2,7 @@ require "test_helper"
 
 class RentalTest < ActiveSupport::TestCase
   def setup
-    RentalType.create(name: "Hiking")
+    RentalType.create(name: "Castle")
   end
 
   def default_image_url
@@ -11,10 +11,10 @@ class RentalTest < ActiveSupport::TestCase
 
   def valid_attributes
     {
-      name: "Hiking in the Alps",
-      description: "Hike The Alps!",
-      price: 1001,
-      rental_type_id: RentalType.find_by_name("Hiking").id
+      name:           "Neuschwanstein Castle",
+      description:    "No Dragons allowed!",
+      price:          1001,
+      rental_type_id: RentalType.find_by_name("Castle").id
     }
   end
 
@@ -24,37 +24,36 @@ class RentalTest < ActiveSupport::TestCase
   end
 
   test "it is invalid with missing name" do
-    skip
-    rental = Rental.new(description: "Hike The Alps!",
-                          price: 1001,
-                          rental_type_id: RentalType.find_by_name("Hiking").id)
+    rental = Rental.new(description: "No Dragons allowed!",
+                        price: 1001,
+                        rental_type_id: RentalType.find_by_name("Castle").id)
 
     refute rental.valid?
   end
 
   test "it is invalid with missing description" do
     skip
-    rental = Rental.new(name: "Hiking in the alps",
-                          price: 1001,
-                          rental_type_id: RentalType.find_by_name("Hiking").id)
+    rental = Rental.new(name: "Neuschwanstein Castle",
+                        price: 1001,
+                        rental_type_id: RentalType.find_by_name("Castle").id)
 
     refute rental.valid?
   end
 
   test "it is invalid with missing price" do
     skip
-    rental = Rental.new(name: "Hiking in the alps",
-                          description: "Hike The Alps!",
-                          rental_type_id: RentalType.find_by_name("Hiking").id)
+    rental = Rental.new(name: "Neuschwanstein Castle",
+                          description: "No Dragons allowed!",
+                          rental_type_id: RentalType.find_by_name("Castle").id)
 
     refute rental.valid?
   end
 
   test "it must belong to an rental_type" do
     skip
-    rental = Rental.new(name: "Hiking in the alps",
-                          description: "Hike the Alps!",
-                          price: 1000)
+    rental = Rental.new(name: "Neuschwanstein Castle",
+                        description: "No Dragons allowed!",
+                        price: 1000)
 
     refute rental.valid?
   end
@@ -68,11 +67,11 @@ class RentalTest < ActiveSupport::TestCase
 
   test "it must have a price that is greater than zero" do
     skip
-    rental = Rental.new( { name: "Hiking in the Alps",
-                             description: "Hike The Alps!",
-                             price: -1,
-                             rental_type_id: RentalType.find_by_name("Hiking").id
-                           })
+    rental = Rental.new( { name: "Neuschwanstein Castle",
+                           description: "No Dragons allowed!",
+                           price: -1,
+                           rental_type_id: RentalType.find_by_name("Castle").id
+                         })
 
     refute rental.valid?
   end
@@ -81,5 +80,12 @@ class RentalTest < ActiveSupport::TestCase
     rental = Rental.new(valid_attributes)
 
     assert_equal default_image_url, rental.image.url
+  end
+
+  test "it can be retired" do
+    rental = Rental.new(valid_attributes)
+    rental.retire
+
+    assert rental.retired?
   end
 end

@@ -8,6 +8,17 @@ class LoginTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Logged in as Nicole")
   end
 
+  test "a guest with bad credentials is notified" do
+    create_user
+    visit login_path
+    fill_in "Username", with: "cole"
+    fill_in "Password", with: "badpass"
+    click_button "Login"
+
+    assert page.has_content?("Invalid login credentials.")
+    assert_equal login_path, current_path
+  end
+
   test "user cannot see login forms if already logged in" do
     create_and_login_user
     visit root_path
