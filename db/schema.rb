@@ -88,10 +88,7 @@ ActiveRecord::Schema.define(version: 20151203213052) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-<<<<<<< HEAD
     t.string   "image_url"
-=======
->>>>>>> bcb864993a1078b5aec9db9bd7a15418a2b9302e
   end
 
   add_foreign_key "orders", "users"
