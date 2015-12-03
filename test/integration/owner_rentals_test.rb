@@ -14,7 +14,6 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     fill_in "Price", with: 1000
     fill_in "Rental type", with: "Castle"
     click_button "Create Rental"
-    save_and_open_page
 
     assert_equal "/owners/dashboard", current_path
     assert page.has_content?("The rental 'Brick Castle' has been created")

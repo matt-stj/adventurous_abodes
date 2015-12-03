@@ -4,7 +4,7 @@ class SignupTest < ActionDispatch::IntegrationTest
   test "guest can create an account" do
     create_roles
     visit root_path
-    click_button "Apply for Membership"
+    click_on "Join"
     assert_equal new_user_path, current_path
     fill_in "Username", with: "Nicole@gmail.com"
     fill_in "Name", with: "Nicole"
@@ -20,7 +20,7 @@ class SignupTest < ActionDispatch::IntegrationTest
   test "guest must signup with username" do
     create_roles
     visit root_path
-    click_button "Apply for Membership"
+    click_on "Join"
     assert_equal new_user_path, current_path
     fill_in "Name", with: "Nicole"
     fill_in "Password", with: "password"
