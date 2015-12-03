@@ -11,7 +11,7 @@
         = button_to "View Rental Properties", rental_types_path, method: :get
       - if !current_user
         .waves-effect.waves-light.btn.white-text
-          = button_to "Apply for Membership", new_user_path, method: :get
+          = button_to "View All Owners", owners_path, method: :get
         .waves-effect.waves-light.btn.white-text
           = button_to "Login to Your Account", login_path, method: :get
 

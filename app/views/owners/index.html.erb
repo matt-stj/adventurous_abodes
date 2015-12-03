@@ -1,0 +1,7 @@
+<h2>All Property Owners</h2>
+
+<ol>
+  <% @owners.each do |owner| %>
+    <li><%= link_to owner.name, owner_path(owner) %></li>
+  <% end %>
+</ol>

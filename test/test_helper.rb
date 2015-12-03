@@ -26,8 +26,12 @@ class ActionDispatch::IntegrationTest
     user
   end
 
-  def create_owner
-    User.create!(username: "owner", name: "owner", password: "password", role: 1)
+  def create_owners(number_of_owners)
+    create_roles
+    number_of_owners.times do |i|
+      user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password")
+      user.roles << Role.find_by(title: "store_admin")
+    end
   end
 
   def create_and_login_user
