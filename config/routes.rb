@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   namespace :owners do
     resources :rentals
     resources :orders
-    resources :users, only: [:show]
   end
 
   get "/cart", to: "cart_rentals#show"
