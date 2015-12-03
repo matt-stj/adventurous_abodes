@@ -5,10 +5,8 @@ class OwnerIndexTest < ActionDispatch::IntegrationTest
     create_owners(5)
     visit root_url
     click_button("View All Owners")
-    save_and_open_page
 
     assert_equal owners_path, current_path
-
     assert page.has_content?("owner0")
     assert page.has_content?("owner1")
     assert page.has_content?("owner2")
