@@ -32,7 +32,6 @@ class RentalTest < ActiveSupport::TestCase
   end
 
   test "it is invalid with missing description" do
-    skip
     rental = Rental.new(name: "Neuschwanstein Castle",
                         price: 1001,
                         rental_type_id: RentalType.find_by_name("Castle").id)
@@ -41,7 +40,6 @@ class RentalTest < ActiveSupport::TestCase
   end
 
   test "it is invalid with missing price" do
-    skip
     rental = Rental.new(name: "Neuschwanstein Castle",
                           description: "No Dragons allowed!",
                           rental_type_id: RentalType.find_by_name("Castle").id)
@@ -66,7 +64,6 @@ class RentalTest < ActiveSupport::TestCase
   # end
 
   test "it must have a price that is greater than zero" do
-    skip
     rental = Rental.new( { name: "Neuschwanstein Castle",
                            description: "No Dragons allowed!",
                            price: -1,
