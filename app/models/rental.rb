@@ -8,7 +8,7 @@ class Rental < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
   validates :name, :description, :price, presence: true
   # validates :rental_type_id, presence: true
-  # validates_numericality_of :price, greater_than: 0
+  validates_numericality_of :price, greater_than: 0
 
   def retire
     self.update(status: "retired")

@@ -7,17 +7,11 @@ class OwnerOrdersTest < ActionDispatch::IntegrationTest
     login_owner
   end
 
-  test "owner can see all orders on dasboard and filter by status" do
-    skip
+  test "owner can see all orders on dashboard" do
     checkout_user_and_login_owner
+    visit owners_orders_path
 
-    assert owners_dashboard_path, current_path
-
-    assert page.has_content?("Order ID")
-    assert page.has_content?("Pending")
-    assert page.has_content?("Completed")
-    assert page.has_content?("Paid")
-    assert page.has_content?("Cancelled")
+    assert page.has_content?("Owner Order History")
   end
 
   test "owner can view an individual order" do
@@ -42,5 +36,15 @@ class OwnerOrdersTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("Completed")
     refute page.has_content?("Pending")
+  end
+
+  test "owner must update with a valid order status" do
+    checkout_user_and_login_owner
+    click_link "Pending"
+
+    fill_in "Order status", with: "Bad Status"
+    click_button "Update order status"
+
+    assert page.has_content?("Invalid Order Status")
   end
 end
