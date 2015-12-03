@@ -25,16 +25,14 @@ class OwnerDashboardTest < ActionDispatch::IntegrationTest
 
   test "owner sees their rentals on the dashboard" do
     login_owner
-
     click_link("Add Rental")
-
     assert_equal new_owners_rental_path, current_path
     assert page.has_content?("Add a New Rental")
 
     fill_in "Name", with: "Attic"
-    fill_in "Description", with: "Have a ball hiking in the alps!"
+    fill_in "Description", with: "Secret Treasure not included.!"
     fill_in "Price", with: "1000"
-    fill_in "Rental type", with: "Hiking"
+    fill_in "Rental type", with: "Castle"
     click_button "Create Rental"
 
     assert_equal owners_dashboard_path, current_path

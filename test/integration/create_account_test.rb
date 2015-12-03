@@ -1,6 +1,6 @@
 require "test_helper"
 
-class GuestCanCreateAccountTest < ActionDispatch::IntegrationTest
+class CreateAccountTest < ActionDispatch::IntegrationTest
   test "guest can view the homepage" do
     visit '/'
 
@@ -32,7 +32,6 @@ class GuestCanCreateAccountTest < ActionDispatch::IntegrationTest
   end
 
   test "a registered user can login" do
-
     user = create_user
     visit root_path
     click_link "Login"
