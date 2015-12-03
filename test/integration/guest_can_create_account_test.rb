@@ -5,14 +5,14 @@ class GuestCanCreateAccountTest < ActionDispatch::IntegrationTest
     visit '/'
 
     assert page.has_content?("Adventurous Abodes")
-    assert page.has_button?("Apply for Membership")
+    assert page.has_button?("View All Owners")
   end
 
   test "account can be created" do
     create_roles
     visit root_path
     assert page.has_content?("Adventurous Abodes")
-    click_button "Apply for Membership"
+    click_link "Join"
 
     assert_equal new_user_path, current_path
 
