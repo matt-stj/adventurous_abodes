@@ -30,6 +30,10 @@ class ActionDispatch::IntegrationTest
     user
   end
 
+  def create_owner
+    User.create!(username: "owner", name: "owner", password: "password", role: 1)
+  end
+
   def create_and_login_user
     @user = create_user
 
@@ -47,6 +51,20 @@ class ActionDispatch::IntegrationTest
                                description: "No dragons allowed. #{i}",
                                price: 1000 + i)
     end
+  end
+
+  def create_rentals_for_owner(num, rental_type)
+    owner = create_owner
+
+    num.times do |i|
+      i += 1
+      rental_type = RentalType.find_or_create_by(name: rental_type)
+      rental_type.rentals.create(name: "Castle #{i}",
+                               description: "No dragons allowed. #{i}",
+                               price: 1000 + i)
+      owner.rentals << Rental.last(i)
+    end
+
   end
 
   def create_orders

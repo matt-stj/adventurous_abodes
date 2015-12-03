@@ -27,9 +27,9 @@ class PermissionService
     end
 
     def store_admin_permissions
-      return true if controller == "owner" && action.in?(%w(dashboard))
-      return true if controller == "owner/rentals" && action.in?(%w(index show new create edit update destroy))
-      return true if controller == "owner/orders" && action.in?(%w(index show new create edit update destroy))
+      return true if controller == "owners/users" && action == "dashboard"
+      return true if controller == "owners/rentals" && action.in?(%w(index show new create edit update destroy))
+      return true if controller == "owners/orders" && action.in?(%w(index show new create edit update destroy))
       registered_user_permissions
     end
 
@@ -48,6 +48,7 @@ class PermissionService
       return true if controller == "rental_types" && action.in?(%w(index show))
       return true if controller == "rentals"      && action.in?(%w(index show))
       return true if controller == "home"         && action == "index"
+      return true if controller == "owners" && action == "show"
     end
 
 end
