@@ -1,7 +1,19 @@
 <h2>All Property Owners</h2>
 
-<ol>
+
+<div class="col s2 m2 offset-m2 m2 offset-m3">
   <% @owners.each do |owner| %>
-    <li><%= link_to owner.name, owner_path(owner) %></li>
+   <div class="card-panel grey lighten-5 z-depth-1">
+     <div class="row valign-wrapper">
+       <div class="col s2">
+         <img src="https://robohash.org/<%= owner.name%>.png" alt="" class="circle responsive-img outline">
+       </div>
+       <div class="col s10">
+         <span class="black-text">
+           <%= link_to "View #{owner.name}'s properties", owner_path(owner), class: "owner-link-text" %>
+         </span>
+       </div>
+     </div>
+   </div>
   <% end %>
-</ol>
+ </div>

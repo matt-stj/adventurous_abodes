@@ -34,7 +34,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
   end
 
   test "owner can edit an existing rental" do
-    create_rentals(1, "Neuschwanstein Castle")
+    create_rentals(1, "Castle")
     login_owner
     click_link ("View All Rentals")
 
@@ -43,15 +43,14 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     click_button "Edit"
     assert "/owners/rentals/#{Rental.first.id}/edit", current_path
 
-    fill_in "Name",   with: "Spaceship"
+    fill_in "Name",   with: "Neuschwanstein"
     fill_in "Price",  with: 650
     fill_in "Status", with: "Active"
     click_button "Update Rental"
 
     assert owners_dashboard_path, current_path
-    save_and_open_page
-    assert page.has_content?("Spaceship")
-    refute page.has_content?("Castle")
+    assert page.has_content?("Neuschwanstein")
+    refute page.has_content?("Castle 1")
   end
 
   test "owner can delete an existing rental" do

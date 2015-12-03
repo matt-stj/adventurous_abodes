@@ -97,3 +97,20 @@ main {
 .footer-copyright {
   margin-bottom: -25px !important;
 }
+
+.outline {
+  border: black 2px solid;
+}
+
+.card-panel {
+  display: inline-block;
+  width: 45%;
+}
+
+.owner-link-text {
+  font-size: 2.5rem;
+}
+
+.card.medium {
+    height: 251px;
+}
