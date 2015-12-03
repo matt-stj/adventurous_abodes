@@ -9,11 +9,11 @@ class OwnerIndexTest < ActionDispatch::IntegrationTest
 
     assert_equal owners_path, current_path
 
-    # assert page.has_content?("owner0")
-    # assert page.has_content?("owner1")
-    # assert page.has_content?("owner2")
-    # assert page.has_content?("owner3")
-    # assert page.has_content?("owner4")
+    assert page.has_content?("owner0")
+    assert page.has_content?("owner1")
+    assert page.has_content?("owner2")
+    assert page.has_content?("owner3")
+    assert page.has_content?("owner4")
   end
 
   test "when a guest visits /owners, they can click a link to visit the owner's show page" do
