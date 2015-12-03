@@ -14,7 +14,6 @@ class GuestCanViewRentalsByOwnerTest < ActionDispatch::IntegrationTest
     end
 
     visit owner_path(owner)
-    save_and_open_page
     assert page.has_content?("Rentals")
     assert page.has_content?("Castle")
   end
