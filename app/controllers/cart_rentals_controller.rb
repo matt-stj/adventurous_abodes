@@ -17,16 +17,6 @@ class CartRentalsController < ApplicationController
     @rentals = @cart.rentals_in_cart
   end
 
-  def update
-    @cart.update(params[:rental_id], params[:travellers])
-    session[:cart] = @cart.trips
-
-    trip_name = Rental.find(params[:rental_id]).name
-
-    flash[:notice] = "You have updated Travellers for the trip #{trip_name} in your cart."
-    redirect_to cart_path
-  end
-
   def delete
     trip = Rental.find(params[:rental_id])
     @cart.remove(trip)

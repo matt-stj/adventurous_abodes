@@ -1,6 +1,6 @@
 require "test_helper"
 
-class UserCanInteractWithCartTest < ActionDispatch::IntegrationTest
+class CartsTest < ActionDispatch::IntegrationTest
   test "guest can add item to cart" do
     create_rentals(1, "Castle")
     rental = RentalType.find_by_name("Castle").rentals.first
@@ -41,18 +41,18 @@ class UserCanInteractWithCartTest < ActionDispatch::IntegrationTest
     assert_equal rental_path(removed_rental), current_path
   end
 
-  test "guest can view items in cart after logging in" do
-    add_items_to_cart(2)
-    visit '/cart'
-    click_button("Checkout")
+  test "cart remains after a guest logs in" do
+    add_items_to_cart(1)
+    create_and_login_user
+    visit "/cart"
 
-    @user = create_user
-    fill_in "Username", with: @user.username
-    fill_in "Password", with: "password"
-    click_button "Login"
-    visit '/cart'
-
-    assert page.has_content?("Trips: 2")
+    assert page.has_content?("Castle 1")
   end
 
+  test "cart resets to empty when user checks out" do
+    checkout_user(1)
+    visit rentals_path
+
+    assert page.has_content?("Trips: 0")
+  end
 end
