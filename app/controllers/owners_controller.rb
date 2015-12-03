@@ -4,7 +4,7 @@ class OwnersController < ApplicationController
     @users = User.all
     @owners = []
     @users.map do |user|
-      if user.store_admin?
+      if user.owner?
         @owners << user
       end
     end

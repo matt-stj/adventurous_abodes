@@ -30,7 +30,7 @@ class ActionDispatch::IntegrationTest
     create_roles
     number_of_owners.times do |i|
       user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password")
-      user.roles << Role.find_by(title: "store_admin")
+      user.roles << Role.find_by(title: "owner")
     end
     User.last
   end
