@@ -32,6 +32,7 @@ class ActionDispatch::IntegrationTest
       user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password")
       user.roles << Role.find_by(title: "store_admin")
     end
+    User.last
   end
 
   def create_and_login_user
@@ -54,7 +55,7 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_rentals_for_owner(num, rental_type)
-    owner = create_owner
+    owner = create_owners(1)
 
     num.times do |i|
       i += 1
