@@ -1,0 +1,9 @@
+<% if current_user %>
+  <%= render partial: "shared/already_logged_in" %>
+<% end %>
+<% if !current_user %>
+  <%= render partial: "form" %>
+<% end %>
+
+
+<%= join_dashboard_path %>

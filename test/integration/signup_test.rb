@@ -4,7 +4,9 @@ class SignupTest < ActionDispatch::IntegrationTest
   test "guest can create an account" do
     create_roles
     visit root_path
-    click_on "Join"
+    click_on "Login"
+    assert_equal login_path, current_path
+    click_link "Join"
     assert_equal new_user_path, current_path
     fill_in "Username", with: "Nicole@gmail.com"
     fill_in "Name", with: "Nicole"
@@ -12,7 +14,7 @@ class SignupTest < ActionDispatch::IntegrationTest
     click_button "Create Account"
 
     assert_equal "/dashboard", current_path
-    assert page.has_content?("Logged in as Nicole")
+    assert page.has_content?("Welcome, Nicole!")
     assert page.has_content?("Username: Nicole@gmail.com")
     assert page.has_content?("Name: Nicole")
   end
@@ -20,8 +22,12 @@ class SignupTest < ActionDispatch::IntegrationTest
   test "guest must signup with username" do
     create_roles
     visit root_path
+    click_on "Login"
+    assert_equal login_path, current_path
     click_on "Join"
     assert_equal new_user_path, current_path
+    fill_in "Username", with: ""
+
     fill_in "Name", with: "Nicole"
     fill_in "Password", with: "password"
     click_button "Create Account"
