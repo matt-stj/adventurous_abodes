@@ -44,6 +44,15 @@ class ActionDispatch::IntegrationTest
     click_button "Login"
   end
 
+  def create_and_login_owner
+    @owner = create_owners(1)
+
+    visit login_path
+    fill_in "Username", with: @owner.username
+    fill_in "Password", with: "password"
+    click_button "Login"
+  end
+
   def create_rentals(num, rental_type)
     num.times do |i|
       i += 1
