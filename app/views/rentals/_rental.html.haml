@@ -12,9 +12,3 @@
         = link_to "Details", rental_path(rental)
         %br
         %br
-
-        - if current_owner
-          = "Status: #{rental.status.upcase}"
-          %br
-          %br
-          = button_to "Edit", edit_owners_rental_path(rental), method: :get
