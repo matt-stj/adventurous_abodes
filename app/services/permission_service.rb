@@ -24,6 +24,7 @@ class PermissionService
 
     def platform_admin_permissions
       return true if controller == "admin" && action == "show"
+      return true if controller == "admin/owners" && action == "index"
       owner_permissions
     end
 
