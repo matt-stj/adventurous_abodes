@@ -35,6 +35,19 @@ class ActionDispatch::IntegrationTest
     User.last
   end
 
+  def create_platform_admin
+    create_roles
+    user = User.create!(username: "platform_admin", name: "platform_admin", password: "password")
+    user.roles << Role.find_by(title: "platform_admin")
+  end
+
+  def login_platform_admin
+    visit login_path
+    fill_in "Username", with: "platform_admin"
+    fill_in "Password", with: "password"
+    click_button "Login"
+  end
+
   def create_and_login_user
     @user = create_user
 

@@ -23,6 +23,7 @@ class PermissionService
   private
 
     def platform_admin_permissions
+      return true if controller == "admin" && action == "show"
       owner_permissions
     end
 
