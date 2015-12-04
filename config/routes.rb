@@ -25,5 +25,6 @@ Rails.application.routes.draw do
   post "/checkout", to: "orders#create"
 
   #get "/:rental_type_name", to: "rental_types#show" # keep at bottom of routes
-  resources :owners, only: [:index, :show]
+  resources :owners, only: [:new, :index, :show, :create]
+  get "/pending", to: "owners#pending"
 end
