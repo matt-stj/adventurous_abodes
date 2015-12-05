@@ -1,30 +1,26 @@
 <h2>Admin Owners Index</h2>
 
-<ol>
-  <% @owners.each do |owner| %>
-  <li><%= owner.name %></li>
-  <% end %>
-</ol>
-
-
 <table class="bordered owners">
      <thead>
        <tr>
-           <th data-field="id">Owner</th>
-           <th data-field="id">Status</th>
-           <th></th>
-           <th></th>
+           <th class="center">Owner</th>
+           <th class="center">Status</th>
+           <th class="center">Activate/Deactivate</th>
        </tr>
      </thead>
      <tbody>
       <% @owners.each do |owner| %>
        <tr>
-         <td><%= owner.name %></td>
-         <td><%= owner.owner_status %></td>
+         <td class="center"><%= owner.name %></td>
+         <td class="center"><div class="chip <%= owner.owner_status %>"><%= owner.owner_status %></div></td>
          <% if owner.owner_status == "inactive" %>
-          <td><%= link_to "Make Active", admin_owner_path(owner, :owner_status => 'active'), method: :patch %></td>
+          <td class="center"><%= link_to admin_owner_path(owner, :owner_status => 'active'), method: :patch, class: "btn green" do %>
+            <i class="material-icons medium">done</i>
+          <% end %></td>
          <% else %>
-          <td><%= link_to "Make Inactive", admin_owner_path(owner, :owner_status => 'inactive'), method: :patch %></td>
+         <td class="center"><%= link_to admin_owner_path(owner, :owner_status => 'inactive'), method: :patch, class: "btn red" do %>
+           <i class="material-icons medium">not_interested</i>
+         <% end %></td>
          <% end %>
        </tr>
          <% end %>
