@@ -16,18 +16,6 @@ ActiveRecord::Schema.define(version: 20151205181452) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "ordered_trips", force: :cascade do |t|
-    t.integer  "travellers"
-    t.integer  "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "order_id"
-    t.integer  "rental_id"
-  end
-
-  add_index "ordered_trips", ["order_id"], name: "index_ordered_trips_on_order_id", using: :btree
-  add_index "ordered_trips", ["rental_id"], name: "index_ordered_trips_on_rental_id", using: :btree
-
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "status",     default: "Pending"
@@ -91,7 +79,7 @@ ActiveRecord::Schema.define(version: 20151205181452) do
 
   add_index "user_roles", ["role_id"], name: "index_user_roles_on_role_id", using: :btree
   add_index "user_roles", ["user_id"], name: "index_user_roles_on_user_id", using: :btree
-  
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "name"

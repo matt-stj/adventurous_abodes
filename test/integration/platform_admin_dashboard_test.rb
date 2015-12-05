@@ -26,7 +26,6 @@ class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
     assert_equal admin_owners_path, current_path
     assert page.has_content?("Admin Owners Index")
     # asssert page.has_content?("")
-    save_and_open_page
   end
 
   test "Only a platform admin can view the dashboard" do

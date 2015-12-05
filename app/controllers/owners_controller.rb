@@ -8,8 +8,7 @@ class OwnersController < ApplicationController
     if @owner.save
       session[:user_id] = @owner.id
       @owner.roles << Role.find_by(title: "registered_user")
-      #need to somehow indicate that they are pending for platform_admin
-      #maybe a @owner.status = "pending"
+      @owner.update_attribute(:owner_status, "pending")
       redirect_to '/pending'
     else
       flash[:notice] = "Invalid credentials. Please try again."
@@ -22,8 +21,7 @@ class OwnersController < ApplicationController
   end
 
   def update
-    # uncomment out the below when new column is added
-    # current_user.status = "pending"
+    current_user.update_attribute(:owner_status, "pending")
     redirect_to '/pending'
   end
 
