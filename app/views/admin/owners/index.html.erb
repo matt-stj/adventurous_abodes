@@ -14,11 +14,11 @@
          <td class="center"><%= owner.name %></td>
          <td class="center"><div class="chip <%= owner.owner_status %>"><%= owner.owner_status %></div></td>
          <% if owner.owner_status == "inactive" %>
-          <td class="center"><%= link_to admin_owner_path(owner, :owner_status => 'active'), method: :patch, class: "btn green" do %>
+          <td class="center"><%= link_to admin_owner_path(owner, :owner_status => 'active'), method: :patch, class: "btn green", id: "make-active" do %>
             <i class="material-icons medium">done</i>
           <% end %></td>
          <% else %>
-         <td class="center"><%= link_to admin_owner_path(owner, :owner_status => 'inactive'), method: :patch, class: "btn red" do %>
+         <td class="center"><%= link_to admin_owner_path(owner, :owner_status => 'inactive'), method: :patch, class: "btn red", id: "make-inactive" do %>
            <i class="material-icons medium">not_interested</i>
          <% end %></td>
          <% end %>
