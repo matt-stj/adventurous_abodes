@@ -77,7 +77,6 @@ class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
     end
 
     click_link("Make Active")
-    save_and_open_page
     within(".owners") do
       assert page.has_content?("active")
     end
