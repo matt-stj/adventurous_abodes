@@ -76,7 +76,6 @@ class GuestsAndUsersCanBecomeOwnersTest < ActionDispatch::IntegrationTest
   end
 
   test "platform admin can approve a pending request" do
-    skip
     create_and_login_user
     visit '/dashboard'
     click_link 'Apply to Be A Host'
@@ -93,13 +92,14 @@ class GuestsAndUsersCanBecomeOwnersTest < ActionDispatch::IntegrationTest
     end
 
     visit '/admin/dashboard'
+
     click_link 'Approve'
 
     within(".pending-owners") do
       refute page.has_content?("cole")
     end
 
-    click_button 'Manage Owners'
+    click_link 'Manage Owners'
 
     within(".owners") do
       assert page.has_content?("cole")
@@ -107,7 +107,6 @@ class GuestsAndUsersCanBecomeOwnersTest < ActionDispatch::IntegrationTest
   end
 
   test "platform admin can deny a pending request" do
-    skip
     create_and_login_user
     visit '/dashboard'
     click_link 'Apply to Be A Host'
@@ -130,7 +129,7 @@ class GuestsAndUsersCanBecomeOwnersTest < ActionDispatch::IntegrationTest
       refute page.has_content?("cole")
     end
 
-    click_button 'Manage Owners'
+    click_link 'Manage Owners'
 
     within(".owners") do
       refute page.has_content?("cole")

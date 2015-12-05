@@ -25,13 +25,86 @@ class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
 
     assert_equal admin_owners_path, current_path
     assert page.has_content?("Admin Owners Index")
-    # asssert page.has_content?("")
+
+    within(".owners") do
+      assert page.has_content?("active")
+      assert page.has_content?("inactive")
+    end
+
   end
 
-  test "Only a platform admin can view the dashboard" do
-    skip
+  test "A platform admin can change an owner's current status from active to inactive" do
+    create_user
+    platform_admin = create_platform_admin
+    owner = create_active_owners(1)
+
+    assert_equal "active", owner.owner_status
+
+    login_platform_admin
+
+    visit 'admin/dashboard'
+
+    click_link("Manage Owners")
+
+    assert_equal admin_owners_path, current_path
+
+    within(".owners") do
+      assert page.has_content?("active")
+      refute page.has_content?("inactive")
+    end
+
+    click_link("Make Inactive")
+    within(".owners") do
+      assert page.has_content?("inactive")
+    end
   end
 
-  ## Should there be a default status for active owner?  And it changes when an admin turns them into an owner?
+  test "A platform admin can change an owner's current status from inactive to active" do
+    create_user
+    platform_admin = create_platform_admin
+    owner = create_inactive_owners(1)
+
+    assert_equal "inactive", owner.owner_status
+
+    login_platform_admin
+
+    visit 'admin/dashboard'
+
+    click_link("Manage Owners")
+
+    assert_equal admin_owners_path, current_path
+
+    within(".owners") do
+      assert page.has_content?("inactive")
+    end
+
+    click_link("Make Active")
+    within(".owners") do
+      assert page.has_content?("active")
+    end
+  end
+
+  test "Guest can't view the platform admin dashboard" do
+
+    visit 'admin/dashboard'
+
+    assert page.has_content?("Back Off")
+  end
+
+  test "User can't view the platform admin dashboard" do
+    create_and_login_user
+    visit 'admin/dashboard'
+
+    assert page.has_content?("Back Off")
+  end
+
+  test "Store Owner can't view the platform admin dashboard" do
+    create_owners(1)
+    login_owner
+
+    visit admin_dashboard_path
+
+    assert page.has_content?("Back Off")
+  end
 
 end

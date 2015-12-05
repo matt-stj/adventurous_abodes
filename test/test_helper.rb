@@ -41,6 +41,7 @@ class ActionDispatch::IntegrationTest
       user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password", owner_status: "active")
       user.roles << Role.find_by(title: "owner")
     end
+    User.last
   end
 
   def create_inactive_owners(number_of_owners)
@@ -48,6 +49,7 @@ class ActionDispatch::IntegrationTest
       user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password",  owner_status: "inactive")
       user.roles << Role.find_by(title: "owner")
     end
+    User.last
   end
 
   def create_pending_owners(number_of_owners)
@@ -55,6 +57,7 @@ class ActionDispatch::IntegrationTest
       user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password",  owner_status: "pending")
       user.roles << Role.find_by(title: "owner")
     end
+    User.last
   end
 
   def create_platform_admin
@@ -65,6 +68,13 @@ class ActionDispatch::IntegrationTest
   def login_platform_admin
     visit login_path
     fill_in "Username", with: "platform_admin"
+    fill_in "Password", with: "password"
+    click_button "Login"
+  end
+
+  def login_owner
+    visit login_path
+    fill_in "Username", with: "owner0"
     fill_in "Password", with: "password"
     click_button "Login"
   end
