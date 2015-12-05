@@ -7,7 +7,7 @@
 </ol>
 
 
-<table class="bordered">
+<table class="bordered owners">
      <thead>
        <tr>
            <th data-field="id">Owner</th>
@@ -21,8 +21,11 @@
        <tr>
          <td><%= owner.name %></td>
          <td><%= owner.owner_status %></td>
-         <td>Online</td>
-         <td>Offline</td>
+         <% if owner.owner_status == "inactive" %>
+          <td><%= link_to "Make Active", admin_owner_path(owner, :owner_status => 'active'), method: :patch %></td>
+         <% else %>
+          <td><%= link_to "Make Inactive", admin_owner_path(owner, :owner_status => 'inactive'), method: :patch %></td>
+         <% end %>
        </tr>
          <% end %>
      </tbody>
