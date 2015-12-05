@@ -29,6 +29,9 @@
 // }
 
 @import "materialize";
+@import "pickadate/default";
+@import "pickadate/default.date";
+
 
 nav {
   color: black;
@@ -136,4 +139,8 @@ main {
 
 .btn a {
   color: white !important;
+}
+
+#date-picker-button {
+  width: 200px;
 }

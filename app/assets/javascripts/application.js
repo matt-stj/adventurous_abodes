@@ -12,5 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-// = require materialize-sprockets
+//= require materialize-sprockets
+//= require pickadate/picker
+//= require pickadate/picker.date
 //= require_tree .
