@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20151205181452) do
 
   add_index "user_roles", ["role_id"], name: "index_user_roles_on_role_id", using: :btree
   add_index "user_roles", ["user_id"], name: "index_user_roles_on_user_id", using: :btree
-
+  
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "name"

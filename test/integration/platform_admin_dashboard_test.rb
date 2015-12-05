@@ -11,7 +11,7 @@ class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Pending Owner Requests")
   end
 
-  test "A platform can visit a page where they can see all owners and their current statuses" do
+  test "A platform admin can visit a page where they can see all owners and their current statuses" do
     create_user
     platform_admin = create_platform_admin
     create_active_owners(2)

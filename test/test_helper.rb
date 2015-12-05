@@ -27,6 +27,7 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_owners(number_of_owners)
+    create_roles
     number_of_owners.times do |i|
       user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password")
       user.roles << Role.find_by(title: "owner")
@@ -35,15 +36,23 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_active_owners(number_of_owners)
+    create_roles
     number_of_owners.times do |i|
-      user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password", active_owner?: true)
+      user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password", owner_status: "active")
       user.roles << Role.find_by(title: "owner")
     end
   end
 
   def create_inactive_owners(number_of_owners)
     number_of_owners.times do |i|
-      user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password",  active_owner?: false)
+      user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password",  owner_status: "inactive")
+      user.roles << Role.find_by(title: "owner")
+    end
+  end
+
+  def create_pending_owners(number_of_owners)
+    number_of_owners.times do |i|
+      user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password",  owner_status: "pending")
       user.roles << Role.find_by(title: "owner")
     end
   end
