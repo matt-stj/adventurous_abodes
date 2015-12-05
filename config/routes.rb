@@ -14,6 +14,12 @@ Rails.application.routes.draw do
     resources :orders
   end
 
+  get "/admin/dashboard", to: "admin#show"
+
+  namespace :admin do
+    resources :owners, only: [:index, :update]
+  end
+
   get "/cart", to: "cart_rentals#show"
   put "/cart", to: "cart_rentals#update"
   delete "/cart", to: "cart_rentals#delete"

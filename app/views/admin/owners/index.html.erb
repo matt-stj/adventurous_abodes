@@ -1,0 +1,29 @@
+<h2>Admin Owners Index</h2>
+
+<ol>
+  <% @owners.each do |owner| %>
+  <li><%= owner.name %></li>
+  <% end %>
+</ol>
+
+
+<table class="bordered">
+     <thead>
+       <tr>
+           <th data-field="id">Owner</th>
+           <th data-field="id">Status</th>
+           <th></th>
+           <th></th>
+       </tr>
+     </thead>
+     <tbody>
+      <% @owners.each do |owner| %>
+       <tr>
+         <td><%= owner.name %></td>
+         <td><%= owner.owner_status %></td>
+         <td>Online</td>
+         <td>Offline</td>
+       </tr>
+         <% end %>
+     </tbody>
+   </table>

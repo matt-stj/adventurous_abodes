@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :password, presence: true
 
+  scope :pending,       -> { where owner_status: 'pending' }
+
   def platform_admin?
     roles.exists?(title: "platform_admin")
   end
@@ -20,5 +22,13 @@ class User < ActiveRecord::Base
 
   def registered_user?
     roles.exists?(title: "registered_user")
+  end
+
+  def update_role
+    if owner_status == "active" || owner_status == "inactive"
+      "owner"
+    else
+      "registered_user"
+    end
   end
 end
