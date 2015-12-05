@@ -76,7 +76,6 @@ class GuestsAndUsersCanBecomeOwnersTest < ActionDispatch::IntegrationTest
   end
 
   test "platform admin can approve a pending request" do
-    skip
     create_and_login_user
     visit '/dashboard'
     click_link 'Apply to Be A Host'
@@ -107,7 +106,6 @@ class GuestsAndUsersCanBecomeOwnersTest < ActionDispatch::IntegrationTest
   end
 
   test "platform admin can deny a pending request" do
-    skip
     create_and_login_user
     visit '/dashboard'
     click_link 'Apply to Be A Host'
