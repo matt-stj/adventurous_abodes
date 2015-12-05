@@ -3,12 +3,13 @@
 <%= link_to "Manage Owners", admin_owners_path, class: "btn" %>
 
 <h3>Pending Owner Requests</h3>
-<table class = "pending-owners">
+<div class = "pending-owners">
+<table>
   <td>
     <% @owners.each do |owner| %>
     <tr><%= owner.username %></tr>
-    <tr><%= link_to "Approve",  admin_owner_path(owner, :owner_status => 'active'), method: :patch %></tr>
-    <tr><%= link_to "Deny",  admin_owner_path(owner, :owner_status => nil), method: :patch %></tr>
+    <tr><%= link_to "Approve",  admin_owners_path(owner, :owner_status => 'active'), method: :post %></tr>
+    <tr><%= link_to "Deny",  admin_owners_path(owner, :owner_status => nil), method: :post %></tr>
     <% end %>
   </td>
 </table>

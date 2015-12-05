@@ -92,13 +92,14 @@ class GuestsAndUsersCanBecomeOwnersTest < ActionDispatch::IntegrationTest
     end
 
     visit '/admin/dashboard'
+
     click_link 'Approve'
 
     within(".pending-owners") do
       refute page.has_content?("cole")
     end
 
-    click_button 'Manage Owners'
+    click_link 'Manage Owners'
 
     within(".owners") do
       assert page.has_content?("cole")
@@ -128,7 +129,7 @@ class GuestsAndUsersCanBecomeOwnersTest < ActionDispatch::IntegrationTest
       refute page.has_content?("cole")
     end
 
-    click_button 'Manage Owners'
+    click_link 'Manage Owners'
 
     within(".owners") do
       refute page.has_content?("cole")

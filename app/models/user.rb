@@ -25,10 +25,13 @@ class User < ActiveRecord::Base
   end
 
   def update_role
-    if owner_status == "active" || owner_status == "inactive"
-      "owner"
+    if owner_status == "active" && roles.first.title == "registered_user"
+      self.roles.first.update_attributes(title: "owner")
+    elsif owner_status == "inactive" && roles.first.title == "registered_user"
+      self.roles.first.update_attributes(title: "owner")
+    elsif owner_status == "" && roles.first.title == "owner"
+      self.roles.first.update_attributes(title: "registered_user")
     else
-      "registered_user"
     end
   end
 end
