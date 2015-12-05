@@ -37,7 +37,7 @@ class UserDashboardTest < ActionDispatch::IntegrationTest
     click_link "Delete Account"
 
     assert root_path, current_path
-    assert page.has_content?("Pursue Your Passion")
+    assert page.has_content?("We Make Staying in a Castle No Hassle")
   end
 
 end
