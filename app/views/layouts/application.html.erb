@@ -24,7 +24,13 @@
           <a href="/" class="brand-logo black-text">Adventurous Abodes</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><%= link_to "Rentals", rentals_path %></li>
-            <li><%= link_to "Become A Host", new_owner_path %>
+            <% if current_user %>
+            <!-- If we add more fields to owners then we can direct them to the edit controller
+            The form is built. But for now I'm just sending them straight to update -->
+              <%= link_to "Become A Host", owner_path(current_user.id), method: :patch %></li>
+            <% else %>
+              <li><%= link_to "Become A Host", new_owner_path %></li>
+            <% end %>
             <li><%= login_logout_path %></li>
             <li><%= trips_cart_display %></li>
           </ul>

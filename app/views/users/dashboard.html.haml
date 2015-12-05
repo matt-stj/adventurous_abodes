@@ -17,6 +17,8 @@
   .waves-effect.waves-light.btn.white-text
     = link_to "Edit Account", edit_user_path(@user)
   .waves-effect.waves-light.btn.white-text
+    = link_to "Apply to Be A Host", owner_path(@user), method: :patch
+  .waves-effect.waves-light.btn.white-text
     = link_to "Delete Account", user_path(@user), method: :delete
 
   %br
