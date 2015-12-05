@@ -10,8 +10,8 @@
               %h2= rental.name
               %p= rental.description
               %p= "Price: #{format_currency(rental.price)}"
-              %p= "Dates: INSERT DATES FROM SELECTOR"
-              %p= "Number of Nights: NUMBER OF NIGHTS SELECTED"
+              %p= "Dates: #{@start_date} - #{@end_date}"
+              %p= "Number of Nights: NUMBER OF #{@start_date} NIGHTS SELECTED"
               %p= "Sub-total: NUMBER OF NIGHTS * PRICE"
 
             .col.s2

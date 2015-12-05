@@ -9,17 +9,18 @@
       <%= form_tag(cart_rentals_path, method: :post) do %>
         <%= hidden_field_tag "rental_id", params[:id] %>
         <div class="btn" id="date-picker-button">
-          <input type="text" id="myStartDatePicker" placeholder="Pick Start Date"></input>
+          <input type="text" id="myStartDatePicker" placeholder="Pick Start Date" name="startDate"></input>
         </div>
         <br>
         <br>
         <div class="btn" id="date-picker-button">
-          <input type="text" id="myEndDatePicker" placeholder="Pick End Date"></input>
+          <input type="text" id="myEndDatePicker" placeholder="Pick End Date" name = "endDate"></input>
         </div>
         <br>
         <br>
         <div class="waves-effect waves-light btn white-text col-md-3">
           <%= submit_tag "Place Order" %>
+
         </div>
       <% end %>
 

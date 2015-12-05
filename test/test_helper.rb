@@ -106,6 +106,9 @@ class ActionDispatch::IntegrationTest
 
       visit rental_path(rental)
       click_link "Purchase Trip"
+
+      fill_in "startDate", with: "12/1"
+      fill_in "endDate",   with: "12/5"
       click_button "Place Order"
     end
   end

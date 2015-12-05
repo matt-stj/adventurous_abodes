@@ -4,6 +4,8 @@ class CartRentalsController < ApplicationController
 
     @cart.add_trip(trip.id)
     @cart.update(trip.id, params[:travellers])
+    @start_date = params[:startDate]
+    @end_date = params[:endDate]
 
     session[:cart] = @cart.trips
     flash[:notice] = "You have added #{trip.name} to your cart."
