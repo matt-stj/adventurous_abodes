@@ -5,7 +5,8 @@ class LoginTest < ActionDispatch::IntegrationTest
     create_and_login_user
 
     assert_equal "/dashboard", current_path
-    assert page.has_content?("Logged in as Nicole")
+
+    assert page.has_content?("Welcome, Nicole")
   end
 
   test "a guest with bad credentials is notified" do

@@ -3,7 +3,7 @@
     %h1= @rental.name
 
     .waves-effect.waves-light.btn.white-text
-      = purchase_link_or_retired_notice
+      = get_purchase_link_or_retired_notice
 
   %p.center-align= "Trip price: #{format_currency(@rental.price)}"
 
