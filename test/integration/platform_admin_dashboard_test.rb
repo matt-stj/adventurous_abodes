@@ -52,8 +52,7 @@ class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
       assert page.has_content?("active")
       refute page.has_content?("inactive")
     end
-
-    click_link("Make Inactive")
+    click_link("make-inactive")
     within(".owners") do
       assert page.has_content?("inactive")
     end
@@ -78,7 +77,7 @@ class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
       assert page.has_content?("inactive")
     end
 
-    click_link("Make Active")
+    click_link("make-active")
     within(".owners") do
       assert page.has_content?("active")
     end
