@@ -37,7 +37,7 @@ class PermissionService
       return true if controller == "orders" && action.in?(%w(index show))
       return true if controller == "users" && action.in?(%w(index show edit update destroy dashboard))
       return true if controller == "sessions" && action == "delete"
-      return true if controller == "owners" && action == "pending"
+      return true if controller == "owners" && action.in?(%w(pending edit update))
       default_permissions
     end
 
