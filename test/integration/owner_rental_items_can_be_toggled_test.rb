@@ -144,7 +144,6 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
     assert_equal ["active", "active", "active"], owner.rentals.map { |rental| rental.status }
 
     visit rentals_path
-    save_and_open_page
 
     assert page.has_content?(owner.rentals.first.name)
     assert page.has_content?(owner.rentals.last.name)
@@ -159,7 +158,6 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
     assert_equal ["inactive", "inactive", "inactive"], owner.rentals.map { |rental| rental.status }
 
     visit rentals_path
-    save_and_open_page
 
     refute page.has_content?(owner.rentals.first.name)
     refute page.has_content?(owner.rentals.last.name)
