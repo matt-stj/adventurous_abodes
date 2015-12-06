@@ -1,17 +1,31 @@
 require "test_helper"
 
 class OwnerOrdersTest < ActionDispatch::IntegrationTest
-  def checkout_user_and_login_owner
-    checkout_user(2)
-    click_link "Logout"
-    login_owner
-  end
-
-  test "owner can see all orders on dashboard" do
+  test "owner can see all their orders on dashboard" do
     checkout_user_and_login_owner
     visit owners_orders_path
 
     assert page.has_content?("Owner Order History")
+    save_and_open_page
+    click_link "View"
+    assert page.has_content?("Nicole")
+  end
+
+  test "owner does not see orders of other owners" do
+    skip
+    checkout_user(2)
+    click_link "Logout"
+    create_owners(2, "active")
+    visit login_path
+    fill_in "Username", with: "owner1"
+    fill_in "Password", with: "password"
+    click_button "Login"
+
+    visit owners_orders_path
+
+    assert page.has_content?("Owner Order History")
+    save_and_open_page
+    refute page.has_link?("View")
   end
 
   test "owner can view an individual order" do

@@ -1,6 +1,7 @@
 class Owners::OrdersController < Owners::BaseController
   def index
-    @orders = Order.all
+    @orders = Order.owner_orders(current_user)
+    binding.pry
   end
 
   def show

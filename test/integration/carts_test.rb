@@ -13,7 +13,7 @@ class CartsTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("Trips: 1")
     assert_equal rentals_path, current_path
-    assert page.has_content?("You have added Castle 1 to your cart.")
+    assert page.has_content?("You have added Name 1 to your cart.")
   end
 
   test "guest can view cart" do
@@ -22,22 +22,22 @@ class CartsTest < ActionDispatch::IntegrationTest
     click_link "Trips: 2"
 
     assert_equal "/cart", current_path
-    assert page.has_content?("Castle")
+    assert page.has_content?("Name")
     assert page.has_content?("Price: $1,001")
   end
 
   test "guest can delete item from cart" do
     add_items_to_cart(1)
-    removed_rental = Rental.find_by_name("Castle 1")
+    removed_rental = Rental.find_by_name("Name 1")
     visit "/cart"
 
     click_button("Remove")
 
     assert_equal "/cart", current_path
-    assert page.has_content?("You have removed the trip Castle 1 from your cart.")
+    assert page.has_content?("You have removed the trip Name 1 from your cart.")
     assert page.has_content?("No items in cart.")
 
-    click_link("Castle 1")
+    click_link("Name 1")
     assert_equal rental_path(removed_rental), current_path
   end
 
@@ -46,7 +46,7 @@ class CartsTest < ActionDispatch::IntegrationTest
     create_and_login_user
     visit "/cart"
 
-    assert page.has_content?("Castle 1")
+    assert page.has_content?("Name 1")
   end
 
   test "cart resets to empty when user checks out" do

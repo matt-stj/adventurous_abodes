@@ -8,15 +8,13 @@ class OrdersTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Order History")
 
     within(".cart-table") do
-      assert page.has_content?("Trips Ordered")
+      assert page.has_content?("Order Number")
       assert page.has_content?("Total Price")
       assert page.has_content?("Date Ordered")
 
-      assert page.has_content?("INSERT TRIP NAME")
       assert page.has_content?("$1,001")
       assert page.has_content?("November 10, 2011")
 
-      assert page.has_content?("INSERT TRIP NAME")
       assert page.has_content?("$200")
       assert page.has_content?("November 12, 2012")
     end
