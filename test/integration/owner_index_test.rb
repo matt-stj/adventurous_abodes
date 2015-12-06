@@ -2,7 +2,7 @@ require 'test_helper'
 
 class OwnerIndexTest < ActionDispatch::IntegrationTest
   test "when a guest visits /owners, they see a list of all owners" do
-    create_owners(5)
+    create_owners(5, "active")
     visit root_url
     click_button("View All Owners")
 
@@ -15,7 +15,7 @@ class OwnerIndexTest < ActionDispatch::IntegrationTest
   end
 
   test "when a guest visits /owners, they can click a link to visit the owner's show page" do
-    create_owners(5)
+    create_owners(5, "active")
     visit root_url
     click_button("View All Owners")
     assert_equal owners_path, current_path

@@ -1,0 +1,22 @@
+<div class="rental" id="<%= format_url_name(rental.name) %>">
+  <div class="col s12 m4">
+    <div class="card medium">
+      <div class="card-image">
+        <%= image_tag(rental.image.url) %>
+        <span class="card-title">
+          <%= rental.name %>
+        </span>
+      </div>
+      <div class="card-content">
+        <p>
+          <%= "#{rental.description}" %>
+        </p>
+        <br/>
+        <%= "#{format_currency(rental.price)}" %>
+      </div>
+      <div class="card-action">
+        <%= link_to "Details", rental_path(rental) %>
+      </div>
+    </div>
+  </div>
+</div>

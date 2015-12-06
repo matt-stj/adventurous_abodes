@@ -5,7 +5,7 @@ class OwnerStatusCanBeToggledTest < ActionDispatch::IntegrationTest
     create_user
     platform_admin = create_platform_admin
     login_platform_admin
-    owner = create_active_owners(1)
+    owner = create_owners(1, "active")
     owner_id = owner.id
 
     assert_equal "active", owner.owner_status

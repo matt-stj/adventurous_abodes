@@ -14,8 +14,8 @@ class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
   test "A platform admin can visit a page where they can see all owners and their current statuses" do
     create_user
     platform_admin = create_platform_admin
-    create_active_owners(2)
-    create_inactive_owners(3)
+    create_owners(2, "active")
+    create_owners(3, "inactive")
 
     login_platform_admin
 
@@ -36,7 +36,7 @@ class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
   test "A platform admin can change an owner's current status from active to inactive" do
     create_user
     platform_admin = create_platform_admin
-    owner = create_active_owners(1)
+    owner = create_owners(1, "active")
 
     assert_equal "active", owner.owner_status
 
@@ -61,7 +61,7 @@ class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
   test "A platform admin can change an owner's current status from inactive to active" do
     create_user
     platform_admin = create_platform_admin
-    owner = create_inactive_owners(1)
+    owner = create_owners(1, "inactive")
 
     assert_equal "inactive", owner.owner_status
 
@@ -98,8 +98,8 @@ class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
   end
 
   test "Store Owner can't view the platform admin dashboard" do
-    create_owners(1)
-    login_owner
+    create_owners(1, "active")
+    create_and_login_owner
 
     visit admin_dashboard_path
 

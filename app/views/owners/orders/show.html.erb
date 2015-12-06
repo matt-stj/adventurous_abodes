@@ -1,0 +1,48 @@
+<h2 class="center-align">Order Details</h2>
+<br/>
+<div class="row">
+  <div class="col s3 offset-s4">
+    <%= form_tag(owners_order_path, method: :put) do %>
+      <div class="input-field">
+        <%= label_tag :order_status %>
+        <%= text_field_tag :order_status %>
+        <%= submit_tag "Update order status", class: "waves-effect waves-light btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br/>
+<div class="white">
+  <table class="cart-table highlight">
+    <tr>
+      <th>Date Ordered</th>
+      <th>Time</th>
+      <th>Status</th>
+      <th>Purchaser</th>
+      <th>Total</th>
+    </tr>
+    <tr>
+      <%= content_tag :td, format_date(@order.created_at) %>
+      <%= content_tag :td, format_time(@order.created_at) %>
+      <%= content_tag :td, @order.status %>
+      <%= content_tag :td, User.find(@order.user_id).name %>
+      <%= content_tag :td, format_currency(@order.total || 0) %>
+    </tr>
+  </table>
+</div>
+<br/>
+<br/>
+<div class="white">
+  <table class="cart-table highlight">
+    <tr>
+      <th>Rental</th>
+    </tr>
+    <tbody>
+    <% @rentals.each do |rental| %>
+      <tr>
+        <td><%= rental.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>
+</div>

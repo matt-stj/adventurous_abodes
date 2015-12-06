@@ -1,7 +1,7 @@
 <h1 class="white-text center-align">Rentals</h1>
 <% @rental_types.each do |rental_type| %>
   <h2 class="center-align">
-    <%= link_to("#{rental_type.name}", "/#{format_url_name(rental_type.name)}") %>
+    <h4> View All of Type <%= link_to rental_type.name, rental_type_path(rental_type.name) %></h4>
   </h2>
   <div class="row">
     <%= render rental_type.rentals %>

@@ -5,7 +5,9 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
     create_user
     platform_admin = create_platform_admin
 
-    owner = create_rentals_for_owner(1, "Castle")
+    create_rentals(1, "Castle")
+    owner = User.last
+    owner_id = owner.id
     owner.update_attributes(owner_status: "active")
 
     assert_equal "active", owner.owner_status
@@ -28,6 +30,8 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
       assert page.has_content?("inactive")
     end
 
+    owner = User.find(owner_id)
+
     assert_equal "inactive", owner.rentals.first.status
 
   end
@@ -36,7 +40,7 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
     create_user
     platform_admin = create_platform_admin
 
-    owner = create_rentals_for_owner(1, "Castle")
+    create_rentals(1, "Castle"); owner = User.last
     owner.update_attributes(owner_status: "inactive")
     owner.rentals.first.update_attributes(status: "inactive")
 
@@ -68,7 +72,8 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
     create_user
     platform_admin = create_platform_admin
 
-    owner = create_rentals_for_owner(3, "Castle")
+    create_rentals(3, "Castle")
+    owner = User.last
     owner_id = owner.id
     owner.update_attributes(owner_status: "active")
 
@@ -102,7 +107,8 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
     create_user
     platform_admin = create_platform_admin
 
-    owner = create_rentals_for_owner(3, "Castle")
+    create_rentals(3, "Castle")
+    owner = User.last
     owner_id = owner.id
     owner.update_attributes(owner_status: "inactive")
     owner.rentals.update_all(status: "inactive")
@@ -136,7 +142,8 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
     create_user
     platform_admin = create_platform_admin
     login_platform_admin
-    owner = create_rentals_for_owner(3, "Castle")
+    create_rentals(3, "Castle")
+    owner = User.last
     owner_id = owner.id
     owner.update_attributes(owner_status: "active")
 
