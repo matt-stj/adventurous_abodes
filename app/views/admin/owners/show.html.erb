@@ -1,0 +1,9 @@
+<h2><%= @owner.username %>'s Dashboard</h2>
+
+<%= link_to "Edit Profile", edit_admin_owner_path(@owner) %>
+
+<ul>
+<% @owner.rentals.each do |rental| %>
+  <li><%= rental.name %> - <%= link_to "edit", edit_admin_rental_path(rental, owner: @owner) %></li>
+<% end %>
+</ul>

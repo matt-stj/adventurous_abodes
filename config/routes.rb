@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   get "/admin/dashboard", to: "admin#show"
 
   namespace :admin do
-    resources :owners, only: [:index, :update, :create]
+    resources :owners, only: [:index, :show, :edit, :update, :create]
+    resources :rentals, only: [:edit, :update]
   end
 
   get "/cart", to: "cart_rentals#show"
