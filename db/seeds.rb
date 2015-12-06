@@ -77,7 +77,8 @@ class Seed
       owner = User.create!(name: name,
                           username: username,
                           password: password,
-                          image_url: image_url)
+                          image_url: image_url,
+                          owner_status: "active")
       owner.roles << owner_role
       puts "Owner #{i+1} created!"
     end

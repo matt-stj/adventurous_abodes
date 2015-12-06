@@ -1,0 +1,17 @@
+<h1>Update Owner Profile</h1>
+
+<div>
+  <%= form_for @owner, url: admin_owner_path(@owner) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <%= f.label :owner_status %>
+    <%= f.text_field :owner_status %>
+    <%= f.label :image, "Attach an Image" %>
+    <%= f.file_field :image %>
+    <div class="waves-effect waves-light btn">
+      <%= f.submit "Update Owner's Profile" %>
+    </div>
+  <% end %>
+</div>

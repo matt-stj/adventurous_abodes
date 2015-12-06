@@ -23,6 +23,9 @@ class PermissionService
   private
 
     def platform_admin_permissions
+      return true if controller == "admin" && action == "show"
+      return true if controller == "admin/owners" && action.in?(%w(index show edit update create))
+      return true if controller == "admin/rentals" && action.in?(%w(edit update))
       owner_permissions
     end
 
@@ -37,7 +40,7 @@ class PermissionService
       return true if controller == "orders" && action.in?(%w(index show))
       return true if controller == "users" && action.in?(%w(index show edit update destroy dashboard))
       return true if controller == "sessions" && action == "delete"
-      return true if controller == "owners" && action == "pending"
+      return true if controller == "owners" && action.in?(%w(pending edit update))
       default_permissions
     end
 

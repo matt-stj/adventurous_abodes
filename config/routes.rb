@@ -14,6 +14,13 @@ Rails.application.routes.draw do
     resources :orders
   end
 
+  get "/admin/dashboard", to: "admin#show"
+
+  namespace :admin do
+    resources :owners, only: [:index, :show, :edit, :update, :create]
+    resources :rentals, only: [:edit, :update]
+  end
+
   get "/cart", to: "cart_rentals#show"
   put "/cart", to: "cart_rentals#update"
   delete "/cart", to: "cart_rentals#delete"
@@ -25,6 +32,6 @@ Rails.application.routes.draw do
   post "/checkout", to: "orders#create"
 
   #get "/:rental_type_name", to: "rental_types#show" # keep at bottom of routes
-  resources :owners, only: [:new, :index, :show, :create]
+  resources :owners, only: [:new, :index, :show, :create, :edit, :update]
   get "/pending", to: "owners#pending"
 end

@@ -8,11 +8,21 @@ class OwnersController < ApplicationController
     if @owner.save
       session[:user_id] = @owner.id
       @owner.roles << Role.find_by(title: "registered_user")
+      @owner.update_attribute(:owner_status, "pending")
       redirect_to '/pending'
     else
       flash[:notice] = "Invalid credentials. Please try again."
       redirect_to new_owner_path
     end
+  end
+
+  def edit
+    @owner = current_user
+  end
+
+  def update
+    current_user.update_attribute(:owner_status, "pending")
+    redirect_to '/pending'
   end
 
   def pending

@@ -35,6 +35,50 @@ class ActionDispatch::IntegrationTest
     User.last
   end
 
+  def create_active_owners(number_of_owners)
+    create_roles
+    number_of_owners.times do |i|
+      user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password", owner_status: "active")
+      user.roles << Role.find_by(title: "owner")
+    end
+    User.last
+  end
+
+  def create_inactive_owners(number_of_owners)
+    number_of_owners.times do |i|
+      user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password",  owner_status: "inactive")
+      user.roles << Role.find_by(title: "owner")
+    end
+    User.last
+  end
+
+  def create_pending_owners(number_of_owners)
+    number_of_owners.times do |i|
+      user = User.create!(username: "owner#{i}", name: "owner#{i}", password: "password",  owner_status: "pending")
+      user.roles << Role.find_by(title: "owner")
+    end
+    User.last
+  end
+
+  def create_platform_admin
+    user = User.create!(username: "platform_admin", name: "platform_admin", password: "password")
+    user.roles << Role.find_by(title: "platform_admin")
+  end
+
+  def login_platform_admin
+    visit login_path
+    fill_in "Username", with: "platform_admin"
+    fill_in "Password", with: "password"
+    click_button "Login"
+  end
+
+  def login_owner
+    visit login_path
+    fill_in "Username", with: "owner0"
+    fill_in "Password", with: "password"
+    click_button "Login"
+  end
+
   def create_and_login_user
     @user = create_user
 
