@@ -6,7 +6,7 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
     visit rentals_path
 
     assert page.has_content?("Rental")
-    assert page.has_content?("Castle 1")
+    assert page.has_content?("Name 1")
     assert page.has_content?("$1,001")
   end
 
@@ -29,7 +29,7 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
     visit rentals_path
 
     assert page.has_content?("Rental")
-    assert page.has_content?("Castle 1")
+    assert page.has_content?("Name 1")
     assert page.has_content?("$1,001")
   end
 
@@ -48,11 +48,12 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
   end
 
   test "guest can view rentals by owner" do
-    create_rentals_for_owner(1, "Castle")
+    create_rentals(1, "Castle")
     visit owner_path(User.last)
 
     assert page.has_content?("Rentals")
-    assert page.has_content?("Castle 1")
+
+    assert page.has_content?("Name 1")
   end
 
   test "logged in user cannot view rentals that have been retired" do

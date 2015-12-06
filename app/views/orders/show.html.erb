@@ -1,0 +1,22 @@
+<div class="center-align">
+  <h2>Order Details</h2>
+  <%= sanitize("Order status: #{content_tag :td, @order.status || 'N/A'}") %>
+  <%= sanitize("Total price: #{content_tag :td, format_currency(@order.total)}") %>
+  <%= "Order submitted on #{format_date_and_time(@order.created_at)}" %>
+  <%= "Last order status update: #{format_date_and_time(@order.updated_at)}" %>
+  <div class="white black-text">
+    <table class="cart-table highlight">
+      <tr>
+        <th>Name</th>
+        <th>Sub-total</th>
+        <th>Retired?</th>
+      </tr>
+      <% @order.rentals.each do |rental| %>
+        <tr>
+          <%#= content_tag :td, link_to(rental_name_and_travellers(@order, rental), rental_path(rental)) %>
+          <%= content_tag :td, format_currency(rental.price * @order.reservations.find_by(rental_id: rental.id).travellers) %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -13,7 +13,7 @@ class SecurityTest < ActionDispatch::IntegrationTest
   end
 
   test "unathenticated user cannot see another users orders" do
-    checkout_user(1)
+    checkout_user
     click_link "Logout"
 
     User.create(name: "Torie", username: "tjw", password: "password")
@@ -30,13 +30,14 @@ class SecurityTest < ActionDispatch::IntegrationTest
   end
 
   test "unathenticated user is redirected to login page when they try checkout" do
-    add_items_to_cart(2)
+    add_item_to_cart
     visit "/cart"
     click_button "Checkout"
 
     assert_equal login_path, current_path
     assert page.has_content?("Login to Your Account")
   end
+
   test "authenticated user cannot access another users dashboard" do
     User.create(name: "Nicole", username: "cole", password: "password")
     User.create(name: "Torie", username: "torie", password: "pass")

@@ -2,8 +2,8 @@ require "test_helper"
 
 class OwnerDashboardTest < ActionDispatch::IntegrationTest
   test "owner can login and access owner dashboard path" do
-    login_owner
-
+    create_and_login_owner
+    
     assert_equal owners_dashboard_path, current_path
     assert page.has_content?("Owner Dashboard")
   end
@@ -24,7 +24,7 @@ class OwnerDashboardTest < ActionDispatch::IntegrationTest
   end
 
   test "owner sees their rentals on the dashboard" do
-    login_owner
+    create_and_login_owner
     click_link("Add Rental")
     assert_equal new_owners_rental_path, current_path
     assert page.has_content?("Add a New Rental")
@@ -43,7 +43,7 @@ class OwnerDashboardTest < ActionDispatch::IntegrationTest
 
   test "owner can update account details but not other users" do
     skip
-    login_owner
+    create_and_login_owner
     click_link "Edit Account"
 
     assert_equal owners_dashboard_path, current_path
@@ -57,7 +57,7 @@ class OwnerDashboardTest < ActionDispatch::IntegrationTest
 
   test "owner can delete their account" do
     skip
-    login_owner
+    create_and_login_owner
     click_link "Delete Account"
 
     assert_equal root_path, current_path
