@@ -5,6 +5,7 @@ class Owners::OrdersController < Owners::BaseController
 
   def show
     @order = Order.find(params[:id])
+    @rentals = @order.rentals.where(id: current_user.rentals.map { |rental| rental.id})
   end
 
   def update

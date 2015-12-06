@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col s3 offset-s4">
     <%= form_tag(owners_order_path, method: :put) do %>
-      <div class="white-text input-field">
+      <div class="input-field">
         <%= label_tag :order_status %>
         <%= text_field_tag :order_status %>
         <%= submit_tag "Update order status", class: "waves-effect waves-light btn" %>
@@ -35,16 +35,14 @@
 <div class="white">
   <table class="cart-table highlight">
     <tr>
-      <th>Rental Name</th>
-      <th>Travellers</th>
-      <th>Subtotal</th>
+      <th>Rental</th>
     </tr>
-    <% @order.reservations.each do |trip| %>
+    <tbody>
+    <% @rentals.each do |rental| %>
       <tr>
-        <%= content_tag :td, link_to( Rental.find(trip.rental_id).name, owners_rental_path(trip.rental_id)) %>
-        <%= content_tag :td, trip.travellers %>
-        <%= content_tag :td, trip.price %>
+        <td><%= rental.name %></td>
       </tr>
     <% end %>
+  </tbody>
   </table>
 </div>
