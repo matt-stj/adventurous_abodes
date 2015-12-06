@@ -1,6 +1,6 @@
 class RentalsController < ApplicationController
   def index
-    @rental_types = RentalType.all
+    @active_rentals = Rental.active
   end
 
   def show

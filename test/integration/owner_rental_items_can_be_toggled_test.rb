@@ -132,5 +132,37 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
     assert_equal ["active", "active", "active"], owner.rentals.map { |rental| rental.status }
   end
 
+  test "An owner's properties are not shown when their status is inactive" do
+    create_user
+    platform_admin = create_platform_admin
+    login_platform_admin
+    owner = create_rentals_for_owner(3, "Castle")
+    owner_id = owner.id
+    owner.update_attributes(owner_status: "active")
+
+    assert_equal "active", owner.owner_status
+    assert_equal ["active", "active", "active"], owner.rentals.map { |rental| rental.status }
+
+    visit rentals_path
+    save_and_open_page
+
+    assert page.has_content?(owner.rentals.first.name)
+    assert page.has_content?(owner.rentals.last.name)
+
+    visit 'admin/dashboard'
+    click_link("Manage Owners")
+    click_link("make-inactive")
+
+    owner = User.find(owner_id)
+
+    assert_equal "inactive", owner.owner_status
+    assert_equal ["inactive", "inactive", "inactive"], owner.rentals.map { |rental| rental.status }
+
+    visit rentals_path
+    save_and_open_page
+
+    refute page.has_content?(owner.rentals.first.name)
+    refute page.has_content?(owner.rentals.last.name)
+  end
 
 end

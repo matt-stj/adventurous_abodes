@@ -10,6 +10,9 @@ class Rental < ActiveRecord::Base
   # validates :rental_type_id, presence: true
   # validates_numericality_of :price, greater_than: 0
 
+  scope :active, -> { where status: 'active' }
+
+
   def retire
     self.update(status: "retired")
   end

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   # validates :password, presence: true
 
   scope :pending,       -> { where owner_status: 'pending' }
+  scope :active_owners,       -> { where owner_status: 'active' }
 
   def platform_admin?
     roles.exists?(title: "platform_admin")
