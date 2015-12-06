@@ -1,5 +1,13 @@
 $(document).ready(function() {
 
+  $('.dropdown-button').on('click', 'button', function() {
+    $(this).closest('#tour').find('.photos').slideToggle();
+  });
+
+
+
+
+
   var $orders = $('.order');
 
   $('#order_filter_status').on('change', function () {
