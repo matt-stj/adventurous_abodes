@@ -18,22 +18,15 @@ class AdminHasOwnerFunctionalityTest < ActionDispatch::IntegrationTest
   end
 
   test "admin can see and edit an owner's rentals" do
-    skip
     create_rentals(1, "Castle")
     owner = User.last
     create_platform_admin
     login_platform_admin
     visit admin_owner_path(owner)
-
-    save_and_open_page
-
-    assert page.has_content?("Castle 1")
-    assert page.has_content?("edit")
-
+    assert page.has_content?("Name 1")
     click_link "edit"
-
     fill_in "Name", with: "New Castle"
-    fill_in "Description", with: "new description"
+    fill_in "Description", with: "New description"
     fill_in "Price", with: 1200
     click_button "Update Rental"
 

@@ -1,9 +1,10 @@
 class CartRentalsController < ApplicationController
   def create
     trip = Rental.find(params[:rental_id])
+    @start_date = params[:startDate]
+    @end_date = params[:endDate]
 
-    @cart.add_trip(trip.id)
-    @cart.update(trip.id, params[:travellers])
+    @cart.add_trip(trip.id, @start_date, @end_date)
 
     session[:cart] = @cart.trips
     flash[:notice] = "You have added #{trip.name} to your cart."

@@ -1,0 +1,40 @@
+<br/>
+<br/>
+<div class="black-text center-align">
+  <h1 class="center-align">Place Your Order</h1>
+  <br/>
+  <div class="row">
+    <div class="col s2 offset-s5 black-text">
+
+      <%= form_tag(cart_rentals_path, method: :post) do %>
+        <%= hidden_field_tag "rental_id", params[:id] %>
+        <div class="btn" id="date-picker-button">
+          <input type="text" id="myStartDatePicker" placeholder="Pick Start Date" name="startDate"></input>
+        </div>
+        <br>
+        <br>
+        <div class="btn" id="date-picker-button">
+          <input type="text" id="myEndDatePicker" placeholder="Pick End Date" name = "endDate"></input>
+        </div>
+        <br>
+        <br>
+        <div class="waves-effect waves-light btn white-text col-md-3">
+          <%= submit_tag "Place Order" %>
+
+        </div>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>
+<br/>
+<br/>
+<br/>
+
+<script>
+  $(document).ready(function(){
+    $("#myStartDatePicker").pickadate();
+    $("#myEndDatePicker").pickadate();
+  }); //
+</script>

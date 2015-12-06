@@ -40,7 +40,6 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
 
     assert "/owners/rentals", current_path
     assert page.has_content?("Rentals")
-
     assert page.has_content?("Name 1")
     assert page.has_content?("Name 2")
   end
@@ -62,13 +61,13 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     click_button "Edit"
     assert "/owners/rentals/#{Rental.first.id}/edit", current_path
 
-    fill_in "Name",   with: "Neuschwanstein"
+    fill_in "Name",   with: "Name"
     fill_in "Price",  with: 650
     fill_in "Status", with: "Active"
     click_button "Update Rental"
 
     assert owners_dashboard_path, current_path
-    assert page.has_content?("Neuschwanstein")
+    assert page.has_content?("Name")
     refute page.has_content?("Name 1")
   end
 

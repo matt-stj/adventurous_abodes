@@ -18,6 +18,7 @@ gem 'aws-sdk-v1'
 gem 'figaro'
 gem 'simplecov'
 gem 'faker'
+gem 'pickadate-rails'
 
 # gem 'unicorn'
 # gem 'therubyracer', platforms: :ruby

@@ -7,16 +7,16 @@ class CartTest < ActiveSupport::TestCase
     @cart = Cart.new({})
   end
 
-  def add_trips_to_cart(num)
+  def add_trips_to_cart(num, start_date, end_date)
     num.times do |i|
-      @cart.add_trip(i)
+      @cart.add_trip(i, start_date, end_date)
     end
   end
 
   test "cart can store trips" do
     initial_count = @cart.total_trips
 
-    @cart.add_trip(3)
+    @cart.add_trip(3, "21 December, 2015", "25 December, 2015")
 
     current_count = @cart.total_trips
 
@@ -24,25 +24,26 @@ class CartTest < ActiveSupport::TestCase
   end
 
   test "cart can return total number of trips" do
-    add_trips_to_cart(5)
+    add_trips_to_cart(5, "21 December, 2015", "25 December, 2015")
     total = @cart.total_trips
 
     assert_equal 5, total
   end
 
   test "cart can return total price of all trips" do
-    rental_type = RentalType.create(name: "Hiking")
-    rental_type.rentals.create(name: "Hiking in FL", description: "hiking", price: 10)
-    rental_type.rentals.create(name: "Hiking in LA", description: "hiking", price: 1)
+    skip
+    rental_type = RentalType.create(name: "Castle")
+    rental_type.rentals.create(name: "Name Castle", description: "Livin it up like Royalty", price: 1000)
+    rental_type.rentals.create(name: "Alnwick Castle", description: "Come enjoy the Duke's gardens.", price: 1)
 
-    @cart.add_trip(Rental.first.id)
-    @cart.add_trip(Rental.last.id)
+    @cart.add_trip(Rental.first.id, "21 December, 2015", "25 December, 2015")
+    @cart.add_trip(Rental.last.id, "21 December, 2015", "25 December, 2015")
 
     assert_equal 11, @cart.total_cost
   end
 
   test "cart can remove trips" do
-    add_trips_to_cart(1)
+    add_trips_to_cart(1, "21 December, 2015", "25 December, 2015")
     rental = Rental.create(name: "Jetskiing",
                              description: "words",
                              price: 100,
@@ -55,22 +56,14 @@ class CartTest < ActiveSupport::TestCase
     assert_equal 1, original_total - current_total
   end
 
-  test "cart can return number of travellers for each trip" do
-    add_trips_to_cart(2)
-    @cart.update("1", 4)
+  test "cart can update trip start date" do
+    add_trips_to_cart(2, "21 December, 2015", "25 December, 2015")
+    rental = Rental.create(name: "N Castle",
+                           description: "For Royalty only.",
+                           price: 1000,
+                           id: @cart.trips.keys.first.to_i)
+    @cart.update(rental.id, "27 December, 2015", "30 December, 2015")
 
-    assert_equal 4, @cart.count_of(1)
-  end
-
-  test "cart can update trips" do
-    add_trips_to_cart(2)
-    original_count = @cart.count_of(1)
-
-    assert_equal 1, original_count
-
-    @cart.update("1", 7)
-    updated_count = @cart.count_of(1)
-
-    assert_equal 7, updated_count
+    assert_equal "27 December, 2015", @cart.start_date(rental.id)
   end
 end

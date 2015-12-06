@@ -1,6 +1,9 @@
 .cart.white
   %table
-    - @rentals.each do |rental|
+    - @rentals.each do |rental_parts|
+      - rental = rental_parts[0]
+      - start_date = rental_parts[1]
+      - end_date = rental_parts[2]
       .rental_card
         %tr
           .row
@@ -10,7 +13,7 @@
               %h2= rental.name
               %p= rental.description
               %p= "Price: #{format_currency(rental.price)}"
-              %p= "Dates: INSERT DATES FROM SELECTOR"
+              %p= "Dates: #{start_date} - #{end_date}"
               %p= "Number of Nights: NUMBER OF NIGHTS SELECTED"
               %p= "Sub-total: NUMBER OF NIGHTS * PRICE"
 

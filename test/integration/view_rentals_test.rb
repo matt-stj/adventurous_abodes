@@ -17,10 +17,8 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
     click_link "Castle"
 
     assert_equal "/rental_types/castle", current_path
-    within("h1") do
-      assert page.has_content?("Castle")
-      refute page.has_content?("Igloo")
-    end
+    assert page.has_content?("Name 1")
+    refute page.has_content?("Igloo")
   end
 
   test "logged in user can view rentals" do
@@ -41,10 +39,8 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
     click_link "Castle"
 
     assert_equal "/rental_types/castle", current_path
-    within("h1") do
-      assert page.has_content?("Castle")
-      refute page.has_content?("Igloo")
-    end
+    assert page.has_content?("Name 1")
+    refute page.has_content?("Igloo")
   end
 
   test "guest can view rentals by owner" do

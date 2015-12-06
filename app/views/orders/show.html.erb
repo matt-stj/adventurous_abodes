@@ -13,8 +13,7 @@
       </tr>
       <% @order.rentals.each do |rental| %>
         <tr>
-          <%#= content_tag :td, link_to(rental_name_and_travellers(@order, rental), rental_path(rental)) %>
-          <%= content_tag :td, format_currency(rental.price * @order.reservations.find_by(rental_id: rental.id).travellers) %>
+          <%= content_tag :td, rental.name %>
         </tr>
       <% end %>
     </table>
