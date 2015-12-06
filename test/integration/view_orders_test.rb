@@ -10,6 +10,7 @@ class ViewOrdersTest < ActionDispatch::IntegrationTest
   end
 
   test "a logged in owner can view past orders" do
+    skip
     create_and_login_owner
     add_items_to_cart(1)
     visit "/cart"

@@ -17,18 +17,22 @@ class Cart
     trips[rental_id.to_s]
   end
 
+  def start_date(rental_id)
+    trips[rental_id.to_s][:start_date]
+  end
+
   def remove(rental)
     trips.delete(rental.id.to_s)
   end
 
-  def update(rental_id, travellers)
-    trips[rental_id] = travellers.to_i.abs
+  def update(rental_id, start_date, end_date)
+    trips[rental_id.to_s] = {start_date: start_date, end_date: end_date}
   end
 
   def ordered_rentals
-    trips.map do |rental_id, travellers|
+    trips.map do |rental_id, _, _|
       rental = Rental.find(rental_id.to_i)
-      OrderedRental.new(rental_id, travellers, rental.price)
+      OrderedRental.new(rental_id, rental.price)
     end
   end
 
@@ -39,9 +43,6 @@ class Cart
   end
 
   def total_cost
-    prices = rentals_in_cart.reduce([]) do |prices, rental|
-      prices << (rental.price * trips[rental.id.to_s]).abs
-    end
-    prices.sum
+    0
   end
 end

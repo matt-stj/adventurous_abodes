@@ -7,7 +7,6 @@ class Order < ActiveRecord::Base
     order = current_user.orders.create(total: cart.total_cost)
     cart.ordered_rentals.each do |rental|
       order.reservations.create(rental_id: rental.rental_id,
-                                 travellers: rental.travellers,
                                  price: rental.price)
     end
   end
