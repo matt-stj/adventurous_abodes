@@ -18,8 +18,8 @@ class CartsTest < ActionDispatch::IntegrationTest
 
   test "guest can view cart" do
     visit rentals_path
-    add_items_to_cart(2)
-    click_link "Trips: 2"
+    add_item_to_cart
+    click_link "Trips: 1"
 
     assert_equal "/cart", current_path
     assert page.has_content?("Name")
@@ -27,7 +27,7 @@ class CartsTest < ActionDispatch::IntegrationTest
   end
 
   test "guest can delete item from cart" do
-    add_items_to_cart(1)
+    add_item_to_cart
     removed_rental = Rental.find_by_name("Name 1")
     visit "/cart"
 
@@ -42,7 +42,7 @@ class CartsTest < ActionDispatch::IntegrationTest
   end
 
   test "cart remains after a guest logs in" do
-    add_items_to_cart(1)
+    add_item_to_cart
     create_and_login_user
     visit "/cart"
 
@@ -50,7 +50,7 @@ class CartsTest < ActionDispatch::IntegrationTest
   end
 
   test "cart resets to empty when user checks out" do
-    checkout_user(1)
+    checkout_user
     visit rentals_path
 
     assert page.has_content?("Trips: 0")

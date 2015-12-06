@@ -2,7 +2,7 @@ require "test_helper"
 
 class CheckoutTest < ActionDispatch::IntegrationTest
   test "user must be logged in to checkout" do
-    add_items_to_cart(1)
+    add_item_to_cart
     visit "/cart"
     click_button "Checkout"
 
@@ -11,7 +11,7 @@ class CheckoutTest < ActionDispatch::IntegrationTest
   end
 
   test "logged in user can checkout" do
-    checkout_user(1)
+    checkout_user
 
     assert_equal "/orders", current_path
     assert page.has_content?("Order was successfully placed")

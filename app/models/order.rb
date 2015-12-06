@@ -6,8 +6,14 @@ class Order < ActiveRecord::Base
   scope :pending, -> { where owner_status: 'pending' }
 
   def self.owner_orders(owner)
-    binding.pry
-    owner.orders
+    orders = []
+    owner.rentals.each do |rental|
+      rental_id = rental.id
+      reservation = Reservation.find_by(rental_id: rental_id)
+      order_id = reservation.order_id
+      orders << Order.find(order_id)
+    end
+    orders
   end
 
   def self.make_new(cart, current_user)

@@ -71,27 +71,23 @@ class ActionDispatch::IntegrationTest
     end
   end
 
-  def add_items_to_cart(num)
-    num.times do |i|
-      i += 1
-      create_rentals(1, "Name #{i}")
-      rental = RentalType.find_by_name("Name #{i}").rentals.first
-
-      visit rental_path(rental)
-      click_link "Purchase Trip"
-      click_button "Place Order"
-    end
+  def add_item_to_cart
+    create_rentals(1, "Castle")
+    rental = RentalType.find_by_name("Castle").rentals.first
+    visit rental_path(rental)
+    click_link "Purchase Trip"
+    click_button "Place Order"
   end
 
-  def checkout_user(num_items)
+  def checkout_user
     create_and_login_user
-    add_items_to_cart(num_items)
+    add_item_to_cart
     visit "/cart"
     click_button "Checkout"
   end
 
   def checkout_user_and_login_owner
-    checkout_user(2)
+    checkout_user
     click_link "Logout"
     create_and_login_owner
   end
@@ -109,23 +105,24 @@ class ActionDispatch::IntegrationTest
   end
 
   def create_orders
-    create_and_login_user
-    rental_type = RentalType.create(name: "Castle")
-    rental_type_id = rental_type.id
-    order1 = @user.orders.create(total: 1001,
-                                created_at: Time.new(2011, 11, 10, 15, 25, 0))
-    order2 = @user.orders.create(total: 200,
-                                created_at: Time.new(2012, 11, 12, 15, 25, 0))
-
-    order1.rentals.create(name: "Castle",
-                          description: "No Dragons Allowed.",
-                          price: 1001,
-                          rental_type_id: rental_type_id)
-
-    order2.rentals.create(name: "Treehouse",
-                          description: "Perfect for Swiss families.",
-                          price: 200,
-                          rental_type_id: rental_type_id)
+    checkout_user
+    # create_and_login_user
+    # rental_type = RentalType.create(name: "Castle")
+    # rental_type_id = rental_type.id
+    # order1 = @user.orders.create(total: 1001,
+    #                             created_at: Time.new(2011, 11, 10, 15, 25, 0))
+    # order2 = @user.orders.create(total: 200,
+    #                             created_at: Time.new(2012, 11, 12, 15, 25, 0))
+    #
+    # order1.rentals.create(name: "Castle",
+    #                       description: "No Dragons Allowed.",
+    #                       price: 1001,
+    #                       rental_type_id: rental_type_id)
+    #
+    # order2.rentals.create(name: "Treehouse",
+    #                       description: "Perfect for Swiss families.",
+    #                       price: 200,
+    #                       rental_type_id: rental_type_id)
   end
 
   def teardown
