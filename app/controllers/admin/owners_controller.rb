@@ -18,25 +18,26 @@ class Admin::OwnersController < Admin::BaseController
     @owner = User.find(params[:id])
   end
 
- def update
-   @user = User.find(params[:id])
-   if params[:commit]
-     if @user.update(owner_params)
-       flash.notice = "Account Updated!"
-       redirect_to admin_owner_path(@user)
-     else
-       flash.now[:errors] = @user.errors.full_messages.join(" ,")
-       render :edit
-     end
-   else
-    @user.update_attributes!(owner_status: params[:owner_status])
-    redirect_to admin_owners_path
+  def update
+    @user = User.find(params[:id])
+    if params[:commit]
+      if @user.update(owner_params)
+        flash.notice = "Account Updated!"
+        redirect_to admin_owner_path(@user)
+      else
+        flash.now[:errors] = @user.errors.full_messages.join(" ,")
+        render :edit
+      end
+    else
+      @user.update_attributes!(owner_status: params[:owner_status])
+      @user.toggle_rentals(params[:owner_status])
+      redirect_to admin_owners_path
+    end
   end
- end
 
- private
+  private
 
-   def owner_params
-     params.require(:user).permit(:username, :password, :name, :owner_status)
-   end
+  def owner_params
+    params.require(:user).permit(:username, :password, :name, :owner_status)
+  end
 end

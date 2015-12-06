@@ -106,23 +106,6 @@ class ActionDispatch::IntegrationTest
 
   def create_orders
     checkout_user
-    # create_and_login_user
-    # rental_type = RentalType.create(name: "Castle")
-    # rental_type_id = rental_type.id
-    # order1 = @user.orders.create(total: 1001,
-    #                             created_at: Time.new(2011, 11, 10, 15, 25, 0))
-    # order2 = @user.orders.create(total: 200,
-    #                             created_at: Time.new(2012, 11, 12, 15, 25, 0))
-    #
-    # order1.rentals.create(name: "Castle",
-    #                       description: "No Dragons Allowed.",
-    #                       price: 1001,
-    #                       rental_type_id: rental_type_id)
-    #
-    # order2.rentals.create(name: "Treehouse",
-    #                       description: "Perfect for Swiss families.",
-    #                       price: 200,
-    #                       rental_type_id: rental_type_id)
   end
 
   def teardown

@@ -29,14 +29,7 @@ class OwnersController < ApplicationController
   end
 
   def index
-    @users = User.all
-    @owners = []
-    @users.map do |user|
-      if user.owner?
-        @owners << user
-      end
-    end
-    @owners
+    @active_owners = User.active_owners
   end
 
   def show
