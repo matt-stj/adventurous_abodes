@@ -11,7 +11,7 @@
      <tbody>
       <% @owners.each do |owner| %>
        <tr>
-         <td class="center"><%= owner.name %></td>
+         <td class="center"><%= link_to owner.username, admin_owner_path(owner) %></td>
          <td class="center"><div class="chip <%= owner.owner_status %>"><%= owner.owner_status %></div></td>
          <% if owner.owner_status == "inactive" %>
           <td class="center"><%= link_to admin_owner_path(owner, :owner_status => 'active'), method: :patch, class: "btn green", id: "make-active" do %>
