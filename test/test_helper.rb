@@ -64,7 +64,7 @@ class ActionDispatch::IntegrationTest
     num.times do |i|
       i += 1
       rental_type = RentalType.find_or_create_by(name: rental_type)
-      rental = rental_type.rentals.create(name: "Neuschwanstein #{i}",
+      rental = rental_type.rentals.create(name: "Name #{i}",
                                description: "Description #{i}",
                                price: 1000 + i)
       @owner.rentals << rental

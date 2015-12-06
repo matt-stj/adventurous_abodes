@@ -6,7 +6,7 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
     visit rentals_path
 
     assert page.has_content?("Rental")
-    assert page.has_content?("Neuschwanstein 1")
+    assert page.has_content?("Name 1")
     assert page.has_content?("$1,001")
   end
 
@@ -17,7 +17,7 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
     click_link "Castle"
 
     assert_equal "/rental_types/castle", current_path
-    assert page.has_content?("Neuschwanstein 1")
+    assert page.has_content?("Name 1")
     refute page.has_content?("Igloo")
   end
 
@@ -27,7 +27,7 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
     visit rentals_path
 
     assert page.has_content?("Rental")
-    assert page.has_content?("Neuschwanstein 1")
+    assert page.has_content?("Name 1")
     assert page.has_content?("$1,001")
   end
 
@@ -39,7 +39,7 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
     click_link "Castle"
 
     assert_equal "/rental_types/castle", current_path
-    assert page.has_content?("Neuschwanstein 1")
+    assert page.has_content?("Name 1")
     refute page.has_content?("Igloo")
   end
 
@@ -49,7 +49,7 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("Rentals")
 
-    assert page.has_content?("Neuschwanstein 1")
+    assert page.has_content?("Name 1")
   end
 
   test "logged in user cannot view rentals that have been retired" do

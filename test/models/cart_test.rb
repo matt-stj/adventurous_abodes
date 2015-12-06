@@ -33,7 +33,7 @@ class CartTest < ActiveSupport::TestCase
   test "cart can return total price of all trips" do
     skip
     rental_type = RentalType.create(name: "Castle")
-    rental_type.rentals.create(name: "Neuschwanstein Castle", description: "Livin it up like Royalty", price: 1000)
+    rental_type.rentals.create(name: "Name Castle", description: "Livin it up like Royalty", price: 1000)
     rental_type.rentals.create(name: "Alnwick Castle", description: "Come enjoy the Duke's gardens.", price: 1)
 
     @cart.add_trip(Rental.first.id, "21 December, 2015", "25 December, 2015")

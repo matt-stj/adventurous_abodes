@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   # validates :password, presence: true
 
   scope :pending,       -> { where owner_status: 'pending' }
+  scope :active_owners,       -> { where owner_status: 'active' }
 
   def platform_admin?
     roles.exists?(title: "platform_admin")
@@ -32,6 +33,14 @@ class User < ActiveRecord::Base
     elsif owner_status == "" && roles.first.title == "owner"
       self.roles.first.update_attributes(title: "registered_user")
     else
+    end
+  end
+
+  def toggle_rentals(status)
+    if status == "inactive"
+      rentals.update_all(status: "inactive")
+    else
+      rentals.update_all(status: "active")
     end
   end
 end

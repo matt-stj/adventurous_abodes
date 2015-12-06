@@ -11,7 +11,7 @@ class RentalTest < ActiveSupport::TestCase
 
   def valid_attributes
     {
-      name:           "Neuschwanstein Castle",
+      name:           "Name Castle",
       description:    "No Dragons allowed!",
       price:          1001,
       rental_type_id: RentalType.find_by_name("Castle").id
@@ -32,7 +32,7 @@ class RentalTest < ActiveSupport::TestCase
   end
 
   test "it is invalid with missing description" do
-    rental = Rental.new(name: "Neuschwanstein Castle",
+    rental = Rental.new(name: "Name Castle",
                         price: 1001,
                         rental_type_id: RentalType.find_by_name("Castle").id)
 
@@ -40,7 +40,7 @@ class RentalTest < ActiveSupport::TestCase
   end
 
   test "it is invalid with missing price" do
-    rental = Rental.new(name: "Neuschwanstein Castle",
+    rental = Rental.new(name: "Name Castle",
                           description: "No Dragons allowed!",
                           rental_type_id: RentalType.find_by_name("Castle").id)
 
@@ -49,7 +49,7 @@ class RentalTest < ActiveSupport::TestCase
 
   test "it must belong to an rental_type" do
     skip
-    rental = Rental.new(name: "Neuschwanstein Castle",
+    rental = Rental.new(name: "Name Castle",
                         description: "No Dragons allowed!",
                         price: 1000)
 
@@ -65,7 +65,7 @@ class RentalTest < ActiveSupport::TestCase
 
   test "it must have a price that is greater than zero" do
     skip
-    rental = Rental.new( { name: "Neuschwanstein Castle",
+    rental = Rental.new( { name: "Name Castle",
                            description: "No Dragons allowed!",
                            price: -1,
                            rental_type_id: RentalType.find_by_name("Castle").id
