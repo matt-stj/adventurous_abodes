@@ -13,6 +13,7 @@ class Admin::OwnersController < Admin::BaseController
  def update
    user = User.find(params[:id])
    user.update_attributes!(owner_status: params[:owner_status])
+   user.toggle_rentals(params[:owner_status])
    redirect_to admin_owners_path
  end
 end

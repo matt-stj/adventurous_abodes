@@ -34,4 +34,12 @@ class User < ActiveRecord::Base
     else
     end
   end
+
+  def toggle_rentals(status)
+    if status == "inactive"
+      rentals.update_all(status: "inactive")
+    else
+      rentals.update_all(status: "active")
+    end
+  end
 end

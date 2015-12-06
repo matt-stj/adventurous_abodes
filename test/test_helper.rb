@@ -118,7 +118,7 @@ class ActionDispatch::IntegrationTest
                                price: 1000 + i)
       owner.rentals << Rental.last(i)
     end
-
+    owner
   end
 
   def create_orders
