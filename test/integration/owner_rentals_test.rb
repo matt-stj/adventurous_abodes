@@ -2,7 +2,7 @@ require "test_helper"
 
 class OwnerRentalsTest < ActionDispatch::IntegrationTest
   test "owner can create a rental" do
-    login_owner
+    create_and_login_owner
     click_link("Add Rental")
     assert_equal new_owners_rental_path, current_path
     assert page.has_content?("Add a New Rental")
@@ -18,7 +18,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
   end
 
   test "owner can create a rental and must have name" do
-    login_owner
+    create_and_login_owner
     click_link("Add Rental")
     assert_equal new_owners_rental_path, current_path
     assert page.has_content?("Add a New Rental")
@@ -35,28 +35,28 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
 
   test "owner can view all rentals" do
     create_rentals(2, "Castle")
-    login_owner
+    create_and_login_owner
     click_link ("View All Rentals")
 
     assert "/owners/rentals", current_path
     assert page.has_content?("Rentals")
-    assert page.has_content?("Castle 1")
-    assert page.has_content?("Castle 2")
+    assert page.has_content?("Neuschwanstein 1")
+    assert page.has_content?("Neuschwanstein 2")
   end
 
   test "owner can view a single rentals details" do
     create_rentals(1, "Castle")
-    login_owner
+    create_and_login_owner
     click_link ("View All Rentals")
     click_link ("Details")
 
     assert "/owners/rentals/castle_1", current_path
-    assert page.has_content?("No dragons allowed.")
+    assert page.has_content?("Description")
   end
 
   test "owner can edit an existing rental" do
     create_rentals(1, "Castle")
-    login_owner
+    create_and_login_owner
     click_link ("View All Rentals")
     click_button "Edit"
     assert "/owners/rentals/#{Rental.first.id}/edit", current_path
@@ -68,12 +68,12 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
 
     assert owners_dashboard_path, current_path
     assert page.has_content?("Neuschwanstein")
-    refute page.has_content?("Castle 1")
+    refute page.has_content?("Name 1")
   end
 
   test "owner can edit an existing rental and must have name" do
     create_rentals(1, "Castle")
-    login_owner
+    create_and_login_owner
     click_link ("View All Rentals")
     click_button "Edit"
     fill_in "Name",   with: ""
@@ -87,7 +87,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
 
   test "owner can delete an existing rental" do
     create_rentals(1, "Castle")
-    login_owner
+    create_and_login_owner
     click_link ("View All Rentals")
 
     assert owners_rentals_path, current_path
@@ -95,7 +95,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     click_button "Delete"
 
     assert owners_rentals_path, current_path
-    refute page.has_content?("Castle 1")
+    refute page.has_content?("Name 1")
   end
 
   test "regular user cannot access new rental path" do

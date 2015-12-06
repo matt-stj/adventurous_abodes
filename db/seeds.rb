@@ -35,7 +35,7 @@ class Seed
     rental_types = RentalType.all
     rental_types.each do |rental_type|
       50.times do |i|
-        name  = "#{Faker::Name.first_name}'s #{rental_type.name}"
+        name  = "#{Faker::Company.buzzword} #{rental_type.name}"
         description = Faker::Lorem.paragraph
         price = Faker::Commerce.price
         status = "active"
@@ -71,7 +71,7 @@ class Seed
     owner_role = Role.find_by(title: "owner")
     250.times do |i|
       name  = Faker::Name.first_name
-      username = "andrew@turing.io"
+      username = "andrew#{i}@turing.io"
       password = "password"
       image_url = Faker::Avatar.image
       owner = User.create!(name: name,
@@ -123,7 +123,7 @@ class Seed
     users = User.joins(:roles).where("title = ?", "registered_user")
     users.each do |user|
       10.times do |i|
-        status = "active"
+        status = "Pending"
         total = Faker::Commerce.price
         order = user.orders.create!(total: total,
                               status: status)

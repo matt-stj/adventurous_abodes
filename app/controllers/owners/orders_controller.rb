@@ -1,10 +1,11 @@
 class Owners::OrdersController < Owners::BaseController
   def index
-    @orders = Order.all
+    @orders = Order.owner_orders(current_user)
   end
 
   def show
     @order = Order.find(params[:id])
+    @rentals = @order.rentals.where(id: current_user.rentals.map { |rental| rental.id})
   end
 
   def update

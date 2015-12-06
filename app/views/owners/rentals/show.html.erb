@@ -1,0 +1,10 @@
+<h1>
+  <%= @rental.name %>
+</h1>
+<h2>
+  <%= format_currency(@rental.price) %>
+</h2>
+<p class="rental-description">
+  <%= @rental.description %>
+</p>
+<%= purchase_link_or_retired_notice %>

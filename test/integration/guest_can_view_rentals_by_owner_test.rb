@@ -10,7 +10,7 @@ class GuestCanViewRentalsByOwnerTest < ActionDispatch::IntegrationTest
       i += 1
       rental_type = RentalType.find_or_create_by(name: "Castle")
       rental_type.rentals.create(name: "Castle #{i}",
-                               description: "No dragons allowed. #{i}",
+                               description: "Description #{i}",
                                price: 1000 + i)
       owner.rentals << Rental.last(i)
     end

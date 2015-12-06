@@ -1,18 +1,18 @@
-<h1 class="white-text center-align">Owner Order History</h1>
+<h1 class="center-align">Owner Order History</h1>
 <div class="white">
   <table class="cart-table highlight">
     <tr>
-      <th>Trips Ordered</th>
+      <th>Order Number</th>
       <th>Total Price</th>
       <th>Date Ordered</th>
       <th>Order Details</th>
     </tr>
     <% @orders.each do |order| %>
       <tr>
-        <%= content_tag :td, "INSERT TRIP NAME" %>
-        <%= content_tag :td, format_currency(order.total || 0) %>
-        <%= content_tag :td, format_date(order.created_at) %>
-        <%= content_tag :td, link_to("View", order_path(order)) %>
+        <td><%= order.id  %></td>
+        <td><%= format_currency(order.total || 0) %></td>
+        <td><%= format_date(order.created_at) %></td>
+        <td><%= link_to("View", owners_order_path(order)) %></td>
       </tr>
     <% end %>
   </table>
