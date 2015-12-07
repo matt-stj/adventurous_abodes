@@ -144,12 +144,12 @@ main {
 #date-picker-button {
   width: 200px;
 }
-.inactive {
+.user_status_inactive {
   background-color: #ef5350;
   color: white;
 }
 
-.active {
+.user_status_active {
   background-color: #66bb6a;
   color: white;
 }
@@ -162,6 +162,6 @@ main {
     height: 180px;
 }
 
-.active {
-    background-color: white;
+.input-field label.active {
+    background-color: transparent;
 }
