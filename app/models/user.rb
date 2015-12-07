@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   has_many :orders
   has_many :rentals
   has_many :user_roles

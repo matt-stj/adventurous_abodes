@@ -3,7 +3,7 @@ require "test_helper"
 class OwnerDashboardTest < ActionDispatch::IntegrationTest
   test "owner can login and access owner dashboard path" do
     create_and_login_owner
-    
+
     assert_equal owners_dashboard_path, current_path
     assert page.has_content?("Owner Dashboard")
   end
@@ -62,4 +62,5 @@ class OwnerDashboardTest < ActionDispatch::IntegrationTest
 
     assert_equal root_path, current_path
   end
+
 end
