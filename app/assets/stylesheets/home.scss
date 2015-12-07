@@ -3,6 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body .home {
-  background-image: url("http://s169923.gridserver.com/images/massivedoor.jpg");
+  // background-image: url("http://s169923.gridserver.com/images/massivedoor.jpg");
+  background-image: url("http://i.imgur.com/VV6ibvl.jpg");
+  height: 400px;
   background-size: cover;
+}
+// .scrim {
+//   height: 300px;
+// }
+
+.btn, .btn-large {
+    background-color: #757575;
+}
+
+.buttons {
+  margin-top: 200px;
+}
+
+.teal.lighten-1 {
+  background-color: #92A563 !important;
 }

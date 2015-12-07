@@ -8277,3 +8277,31 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 @media (min-height: 40.125em) {
   .picker--time .picker__box {
     margin-bottom: 5em; } }
+
+/*Add by shannon*/
+
+body .home {
+  /*background-image: url("http://s169923.gridserver.com/images/massivedoor.jpg");*/
+  background-image: url("http://i.imgur.com/VV6ibvl.jpg");
+  height: 400px;
+  background-size: cover;
+}
+/*// .scrim {
+//   height: 300px;
+// }*/
+
+.btn, .btn-large {
+    background-color: #757575;
+}
+
+.btn:hover, .btn-large:hover {
+  background-color: #92A563;
+}
+
+.buttons {
+  margin-top: 200px;
+}
+
+.teal.lighten-1 {
+  background-color: #92A563 !important;
+}
