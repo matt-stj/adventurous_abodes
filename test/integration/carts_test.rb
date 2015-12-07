@@ -5,13 +5,12 @@ class CartsTest < ActionDispatch::IntegrationTest
     create_rentals(1, "Castle")
     rental = RentalType.find_by_name("Castle").rentals.first
     visit rental_path(rental)
-    assert page.has_content?("Trips: 0")
     click_link "Purchase Trip"
 
     assert_equal new_cart_rental_path, current_path
     click_button "Place Order"
 
-    assert page.has_content?("Trips: 1")
+    assert page.has_content?("Reservations: 1")
     assert_equal rentals_path, current_path
     assert page.has_content?("You have added Name 1 to your cart.")
   end
@@ -19,7 +18,7 @@ class CartsTest < ActionDispatch::IntegrationTest
   test "guest can view cart" do
     visit rentals_path
     add_item_to_cart
-    click_link "Trips: 1"
+    click_link "Reservations: 1"
 
     assert_equal "/cart", current_path
     assert page.has_content?("Name 1")
@@ -47,13 +46,11 @@ class CartsTest < ActionDispatch::IntegrationTest
   test "cart resets to empty when user checks out" do
     checkout_user
     visit rentals_path
-
-    assert page.has_content?("Trips: 0")
+    assert page.has_content?("Reservations: 0")
   end
 
   test "guest can view selected dates in cart" do
     add_item_to_cart
-
     visit cart_path
 
     assert page.has_content?("21 December, 2015")
