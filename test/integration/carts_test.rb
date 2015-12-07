@@ -53,7 +53,11 @@ class CartsTest < ActionDispatch::IntegrationTest
     add_item_to_cart
     visit cart_path
 
-    assert page.has_content?("21 December, 2015")
-    assert page.has_content?("26 December, 2015")
+    assert page.has_content?("Dec 21, 2015")
+    assert page.has_content?("Dec 26, 2015")
+  end
+
+  test "guest can view number of nights in cart" do
+
   end
 end
