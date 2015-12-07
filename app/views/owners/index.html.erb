@@ -1,6 +1,5 @@
 <h2>All Property Owners</h2>
 
-
  <div class="row">
   <% @active_owners.each do |owner| %>
    <div class="col s2">
@@ -9,7 +8,7 @@
        <img src="https://robohash.org/<%= owner.name%>.png" alt="" class="circle">
      </div>
      <div class="card-content">
-      <%= link_to "#{owner.name.pluralize} properties", owner_path(owner)%>
+      <%= link_to "View #{owner.name.pluralize} properties", owner_path(owner)%>
      </div>
    </div>
  </div>

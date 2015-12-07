@@ -153,3 +153,15 @@ main {
   background-color: #66bb6a;
   color: white;
 }
+
+.card .card-content {
+    padding: 5px;
+}
+
+.card.medium {
+    height: 180px;
+}
+
+.active {
+    background-color: white;
+}
