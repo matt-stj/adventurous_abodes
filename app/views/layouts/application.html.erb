@@ -21,9 +21,9 @@
     <header class="nav">
       <nav>
         <div class="nav-wrapper white">
-          <a href="/" class="brand-logo black-text">Adventurous Abodes</a>
+          <a href="/" class="brand-logo black-text"><img src = "http://i.imgur.com/AgDxMQ7.png" height="50px"></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><%= link_to "Rentals", rentals_path %></li>
+            <li><%= link_to "Search Rentals", rentals_path %></li>
             <% if current_user %>
             <!-- If we add more fields to owners then we can direct them to the edit controller
             The form is built. But for now I'm just sending them straight to update -->
@@ -32,7 +32,7 @@
               <li><%= link_to "Become A Host", new_owner_path %></li>
             <% end %>
             <li><%= login_logout_path %></li>
-            <li><%= trips_cart_display %></li>
+            <li><%= reservations_display %></li>
           </ul>
         </div>
       </nav>

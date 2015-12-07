@@ -2,29 +2,20 @@
   <section class="row header-bg"></section>
   <div class="row center-align">
     <div class="col s12">
-      <div class="scrim">
-        <h1 class="white-text bold">Adventurous Abodes</h1>
-
-        <h4 class="white-text thin">We Make Staying in a Castle No Hassle</h4>
-
-      <div class="waves-effect waves-light btn white-text">
-        <%= button_to "View Rental Properties", rental_types_path, method: :get %>
-      </div>
-      <% if !current_user %>
-        <div class="waves-effect waves-light btn white-text">
-          <%= button_to "View All Owners", owners_path, method: :get %>
+      <!-- <div class="scrim"> -->
+        <div class = "buttons">
+          <div class="waves-effect waves-light btn white-text">
+            <%= button_to "Search All Rentals", rental_types_path, method: :get %>
+          </div>
+          <% if !current_user %>
+            <div class="waves-effect waves-light btn white-text">
+              <%= button_to "Search By Owner", owners_path, method: :get %>
+            </div>
+            <!-- <div class="waves-effect waves-light btn white-text">
+              <%#= button_to "Login to Your Account", login_path, method: :get %>
+            </div> -->
+          <% end %>
         </div>
-        <div class="waves-effect waves-light btn white-text">
-          <%= button_to "Login to Your Account", login_path, method: :get %>
-        </div>
-      <% end %>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-    </div>
+      <!-- </div> -->
   </div>
 </div>

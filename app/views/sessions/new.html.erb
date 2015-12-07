@@ -3,7 +3,5 @@
 <% end %>
 <% if !current_user %>
   <%= render partial: "form" %>
+  <%= join_dashboard_path %>
 <% end %>
-
-
-<%= join_dashboard_path %>
