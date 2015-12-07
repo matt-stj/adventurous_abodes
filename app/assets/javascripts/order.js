@@ -1,8 +1,28 @@
 $(document).ready(function() {
 
-  $('.dropdown-button').on('click', 'button', function() {
-    $(this).closest('#tour').find('.photos').slideToggle();
-  });
+
+  $('select').material_select();
+
+
+  $("select").change(function(){
+        $("select").find("option:selected").each(function(){
+            if($(this).attr("value")=="Castle"){
+                $(".rentals").not(".castle").hide();
+                $(".castle").show();
+            }
+            else if($(this).attr("value")=="Dungeon"){
+                $(".rentals").not(".dungeon").hide();
+                $(".dungeon").show();
+            }
+            else if($(this).attr("value")=="Shack"){
+                $(".rentals").not(".shack").hide();
+                $(".shack").show();
+            }
+            else{
+                $(".rentals").hide();
+            }
+        });
+    }).change();
 
 
 
