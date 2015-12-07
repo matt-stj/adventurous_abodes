@@ -10,10 +10,10 @@
     </select>
   </div>
 
-<div class="row">
+<div class="row displayed-rentals">
   <% @rental_types.each do |rental_type| %>
     <div class="<%= rental_type.name.downcase %> rentals">
-      <% @rental_types.find_by(name: rental_type.name ).rentals.each do |rental| %>
+      <% @rental_types.find_by(name: rental_type.name ).rentals.active.each do |rental| %>
         <%= render partial: 'rentals/rental', locals: {rental: rental}  %>
       <% end %>
     </div>
