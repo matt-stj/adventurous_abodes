@@ -2,12 +2,10 @@
   <table>
     <% @rentals.each do |rental_parts| %>
       <% rental     = rental_parts[0] %>
-      <% start_date = rental_parts[1] %>
-      <% end_date   = rental_parts[2] %>
-
-      <% "#{start   = Date.strptime(rental_start_date(start_date), '%b %d %Y')}" %>
-      <% "#{enddate = Date.strptime(rental_end_date(end_date),    '%b %d %Y')}" %><br>
-      <% "#{nights  = (enddate - start).to_i}" %>
+      <% start_date = formatted_rental_date(rental_parts[1]) %>
+      <% end_date   = formatted_rental_date(rental_parts[2]) %>
+      <% nights     = number_of_nights(start_date, end_date) %>
+      <% price      = format_currency(rental.price.to_i) %>
 
       <div class="rental_card">
         <tr>
@@ -18,8 +16,8 @@
             <div class="col s6">
               <h2><%= rental.name %></h2>
               <p><%= rental.description %></p>
-              <p><%= "Price: #{format_currency(rental.price)}" %></p>
-              <p><%= "Dates: #{start_date} - #{end_date}" %></p>
+              <p><%= "Price: #{price}" %></p>
+              <p><%= "Dates: #{rental_parts[1]} - #{rental_parts[2]}" %></p>
               <p><%= "Number of Nights: #{nights}" %><br></p>
               <p><%= "Sub-total: #{format_currency(rental.price.to_i * nights)}" %></p>
             </div>

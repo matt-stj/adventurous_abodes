@@ -33,12 +33,12 @@ module ApplicationHelper
     date.strftime("%H:%M")
   end
 
-  def rental_start_date(date)
-    date.sub(',', '')
+  def formatted_rental_date(date)
+    Date.strptime(date.sub(',', ''), '%b %d %Y')
   end
 
-  def rental_end_date(date)
-    date.sub(',', '')
+  def number_of_nights(start_date, end_date)
+    (end_date - start_date).to_i
   end
 
   def order_date_and_time(date)

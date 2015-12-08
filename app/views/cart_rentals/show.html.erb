@@ -1,7 +1,7 @@
 <% if @rentals.empty? %>
   <div class="black-text center-align no-items">
     <h3 class="black-text">No items in cart.</h3>
-    <%= link_to "View Rentals", rentals_path %>
+    <%= link_to "View Rentals", rental_types_path %>
   </div>
 <% end %>
 <% if !@rentals.empty? %>
@@ -9,7 +9,7 @@
   <%= render partial: "edit_rental", locals: { :rentals => @rentals } %>
   <div class="card-panel grey lighten-5 right-align">
     <div class="col s6 offset-s6">
-      <%= "Total: $NUMBER OF NIGHTS * PRICE" %>
+      <%= "Total: #{format_currency(@cart.total_cost)}" %>
       <div class="waves-effect waves-light btn white-text">
         <%= button_to "Checkout", checkout_path, method: :post %>
       </div>
