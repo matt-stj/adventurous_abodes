@@ -31,6 +31,15 @@ class Seed
     end
   end
 
+  def generate_random_image(rental_type)
+    rental_type_array = []
+      Dir.foreach("app/assets/images/#{rental_type}") do |item|
+        next if /^[.]/.match(item)
+        rental_type_array << "app/assets/images/#{rental_type}/#{item}"
+      end
+    rental_type_array.sample
+  end
+
   def generate_rentals
     rental_types = RentalType.all
     rental_types.each do |rental_type|
@@ -43,11 +52,12 @@ class Seed
         # image_content_type = ""
         # image_file_size = ""
         # image_updated_at = ""
-        # image = ""
+        image = generate_random_image(rental_type.name.parameterize)
         rental = rental_type.rentals.create!(name: name,
                                             description: description,
                                             price: price,
-                                            status: status)
+                                            status: status,
+                                            image: File.open(image))
         puts "#{rental_type} #{i+1} created!"
       end
     end
