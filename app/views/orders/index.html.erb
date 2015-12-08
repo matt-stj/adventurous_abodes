@@ -11,7 +11,7 @@
       <tr>
         <%= content_tag :td, order.id  %>
         <%= content_tag :td, format_currency(order.total || 0) %>
-        <%= content_tag :td, format_date(order.created_at) %>
+        <%= content_tag :td, order_date(order.created_at) %>
         <%= content_tag :td, link_to("View", order_path(order)) %>
       </tr>
     <% end %>

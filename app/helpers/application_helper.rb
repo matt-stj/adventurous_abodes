@@ -25,15 +25,23 @@ module ApplicationHelper
     number_to_currency(price, unit: "$")[0...-3]
   end
 
-  def format_date(date)
+  def order_date(date)
     date.strftime("%B %d, %Y")
   end
 
-  def format_time(date)
+  def order_time(date)
     date.strftime("%H:%M")
   end
 
-  def format_date_and_time(date)
-    "#{format_date(date)} at #{format_time(date)}"
+  def rental_start_date(date)
+    date.sub(',', '')
+  end
+
+  def rental_end_date(date)
+    date.sub(',', '')
+  end
+
+  def order_date_and_time(date)
+    "#{order_date(date)} at #{order_time(date)}"
   end
 end
