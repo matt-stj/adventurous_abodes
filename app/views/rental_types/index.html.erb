@@ -10,7 +10,7 @@
     </select>
   </div>
 
-<div class="row displayed-rentals">
+<div class="row displayed-rentals hidden">
   <% @rental_types.each do |rental_type| %>
     <div class="<%= rental_type.name.downcase %> rentals">
       <% @rental_types.find_by(name: rental_type.name ).rentals.active.each do |rental| %>
