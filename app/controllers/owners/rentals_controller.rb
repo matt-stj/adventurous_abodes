@@ -9,6 +9,7 @@ class Owners::RentalsController < Owners::BaseController
 
   def new
     @rental = Rental.new
+    @rental_types = RentalType.all
   end
 
   def create

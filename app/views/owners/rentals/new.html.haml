@@ -14,8 +14,7 @@
       = f.text_area :description
 
     .input-field
-      = f.label :rental_type
-      = f.text_field :rental_type
+      = f.collection_select :rental_type, @rental_types, :id, :name
 
     .input-field
       = f.label :price

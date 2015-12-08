@@ -23,30 +23,9 @@ class OwnerDashboardTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Back Off")
   end
 
-  test "owner sees their rentals on the dashboard" do
-    create_and_login_owner
-    click_link("Add Rental")
-    assert_equal new_owners_rental_path, current_path
-    assert page.has_content?("Add a New Rental")
-
-    fill_in "Name", with: "Attic"
-    fill_in "Description", with: "Secret Treasure not included.!"
-    fill_in "Price", with: 1000
-    fill_in "Rental type", with: "Castle"
-    click_button "Create Rental"
-
-    assert_equal owners_dashboard_path, current_path
-
-    assert page.has_content?("Attic")
-    assert page.has_link?("edit")
-  end
-
-  test "owner can update account details but not other users" do
-    skip
+  test "owner can update account details" do
     create_and_login_owner
     click_link "Edit Account"
-
-    assert_equal owners_dashboard_path, current_path
 
     fill_in "Username", with: "acareaga"
     fill_in "Password", with: "password"
@@ -56,7 +35,6 @@ class OwnerDashboardTest < ActionDispatch::IntegrationTest
   end
 
   test "owner can delete their account" do
-    skip
     create_and_login_owner
     click_link "Delete Account"
 

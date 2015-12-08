@@ -2,7 +2,6 @@ require 'test_helper'
 
 class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
   test "A platform admin can see pending requests to become a new owner/host" do
-    skip
     platform_admin = create_platform_admin
     login_platform_admin
 
