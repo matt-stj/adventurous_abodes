@@ -22,8 +22,7 @@
       <th>Total</th>
     </tr>
     <tr>
-      <%= content_tag :td, format_date(@order.created_at) %>
-      <%= content_tag :td, format_time(@order.created_at) %>
+      <%= content_tag :td, order_date(@order.created_at) %>
       <%= content_tag :td, @order.status %>
       <%= content_tag :td, User.find(@order.user_id).name %>
       <%= content_tag :td, format_currency(@order.total || 0) %>

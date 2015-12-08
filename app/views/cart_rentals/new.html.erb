@@ -34,7 +34,13 @@
 
 <script>
   $(document).ready(function(){
-    $("#myStartDatePicker").pickadate();
-    $("#myEndDatePicker").pickadate();
+    $("#myStartDatePicker").pickadate({
+      format: 'mmm dd, yyyy',
+      formatSubmit: 'mm dd, yyyy'
+    });
+    $("#myEndDatePicker").pickadate({
+      format: 'mmm dd, yyyy',
+      formatSubmit: 'mm dd, yyyy'
+    });
   }); //
 </script>

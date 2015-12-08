@@ -46,14 +46,24 @@ class CartsTest < ActionDispatch::IntegrationTest
   test "cart resets to empty when user checks out" do
     checkout_user
     visit rental_types_path
+
     assert page.has_content?("Reservations: 0")
   end
 
-  test "guest can view selected dates in cart" do
+  test "guest can view cart data" do
     add_item_to_cart
     visit cart_path
 
-    assert page.has_content?("21 December, 2015")
-    assert page.has_content?("26 December, 2015")
+    assert page.has_content?("Dec 26, 2015")
+    assert page.has_content?("Jan 01, 2016")
+    assert page.has_content?("Number of Nights: 6")
+    assert page.has_content?("Sub-total: $6,006")
+  end
+
+  test "guest can view total cost" do
+    add_item_to_cart
+    visit cart_path
+
+    assert page.has_content?("Total: $6,006")
   end
 end

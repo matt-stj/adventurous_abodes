@@ -11,7 +11,7 @@
       <tr>
         <td><%= order.id  %></td>
         <td><%= format_currency(order.total || 0) %></td>
-        <td><%= format_date(order.created_at) %></td>
+        <td><%= order_date(order.created_at) %></td>
         <td><%= link_to("View", owners_order_path(order)) %></td>
       </tr>
     <% end %>

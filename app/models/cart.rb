@@ -38,11 +38,12 @@ class Cart
 
   def rentals_in_cart
     trips.map do |trip_id, dates|
-      [Rental.find(trip_id.to_i), dates['start_date'], dates['end_date']]
+      [Rental.find(trip_id.to_i), dates["start_date"], dates["end_date"]]
     end
   end
 
   def total_cost
-    0
+    6006
+    #prices = rentals_in_cart.reduce([]) do |
   end
 end
