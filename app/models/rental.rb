@@ -3,7 +3,9 @@ class Rental < ActiveRecord::Base
   belongs_to :user
   has_many :reservations
   has_many :orders, through: :reservations
-  has_attached_file :image, default_url: "http://robbielane.net/works/haines/photos/HainesLutakRoad.jpg"
+  has_attached_file :image, :styles => {:original => '500x250>', :thumbnail => '200x100>'}, default_url: ":thumbnail/house-06.jpg"
+
+  #overwrite original size
 
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
   validates :name, :description, :price, presence: true

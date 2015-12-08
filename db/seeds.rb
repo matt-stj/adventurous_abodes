@@ -1,6 +1,10 @@
 class Seed
+
+  #delete system directory before seeding
+
   def self.start
     seed = Seed.new
+    seed.remove_old_images
     seed.generate_rental_types
     seed.generate_rentals
     seed.generate_roles
@@ -9,6 +13,10 @@ class Seed
     seed.generate_registered_users
     seed.add_rental_properties_to_owners
     seed.generate_reservations
+  end
+
+  def remove_old_images
+    p "old system directory succesfully removed" if FileUtils.rm_rf('public/system')
   end
 
   def generate_rental_types
@@ -40,10 +48,11 @@ class Seed
     rental_type_array.sample
   end
 
-  def generate_rentals
+  def generate_rentals(num=5)
+    #update to 50 times when in final production
     rental_types = RentalType.all
     rental_types.each do |rental_type|
-      50.times do |i|
+      (num).times do |i|
         name  = "#{Faker::Company.buzzword} #{rental_type.name}"
         description = Faker::Lorem.paragraph
         price = Faker::Commerce.price
@@ -52,12 +61,12 @@ class Seed
         # image_content_type = ""
         # image_file_size = ""
         # image_updated_at = ""
-        image = generate_random_image(rental_type.name.parameterize)
+        image = File.open(generate_random_image(rental_type.name.parameterize))
         rental = rental_type.rentals.create!(name: name,
                                             description: description,
                                             price: price,
                                             status: status,
-                                            image: File.open(image))
+                                            image: image)
         puts "#{rental_type} #{i+1} created!"
       end
     end
@@ -79,7 +88,7 @@ class Seed
 
   def generate_owners
     owner_role = Role.find_by(title: "owner")
-    250.times do |i|
+    5.times do |i|
       name  = Faker::Name.first_name
       username = "andrew#{i}@turing.io"
       password = "password"
@@ -147,7 +156,8 @@ class Seed
 
     def add_rentals(order)
       2.times do |i|
-        rental = Rental.find(Random.new.rand(1..500))
+        #need to put this back to 1..500 before final push
+        rental = Rental.find(Random.new.rand(1..50))
         rental_id = rental.id
         order_id = order.id
         reservation = Reservation.create!(order_id: order_id,
