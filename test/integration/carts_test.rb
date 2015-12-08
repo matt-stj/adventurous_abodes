@@ -49,18 +49,12 @@ class CartsTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Reservations: 0")
   end
 
-  test "guest can view selected dates in cart" do
+  test "guest can view cart data" do
     add_item_to_cart
     visit cart_path
-
     assert page.has_content?("Dec 26, 2015")
     assert page.has_content?("Jan 01, 2016")
-  end
-
-  test "guest can view number of nights in cart" do
-    add_item_to_cart
-    visit cart_path
-
     assert page.has_content?("Number of Nights: 6")
+    assert page.has_content?("Sub-total: $6,006")
   end
 end
