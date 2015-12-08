@@ -40,9 +40,10 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
     create_user
     platform_admin = create_platform_admin
 
-    create_rentals(1, "Castle"); owner = User.last
-    owner.update_attributes(owner_status: "inactive")
-    owner.rentals.first.update_attributes(status: "inactive")
+    create_rentals(1, "Castle")
+    owner = User.last
+    owner.update_attribute(:owner_status, "inactive")
+    owner.rentals.first.update_attribute(:status, "inactive")
 
     assert_equal "inactive", owner.owner_status
 
@@ -110,7 +111,7 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
     create_rentals(3, "Castle")
     owner = User.last
     owner_id = owner.id
-    owner.update_attributes(owner_status: "inactive")
+    owner.update_attribute(:owner_status, "inactive")
     owner.rentals.update_all(status: "inactive")
 
     assert_equal "inactive", owner.owner_status
