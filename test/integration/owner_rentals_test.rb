@@ -9,8 +9,9 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     fill_in "Name", with: "Brick Castle"
     fill_in "Description", with: "Have a ball sleeping in the alps!"
     fill_in "Price", with: 1000
-    select("1", :from => 'rental_rental_type')
+    # select("1", :from => 'rental_rental_type')
     # fill_in "Rental type", with: "Castle"
+    within 
     click_button "Create Rental"
 
     assert_equal "/owners/dashboard", current_path
