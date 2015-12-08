@@ -12,12 +12,4 @@ class ReservationTest < ActiveSupport::TestCase
     reservation = Reservation.new(valid_attributes)
     assert reservation.valid?
   end
-
-  test "it can't have a negative number of travellers" do
-    skip
-    reservation = Reservation.new(travellers: -1,
-                                   price: 100)
-
-    refute reservation.valid?
-  end
 end

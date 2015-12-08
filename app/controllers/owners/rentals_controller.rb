@@ -9,9 +9,11 @@ class Owners::RentalsController < Owners::BaseController
 
   def new
     @rental = Rental.new
+    @rental_types = RentalType.all
   end
 
   def create
+
     # rental_type = Rental.create(params[:rental][:rental_type])
     @rental = current_user.rentals.new(rental_params)
     # rental_type = RentalType.find_or_create_by(name: params[:rental][:rental_type])
@@ -49,6 +51,6 @@ class Owners::RentalsController < Owners::BaseController
   private
 
   def rental_params
-    params.require(:rental).permit(:name, :description, :price, :image, :user_id, :status)
+    params.require(:rental).permit(:name, :description, :rental_type_id, :price, :image, :user_id, :status)
   end
 end

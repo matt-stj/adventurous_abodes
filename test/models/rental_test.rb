@@ -48,7 +48,6 @@ class RentalTest < ActiveSupport::TestCase
   end
 
   test "it must belong to an rental_type" do
-    skip
     rental = Rental.new(name: "Name Castle",
                         description: "No Dragons allowed!",
                         price: 1000)
@@ -64,7 +63,6 @@ class RentalTest < ActiveSupport::TestCase
   # end
 
   test "it must have a price that is greater than zero" do
-    skip
     rental = Rental.new( { name: "Name Castle",
                            description: "No Dragons allowed!",
                            price: -1,
