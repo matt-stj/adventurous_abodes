@@ -3,7 +3,7 @@ require "test_helper"
 class ViewRentalsTest < ActionDispatch::IntegrationTest
   test "guest can view rentals" do
     create_rentals(1, "Castle")
-    visit rentals_path
+    visit rental_types_path
 
     assert page.has_content?("Rental")
     assert page.has_content?("Name 1")
@@ -29,7 +29,7 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
   test "logged in user can view rentals" do
     create_and_login_user
     create_rentals(1, "Castle")
-    visit rentals_path
+    visit rental_types_path
 
     assert page.has_content?("Rental")
     assert page.has_content?("Name 1")

@@ -1,7 +1,7 @@
 - if @rentals.empty?
   .black-text.center-align.no-items
     %h3.black-text No items in cart.
-    = link_to "View Rentals", rentals_path
+    = link_to "View Rentals", rental_types_path
 
 - if !@rentals.empty?
   %h2.center-align.black-text Checkout
