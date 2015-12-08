@@ -15,7 +15,13 @@
               <p><%= rental.description %></p>
               <p><%= "Price: #{format_currency(rental.price)}" %></p>
               <p><%= "Dates: #{start_date} - #{end_date}" %></p>
-              <p><%= "Number of Nights: NUMBER OF NIGHTS SELECTED" %></p>
+              <% "#{start = start_date.sub(',', '')}" %>
+              <%= "#{asdf = Date.strptime(start, '%b %d %Y')}" %>
+              <% "#{enddate = end_date.sub(',', '')}" %><br>
+              <%= "#{jkl = Date.strptime(enddate, '%b %d %Y')}" %><br>
+
+
+              <p><%= "Number of Nights: #{(jkl - asdf).to_i}" %><br></p>
               <p><%= "Sub-total: NUMBER OF NIGHTS * PRICE" %></p>
             </div>
             <div class="col s2">
