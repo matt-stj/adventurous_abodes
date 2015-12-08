@@ -6,7 +6,7 @@ class RentalTest < ActiveSupport::TestCase
   end
 
   def default_image_url
-    "http://robbielane.net/works/haines/photos/HainesLutakRoad.jpg"
+    ":thumbnail/house-06.jpg"
   end
 
   def valid_attributes

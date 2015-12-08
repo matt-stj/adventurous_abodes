@@ -3,7 +3,7 @@ class Rental < ActiveRecord::Base
   belongs_to :user
   has_many :reservations
   has_many :orders, through: :reservations
-  has_attached_file :image, :styles => {:original => '500x250>', :thumbnail => '200x100>'}, default_url: ":thumbnail/house-06.jpg"
+  has_attached_file :image, :styles => {:original => '800x400>', :thumbnail => '500x250>'}, default_url: ":thumbnail/house-06.jpg"
 
   #overwrite original size
 
