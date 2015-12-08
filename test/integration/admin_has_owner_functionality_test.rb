@@ -41,6 +41,7 @@ class AdminHasOwnerFunctionalityTest < ActionDispatch::IntegrationTest
     create_platform_admin
     login_platform_admin
     visit admin_owner_path(owner)
+
     assert page.has_content?("owner0")
     assert page.has_content?("Edit Profile")
 
@@ -52,6 +53,7 @@ class AdminHasOwnerFunctionalityTest < ActionDispatch::IntegrationTest
     click_button "Update Owner's Profile"
 
     assert_equal admin_owner_path(owner), current_path
+
     refute page.has_content?("owner0")
     assert page.has_content?("new_username@example.com")
   end

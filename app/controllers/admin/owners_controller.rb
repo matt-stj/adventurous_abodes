@@ -9,7 +9,7 @@ class Admin::OwnersController < Admin::BaseController
 
   def create
     user = User.find(params[:format])
-    user.update_attributes!(owner_status: params[:owner_status])
+    user.update_attribute(:owner_status, params[:owner_status])
     user.update_role
     redirect_to admin_dashboard_path
   end
@@ -19,18 +19,19 @@ class Admin::OwnersController < Admin::BaseController
   end
 
   def update
-    @user = User.find(params[:id])
+    @owner = User.find(params[:id])
+    @owner.skip_password_validation = true
     if params[:commit]
-      if @user.update(owner_params)
+      if @owner.update(owner_params)
         flash.notice = "Account Updated!"
-        redirect_to admin_owner_path(@user)
+        redirect_to admin_owner_path(@owner)
       else
-        flash.now[:errors] = @user.errors.full_messages.join(" ,")
+        flash.now[:errors] = @owner.errors.full_messages.join(" ,")
         render :edit
       end
     else
-      @user.update_attributes!(owner_status: params[:owner_status])
-      @user.toggle_rentals(params[:owner_status])
+      @owner.update_attribute(:owner_status, params[:owner_status])
+      @owner.toggle_rentals(params[:owner_status])
       redirect_to admin_owners_path
     end
   end
