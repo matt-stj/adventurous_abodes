@@ -110,19 +110,14 @@ main {
   border: black 2px solid;
 }
 
-.card-panel {
-  display: inline-block;
-  width: 45%;
-}
+// .card-panel {
+//   display: inline-block;
+//   width: 45%;
+// }
 
 .owner-link-text {
   font-size: 2.5rem;
 }
-
-.card.medium {
-    height: 251px;
-}
-
 .inline {
   display: inline-block;
 }
@@ -152,14 +147,6 @@ main {
 .user_status_active {
   background-color: #66bb6a;
   color: white;
-}
-
-.card .card-content {
-    padding: 5px;
-}
-
-.card.medium {
-    height: 180px;
 }
 
 .input-field label.active {
