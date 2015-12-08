@@ -20,6 +20,11 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
   def setup
     create_roles
+    create_rental_types
+  end
+
+  def create_rental_types
+    RentalType.create(name: "Castle")
   end
 
   def create_roles
