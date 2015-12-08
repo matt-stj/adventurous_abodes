@@ -16,7 +16,7 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
 
     login_platform_admin
 
-    visit 'admin/dashboard'
+    # visit 'admin/dashboard'
 
     click_link("Manage Owners")
 
@@ -51,7 +51,7 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
 
     login_platform_admin
 
-    visit 'admin/dashboard'
+    # visit 'admin/dashboard'
 
     click_link("Manage Owners")
 
@@ -84,7 +84,7 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
 
     login_platform_admin
 
-    visit 'admin/dashboard'
+    # visit 'admin/dashboard'
 
     click_link("Manage Owners")
 
@@ -120,7 +120,7 @@ class OwnerRentalItemsCanBeToggledTest < ActionDispatch::IntegrationTest
 
     login_platform_admin
 
-    visit 'admin/dashboard'
+    # visit 'admin/dashboard'
 
     click_link("Manage Owners")
 
