@@ -7,18 +7,17 @@ class ViewRentalTypesTest < ActionDispatch::IntegrationTest
     click_button "Search All Rentals"
 
     assert_equal rental_types_path, current_path
-    assert page.has_content?("Rental Types")
-    assert page.has_content?("Castle")
+
+    assert page.has_content?("Rentals")
   end
 
   test "registered user can view rental types page" do
     create_and_login_user
-    RentalType.create(name: "Treehouse")
     visit "/"
     click_button "Search All Rentals"
 
     assert_equal rental_types_path, current_path
-    assert page.has_content?("Rental Types")
-    assert page.has_content?("Treehouse")
+
+    assert page.has_content?("Rentals")
   end
 end

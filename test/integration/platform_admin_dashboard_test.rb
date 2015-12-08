@@ -6,7 +6,7 @@ class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
     platform_admin = create_platform_admin
     login_platform_admin
 
-    visit 'admin/dashboard'
+    # visit 'admin/dashboard'
 
     assert page.has_content?("Pending Owner Requests")
   end
@@ -19,7 +19,7 @@ class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
 
     login_platform_admin
 
-    visit 'admin/dashboard'
+    # visit 'admin/dashboard'
 
     click_link("Manage Owners")
 
@@ -42,7 +42,7 @@ class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
 
     login_platform_admin
 
-    visit 'admin/dashboard'
+    # visit 'admin/dashboard'
 
     click_link("Manage Owners")
 
@@ -67,7 +67,7 @@ class PlatformAdminDashboardTest < ActionDispatch::IntegrationTest
 
     login_platform_admin
 
-    visit 'admin/dashboard'
+    # visit 'admin/dashboard'
 
     click_link("Manage Owners")
 

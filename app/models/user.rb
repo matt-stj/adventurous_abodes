@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_accessor :skip_password_validation
   has_many :orders
   has_many :rentals
   has_many :user_roles
@@ -8,7 +9,7 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true
   validates :name, presence: true
-  # validates :password, presence: true
+  validates :password, presence: true, unless: :skip_password_validation
 
   scope :pending,       -> { where owner_status: 'pending' }
   scope :active_owners,       -> { where owner_status: 'active' }

@@ -3,7 +3,7 @@ require "test_helper"
 class ViewRentalsTest < ActionDispatch::IntegrationTest
   test "guest can view rentals" do
     create_rentals(1, "Castle")
-    visit rentals_path
+    visit rental_types_path
 
     assert page.has_content?("Rental")
     assert page.has_content?("Name 1")
@@ -14,17 +14,22 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
     create_rentals(1, "Castle")
     create_rentals(1, "Igloo")
     visit rental_types_path
-    click_link "Castle"
 
-    assert_equal "/rental_types/castle", current_path
-    assert page.has_content?("Name 1")
-    refute page.has_content?("Igloo")
+    within '.browser-default' do
+      find("option[value='Castle']").click
+    end
+
+
+    within('.displayed-rentals') do
+      assert page.has_content?("Name 1")
+      refute page.has_content?("Igloo")
+    end
   end
 
   test "logged in user can view rentals" do
     create_and_login_user
     create_rentals(1, "Castle")
-    visit rentals_path
+    visit rental_types_path
 
     assert page.has_content?("Rental")
     assert page.has_content?("Name 1")
@@ -33,14 +38,20 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
 
   test "logged in user can view rentals sorted by rental_type" do
     create_and_login_user
+    visit rental_types_path
     create_rentals(1, "Castle")
     create_rentals(1, "Igloo")
     visit rental_types_path
-    click_link "Castle"
 
-    assert_equal "/rental_types/castle", current_path
-    assert page.has_content?("Name 1")
-    refute page.has_content?("Igloo")
+    within '.browser-default' do
+      find("option[value='Castle']").click
+    end
+
+
+    within('.displayed-rentals') do
+      assert page.has_content?("Name 1")
+      refute page.has_content?("Igloo")
+    end
   end
 
   test "guest can view rentals by owner" do

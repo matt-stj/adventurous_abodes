@@ -11,12 +11,12 @@ class CartsTest < ActionDispatch::IntegrationTest
     click_button "Place Order"
 
     assert page.has_content?("Reservations: 1")
-    assert_equal rentals_path, current_path
+    assert_equal rental_types_path, current_path
     assert page.has_content?("You have added Name 1 to your cart.")
   end
 
   test "guest can view cart" do
-    visit rentals_path
+    visit rental_types_path
     add_item_to_cart
     click_link "Reservations: 1"
 
@@ -45,7 +45,7 @@ class CartsTest < ActionDispatch::IntegrationTest
 
   test "cart resets to empty when user checks out" do
     checkout_user
-    visit rentals_path
+    visit rental_types_path
     assert page.has_content?("Reservations: 0")
   end
 
