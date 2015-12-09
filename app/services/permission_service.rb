@@ -47,7 +47,7 @@ class PermissionService
     def default_permissions
       return true if controller == "users" && action.in?(%w(new create))
       return true if controller == "orders" && action.in?(%w(create))
-      return true if controller == "sessions" && action.in?(%w(new create))
+      return true if controller == "sessions" && action.in?(%w(new create destroy))
       return true if controller == "cart_rentals" && action.in?(%w(new show create update delete))
       return true if controller == "rental_types" && action.in?(%w(index show))
       return true if controller == "rentals"      && action.in?(%w(index show))

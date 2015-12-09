@@ -1,0 +1,39 @@
+<br/>
+<br/>
+<div class="center-align black-text">
+  <h2 class="section">User Dashboard</h2>
+  <h4 class="section">
+    <%= "Welcome, #{current_user.name}!" %>
+  </h4>
+  <div class="">
+    <%= image_tag(current_user.image_url, class: "circle shrink outline responsive-img") %>
+  </div>
+  <p class="section">
+    <%= "Username: #{current_user.username}" %>
+  </p>
+  <p>
+    <%= "Name: #{current_user.name}" %>
+  </p>
+  <br/>
+  <br/>
+  <div class="waves-effect waves-light btn black-text">
+    <%= link_to "Order History", orders_path %>
+  </div>
+  <br/>
+  <br/>
+  <br/>
+  <div class="waves-effect waves-light btn black-text">
+    <%= link_to "Edit Account", edit_user_path(@user) %>
+  </div>
+  <div class="waves-effect waves-light btn black-text">
+    <%= link_to "Apply to Be A Host", owner_path(@user), method: :patch %>
+  </div>
+  <div class="waves-effect waves-light btn black-text">
+    <%= link_to "Delete Account", user_path(@user), method: :delete %>
+  </div>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+</div>

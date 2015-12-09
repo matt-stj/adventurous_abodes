@@ -48,5 +48,4 @@ class Cart
       (time * rental[0].price)
     end.reduce(:+)
   end
-
 end
