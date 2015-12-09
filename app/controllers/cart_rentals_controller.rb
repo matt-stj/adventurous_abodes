@@ -18,10 +18,12 @@ class CartRentalsController < ApplicationController
     @minimum = [[today.year, today.month-1, today.day]]
     rental = Rental.find(params[:id])
     rental.reservations.each do | reservation |
-      if reservation.start_date != nil
-        reservation.number_of_nights.times do |i|
-          date = reservation.start_date + i.days
-          @black_out_dates << [date.year, date.month-1, date.day]
+      if reservation != nil
+        if reservation.start_date != nil
+          reservation.number_of_nights.times do |i|
+            date = reservation.start_date + i.days
+            @black_out_dates << [date.year, date.month-1, date.day]
+          end
         end
       end
     end

@@ -104,6 +104,16 @@ class ActionDispatch::IntegrationTest
     click_button "Place Order"
   end
 
+  def add_second_item_to_cart
+    create_rentals(1, "Shack")
+    rental = RentalType.find_by_name("Shack").rentals.first
+    visit rental_path(rental)
+    click_link "Reserve it!"
+    fill_in "startDate", with: "Jan 02, 2016"
+    fill_in "endDate",   with: "Jan 07, 2016"
+    click_button "Place Order"
+  end
+
   def checkout_user
     create_and_login_user
     add_item_to_cart

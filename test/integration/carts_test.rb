@@ -64,8 +64,9 @@ class CartsTest < ActionDispatch::IntegrationTest
 
   test "guest can view total cost" do
     add_item_to_cart
+    add_second_item_to_cart
     visit cart_path
 
-    assert page.has_content?("Total: $6,006")
+    assert page.has_content?("Total: $11,011")
   end
 end
