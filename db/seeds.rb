@@ -55,7 +55,7 @@ class Seed
       (num).times do |i|
         name  = "#{Faker::Company.buzzword} #{rental_type.name}"
         description = Faker::Lorem.paragraph
-        price = Faker::Commerce.price
+        price = Faker::Commerce.price + 1
         status = "active"
         # image_file_name = ""
         # image_content_type = ""
@@ -88,7 +88,7 @@ class Seed
 
   def generate_owners
     owner_role = Role.find_by(title: "owner")
-    5.times do |i|
+    30.times do |i|
       name  = Faker::Name.first_name
       username = "andrew#{i}@turing.io"
       password = "password"
