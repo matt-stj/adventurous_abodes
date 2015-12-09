@@ -8,6 +8,8 @@ class CartsTest < ActionDispatch::IntegrationTest
     click_link "Reserve it!"
 
     assert_equal new_cart_rental_path, current_path
+    fill_in "startDate", with: "Dec 26, 2015"
+    fill_in "endDate",   with: "Jan 01, 2016"
     click_button "Place Order"
 
     assert page.has_content?("Reservations: 1")
