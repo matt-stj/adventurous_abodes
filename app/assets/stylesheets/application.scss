@@ -57,8 +57,6 @@ footer.page-footer {
 }
 
 .header-bg {
-
-  background: image-url('http://iwillmakeyousmile.gq/kar/12325.jpg') no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -157,9 +155,8 @@ main {
 }
 
 body .home {
-  /*background-image: url("http://s169923.gridserver.com/images/massivedoor.jpg");*/
-  background-image: url("secret_treehouse.jpg");
-  height: 600px;
+  background-image: image-url("secret_treehouse.jpg");
+  height: 45rem;
   background-size: cover;
 }
 /*// .scrim {
