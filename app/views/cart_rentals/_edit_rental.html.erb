@@ -1,5 +1,6 @@
 <div class="cart white">
   <table>
+##############    <% sub_totals_for_rentals = [] %>
     <% @rentals.each do |rental_parts| %>
       <% rental = rental_parts[0] %>
       <% nights = rental_parts[3] %>
@@ -16,6 +17,7 @@
               <p><%= "Dates: #{rental_parts[1]} to #{rental_parts[2]}" %></p>
               <p><%= "Number of Nights: #{nights}" %><br></p>
               <p><%= "Sub-total: #{sub_total(rental.price, nights)}" %></p>
+#################<% sub_totals_for_rentals  << sub_total(rental.price, nights)%>
             </div>
             <div class="col s2">
               <br/>
