@@ -45,9 +45,4 @@ class ApplicationController < ActionController::Base
   def require_owner
     render file: "./test/public/404" unless current_owner
   end
-
-  def require_platform_admin
-    render file: "./test/public/404" unless platform_admin
-  end
-  
 end
