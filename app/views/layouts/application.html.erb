@@ -31,10 +31,13 @@
         <% end %>
       </div>
     </div>
-
-    <div class='container'>
+    <% if current_page?("/rental_types") %>
       <%= yield %>
-    </div>
+    <% else %>
+      <div class='container'>
+        <%= yield %>
+      </div>
+    <% end %>
   </main>
     <%= render "shared/footer" %>    ​
   </body>
