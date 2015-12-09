@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col s6 black-text">
+    <h3 class="black-text">Login to Your Account</h3>
+    <%= form_for(:session, url: login_path) do |f| %>
+        <%= f.label :username %>
+        <%= f.text_field :username %>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      <div class="waves-effect waves-light btn">
+        <%= f.submit "Login" %>
+      </div>
+    <% end %>
+  </div>
+</div>
