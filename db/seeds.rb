@@ -56,6 +56,22 @@ class Seed
         name  = "#{Faker::Company.buzzword} #{rental_type.name}"
         description = Faker::Lorem.paragraph
         price = Faker::Commerce.price + 1
+        english_butler =        ["He's here to serve!",
+                                 "You'll have to do it yourself"].sample
+        onsite_masseuse =       ["We'll get your knots worked out",
+                                 "Apologies, but no masseuse on staff"].sample
+        private_movie_theater = ["Watch a movie in style. We even have fresh popcorn!",
+                                  "No movie theater here. But who goes to the movies on vacation?"].sample
+        elite_golf_course =     ["Tell your friends you shot a 72 on our private golf course",
+                                 "Sorry, no golf. But golf's for old men anyway"].sample
+        in_house_pet_psychic =  ["Our pet psychic is on call 24 hours a day",
+                                 "We are between pet psychics right now"].sample
+        results_oriented_gym =  ["Feel the burn and see immediate results",
+                                 "No onsite gym. You are perfect just as you are"].sample
+        luxury_private_jet =    ["Our private jet is fueled up and ready for departure",
+                                 "Our jet is in the shop"].sample
+        olympic_pool =          ["Our Olympic-size swimming pool is heated and has a diving board",
+                                 "We do not have a swimming pool because the chlorine will turn your hair green"].sample
         status = "active"
         # image_file_name = ""
         # image_content_type = ""
@@ -65,6 +81,14 @@ class Seed
         rental = rental_type.rentals.create!(name: name,
                                             description: description,
                                             price: price,
+                                            english_butler: english_butler,
+                                            onsite_masseuse: onsite_masseuse,
+                                            private_movie_theater: private_movie_theater,
+                                            elite_golf_course: elite_golf_course,
+                                            results_oriented_gym: results_oriented_gym,
+                                            luxury_private_jet: luxury_private_jet,
+                                            olympic_pool: olympic_pool,
+                                            in_house_pet_psychic: in_house_pet_psychic,
                                             status: status,
                                             image: image)
         puts "#{rental_type} #{i+1} created!"

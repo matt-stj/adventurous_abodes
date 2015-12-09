@@ -21,6 +21,7 @@
             <p class="center-align">
               <%= "Trip price: #{format_currency(@rental.price)}" %>
             </p>
+            <%= render partial: "amenities" %>
               <% if @rental.status == "inactive" %>
               <div class="btn disabled">
                 Unavailable
