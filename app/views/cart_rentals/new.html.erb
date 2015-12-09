@@ -34,13 +34,20 @@
 
 <script>
   $(document).ready(function(){
+    var blackOutDates = <%= @black_out_dates %>
+    var minimum       = <%= @minimum %>
+
     $("#myStartDatePicker").pickadate({
       format: 'mmm dd, yyyy',
-      formatSubmit: 'mm dd, yyyy'
+      formatSubmit: 'mm dd, yyyy',
+      disable: blackOutDates,
+      min: minimum
     });
     $("#myEndDatePicker").pickadate({
       format: 'mmm dd, yyyy',
-      formatSubmit: 'mm dd, yyyy'
+      formatSubmit: 'mm dd, yyyy',
+      disable: blackOutDates,
+      min: minimum
     });
-  }); //
+  });
 </script>

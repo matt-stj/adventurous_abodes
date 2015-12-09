@@ -2,5 +2,7 @@ class Reservation < ActiveRecord::Base
   belongs_to :order
   belongs_to :rental
 
-  #validates_numericality_of :travellers, greater_than: 0, allow_blank: true
+  def number_of_nights
+    (end_date - start_date).to_i
+  end
 end
