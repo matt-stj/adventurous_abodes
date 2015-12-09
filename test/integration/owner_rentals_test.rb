@@ -60,7 +60,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     create_rentals(1, "Castle")
     create_and_login_owner
     click_link ("View All Rentals")
-    click_button "Edit"
+    click_link "Edit"
     assert "/owners/rentals/#{Rental.first.id}/edit", current_path
 
     fill_in "Name",   with: "Name"
@@ -77,7 +77,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     create_rentals(1, "Castle")
     create_and_login_owner
     click_link ("View All Rentals")
-    click_button "Edit"
+    click_link "Edit"
     fill_in "Name",   with: ""
     fill_in "Price",  with: 650
     fill_in "Status", with: "Active"
@@ -93,8 +93,9 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     click_link ("View All Rentals")
 
     assert owners_rentals_path, current_path
-    assert page.has_content?("Castle")
-    click_button "Delete"
+
+    assert page.has_content?("Name 1")
+    click_link "Delete"
 
     assert owners_rentals_path, current_path
     refute page.has_content?("Name 1")
