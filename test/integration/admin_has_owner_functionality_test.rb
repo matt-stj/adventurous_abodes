@@ -28,7 +28,8 @@ class AdminHasOwnerFunctionalityTest < ActionDispatch::IntegrationTest
     fill_in "Name", with: "New Castle"
     fill_in "Description", with: "New description"
     fill_in "Price", with: 1200
-    click_button "Update Rental"
+
+    click_button "Submit"
 
     assert_equal admin_owner_path(owner), current_path
     refute page.has_content?("Castle 1")
