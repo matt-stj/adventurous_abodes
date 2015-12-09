@@ -43,7 +43,10 @@ class Cart
   end
 
   def total_cost
-    6006
-    #prices = rentals_in_cart.reduce([]) do |
+    rentals_in_cart.map do |rental|
+      time = (rental[2].to_date - rental[1].to_date).to_i
+      (time * rental[0].price)
+    end.reduce(:+)
   end
+
 end
