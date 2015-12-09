@@ -3,7 +3,11 @@ class Order < ActiveRecord::Base
   has_many :reservations
   has_many :rentals, through: :reservations
 
-  scope :pending, -> { where owner_status: 'pending' }
+  STATUSES = ["Paid", "Cancelled", "Completed", "Pending"]
+  validates :status, presence: :true, inclusion: { in: STATUSES}
+
+  scope :pending, -> { where owner_status: 'Pending' }
+
 
   def self.owner_orders(owner)
     orders = []

@@ -1,7 +1,6 @@
 - if current_user
   = render partial: "shared/already_logged_in"
 - if !current_user
-  %br
   %h3.black-text Create Account
   .row
     .col.s6.black-text
@@ -9,14 +8,11 @@
         .input-field
           = f.label :username
           = f.text_field :username
-        %br
         .input-field
           = f.label :name
           = f.text_field :name
-        %br
         .input-field
           = f.label :password
           = f.password_field :password
-        %br
         .waves-effect.waves-light.btn
           = f.submit "Create Account"
