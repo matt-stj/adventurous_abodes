@@ -171,3 +171,8 @@ body .home {
   height: 200px;
   width: 200px;
 }
+
+// factored this out of a view, we may not need it - sp
+nav ul li a {
+  color: black;
+}
