@@ -7,16 +7,16 @@ class CartTest < ActiveSupport::TestCase
     @cart = Cart.new({})
   end
 
-  def add_trips_to_cart(num, start_date, end_date)
+  def add_trips_to_cart(num, start_date, end_date, nights)
     num.times do |i|
-      @cart.add_trip(i, start_date, end_date)
+      @cart.add_trip(i, start_date, end_date, nights)
     end
   end
 
   test "cart can store trips" do
     initial_count = @cart.total_trips
 
-    @cart.add_trip(3, "21 December, 2015", "25 December, 2015")
+    @cart.add_trip(3, "21 December, 2015", "25 December, 2015", 4)
 
     current_count = @cart.total_trips
 
@@ -24,7 +24,7 @@ class CartTest < ActiveSupport::TestCase
   end
 
   test "cart can return total number of trips" do
-    add_trips_to_cart(5, "21 December, 2015", "25 December, 2015")
+    add_trips_to_cart(5, "21 December, 2015", "25 December, 2015", 4)
     total = @cart.total_trips
 
     assert_equal 5, total
@@ -43,7 +43,7 @@ class CartTest < ActiveSupport::TestCase
   end
 
   test "cart can remove trips" do
-    add_trips_to_cart(1, "21 December, 2015", "25 December, 2015")
+    add_trips_to_cart(1, "21 December, 2015", "25 December, 2015", 4)
     rental = Rental.create(name: "Jetskiing",
                              description: "words",
                              price: 100,
@@ -57,7 +57,7 @@ class CartTest < ActiveSupport::TestCase
   end
 
   test "cart can update trip start date" do
-    add_trips_to_cart(2, "21 December, 2015", "25 December, 2015")
+    add_trips_to_cart(2, "21 December, 2015", "25 December, 2015", 4)
     rental = Rental.create(name: "N Castle",
                            description: "For Royalty only.",
                            price: 1000,

@@ -49,5 +49,5 @@ class ApplicationController < ActionController::Base
   def require_platform_admin
     render file: "./test/public/404" unless platform_admin
   end
-  
+
 end

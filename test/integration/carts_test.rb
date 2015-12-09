@@ -6,8 +6,9 @@ class CartsTest < ActionDispatch::IntegrationTest
     rental = RentalType.find_by_name("Castle").rentals.first
     visit rental_path(rental)
     click_link "Purchase Trip"
-
     assert_equal new_cart_rental_path, current_path
+    fill_in "startDate", with: "Dec 26, 2015"
+    fill_in "endDate",   with: "Jan 01, 2016"
     click_button "Place Order"
 
     assert page.has_content?("Reservations: 1")
@@ -22,7 +23,6 @@ class CartsTest < ActionDispatch::IntegrationTest
 
     assert_equal "/cart", current_path
     assert page.has_content?("Name 1")
-    assert page.has_content?("Price: $1,001")
   end
 
   test "guest can delete item from cart" do
@@ -54,16 +54,15 @@ class CartsTest < ActionDispatch::IntegrationTest
     add_item_to_cart
     visit cart_path
 
-    assert page.has_content?("Dec 26, 2015")
-    assert page.has_content?("Jan 01, 2016")
+    assert page.has_content?("Price: $1,001")
+    assert page.has_content?("2015-12-26")
+    assert page.has_content?("2016-01-01")
     assert page.has_content?("Number of Nights: 6")
     assert page.has_content?("Sub-total: $6,006")
+    assert page.has_content?("Total: $6,006")
   end
 
-  test "guest can view total cost" do
-    add_item_to_cart
-    visit cart_path
+  test "guest can view total cost with multiple rentals" do
 
-    assert page.has_content?("Total: $6,006")
   end
 end

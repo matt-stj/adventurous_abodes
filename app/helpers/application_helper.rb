@@ -34,14 +34,26 @@ module ApplicationHelper
   end
 
   def formatted_rental_date(date)
-    Date.strptime(date.sub(',', ''), '%b %d %Y')
+    Date.strptime(date.sub(',', ''), "%b %d %Y")
   end
 
   def number_of_nights(start_date, end_date)
     (end_date - start_date).to_i
   end
 
+  def sub_total(price, nights)
+    format_currency(price * nights)
+  end
+
   def order_date_and_time(date)
     "#{order_date(date)} at #{order_time(date)}"
+  end
+
+  def total_price
+    prices = []
+    @rentals.each do |r|
+      prices << r[0].price
+    end
+    prices.reduce(:+)
   end
 end

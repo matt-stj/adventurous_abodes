@@ -5,8 +5,8 @@ class Cart
     @trips = raw_data || {}
   end
 
-  def add_trip(rental_id, start_date, end_date)
-    trips[rental_id.to_s] = {start_date: start_date, end_date: end_date}
+  def add_trip(rental_id, start_date, end_date, nights)
+    trips[rental_id.to_s] = {start_date: start_date, end_date: end_date, nights: nights}
   end
 
   def total_trips
@@ -38,7 +38,7 @@ class Cart
 
   def rentals_in_cart
     trips.map do |trip_id, dates|
-      [Rental.find(trip_id.to_i), dates["start_date"], dates["end_date"]]
+      [Rental.find(trip_id.to_i), dates["start_date"], dates["end_date"], dates["nights"]]
     end
   end
 
