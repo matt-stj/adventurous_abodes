@@ -46,4 +46,6 @@ class Cart
     6006
     #prices = rentals_in_cart.reduce([]) do |
   end
+
+
 end

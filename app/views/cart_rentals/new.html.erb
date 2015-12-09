@@ -36,6 +36,7 @@
   $(document).ready(function(){
     var blackOutDates = <%= @black_out_dates %>
     var minimum       = <%= @minimum %>
+
     $("#myStartDatePicker").pickadate({
       format: 'mmm dd, yyyy',
       formatSubmit: 'mm dd, yyyy',
