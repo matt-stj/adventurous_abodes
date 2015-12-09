@@ -1,0 +1,21 @@
+  <nav>
+    <div class="nav-wrapper white">
+      <a href="/" class="brand-logo left"><img src = "http://i.imgur.com/AgDxMQ7.png" height="50px"></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><%= link_to "Search Rentals", rental_types_path %></li>
+        <% if current_user && current_user.owner? %>
+          <li><%= link_to "Host Dashboard", owners_dashboard_path %></li>
+          <li><%= link_to "User Dashboard", dashboard_path(current_user) %></li>
+        <% elsif current_user && current_user.platform_admin? %>
+          <li><%= link_to "Admin Dashboard", admin_dashboard_path %></li>
+        <% elsif current_user %>
+          <li><%= link_to "Become A Host", owner_path(current_user.id), method: :patch %></li>
+          <li><%= link_to "User Dashboard", dashboard_path %></li>
+        <% else %>
+          <li><%= link_to "Become A Host", new_owner_path %></li>
+        <% end %>
+        <li><%= login_logout_path %></li>
+        <li><%= reservations_display %></li>
+      </ul>
+    </div>
+  </nav>
