@@ -1,28 +1,31 @@
 <h2>Admin Owners Index</h2>
 
 <table class="bordered owners">
-     <thead>
-       <tr>
-           <th class="center">Owner</th>
-           <th class="center">Status</th>
-           <th class="center">Activate/Deactivate</th>
-       </tr>
-     </thead>
-     <tbody>
-      <% @owners.each do |owner| %>
-       <tr>
-         <td class="center"><%= link_to owner.username, admin_owner_path(owner) %></td>
-         <td class="center"><div class="chip user_status_<%= owner.owner_status %>"><%= owner.owner_status %></div></td>
-         <% if owner.owner_status == "inactive" %>
-          <td class="center"><%= link_to admin_owner_path(owner, :owner_status => 'active'), method: :patch, class: "btn green", id: "make-active" do %>
+  <thead>
+    <tr>
+      <th class="center">Owner</th>
+      <th class="center">Status</th>
+      <th class="center">Activate/Deactivate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @owners.each do |owner| %>
+      <tr>
+        <td class="center"><%= link_to owner.username, admin_owner_path(owner) %></td>
+        <td class="center"><div class="chip user_status_<%= owner.owner_status %>">
+          <%= owner.owner_status %></div></td>
+        <% if owner.active? %>
+          <td class="center">
+          <%= link_to admin_owner_path(owner, :owner_status => 'inactive'), method: :patch, class: "btn red", id: "make-inactive" do %>
+            <i class="material-icons medium">not_interested</i>
+          <% end %></td>
+        <% else %>
+          <td class="center">
+          <%= link_to admin_owner_path(owner, :owner_status => 'active'), method: :patch, class: "btn green", id: "make-active" do %>
             <i class="material-icons medium">done</i>
           <% end %></td>
-         <% else %>
-         <td class="center"><%= link_to admin_owner_path(owner, :owner_status => 'inactive'), method: :patch, class: "btn red", id: "make-inactive" do %>
-           <i class="material-icons medium">not_interested</i>
-         <% end %></td>
-         <% end %>
-       </tr>
-         <% end %>
-     </tbody>
-   </table>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
