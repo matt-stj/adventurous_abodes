@@ -59,10 +59,13 @@ class CartsTest < ActionDispatch::IntegrationTest
     assert page.has_content?("2016-01-01")
     assert page.has_content?("Number of Nights: 6")
     assert page.has_content?("Sub-total: $6,006")
-    assert page.has_content?("Total: $6,006")
   end
 
   test "guest can view total cost with multiple rentals" do
+    add_item_to_cart
+    add_second_item_to_cart
+    visit cart_path
 
+    assert page.has_content?("Total Price: $16,016")
   end
 end

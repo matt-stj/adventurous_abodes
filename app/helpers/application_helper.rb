@@ -49,10 +49,4 @@ module ApplicationHelper
     "#{order_date(date)} at #{order_time(date)}"
   end
 
-  def total_price(rentals, sub_total)
-    require 'pry'; binding.pry
-    rentals.each do |rental|
-
-    end
-  end
 end

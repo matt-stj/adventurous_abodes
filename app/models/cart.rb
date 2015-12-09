@@ -42,8 +42,9 @@ class Cart
     end
   end
 
-  def total_cost
-    6006
-    #prices = rentals_in_cart.reduce([]) do |
+  def total_price
+    rentals_in_cart.sum do |array|
+      array[0].price * array[3]
+    end
   end
 end

@@ -17,7 +17,7 @@ class Order < ActiveRecord::Base
   end
 
   def self.make_new(cart, current_user)
-    order = current_user.orders.create(total: cart.total_cost)
+    order = current_user.orders.create(total: cart.total_price)
     cart.ordered_rentals.each do |rental|
       order.reservations.create(rental_id: rental.rental_id,
                                  price: rental.price)

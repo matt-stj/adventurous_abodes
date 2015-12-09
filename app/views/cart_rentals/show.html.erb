@@ -9,7 +9,7 @@
   <%= render partial: "edit_rental", locals: { :rentals => @rentals } %>
   <div class="card-panel grey lighten-5 right-align">
     <div class="col s6 offset-s6">
-      <%= "Total: #{total_price(rentals, sub_total)}" %>
+      <%= "Total Price: #{ format_currency(@cart.total_price)}" %>
       <div class="waves-effect waves-light btn white-text">
         <%= button_to "Checkout", checkout_path, method: :post %>
       </div>

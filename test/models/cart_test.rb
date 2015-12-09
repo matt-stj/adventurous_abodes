@@ -36,10 +36,10 @@ class CartTest < ActiveSupport::TestCase
     rental_type.rentals.create(name: "Name Castle", description: "Livin it up like Royalty", price: 1000)
     rental_type.rentals.create(name: "Alnwick Castle", description: "Come enjoy the Duke's gardens.", price: 1)
 
-    @cart.add_trip(Rental.first.id, "21 December, 2015", "25 December, 2015")
-    @cart.add_trip(Rental.last.id, "21 December, 2015", "25 December, 2015")
+    @cart.add_trip(Rental.first.id, "21 December, 2015", "25 December, 2015", 5)
+    @cart.add_trip(Rental.last.id, "20 December, 2015", "24 December, 2015", 5)
 
-    assert_equal 11, @cart.total_cost
+    assert_equal 1001, @cart.total_price
   end
 
   test "cart can remove trips" do
