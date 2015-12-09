@@ -1,24 +1,10 @@
 <h2 class="center-align">Order Details</h2>
-<br/>
-<div class="row">
-  <div class="col s3 offset-s4">
-    <%= form_tag(owners_order_path, method: :put) do %>
-      <div class="input-field">
-        <%= label_tag :order_status %>
-        <%= text_field_tag :order_status %>
-        <%= submit_tag "Update order status", class: "waves-effect waves-light btn" %>
-      </div>
-    <% end %>
-  </div>
-</div>
-<br/>
 <div class="white">
   <table class="cart-table highlight">
     <tr>
-      <th>Date Ordered</th>
-      <th>Time</th>
+      <th>Reservation Requested</th>
       <th>Status</th>
-      <th>Purchaser</th>
+      <th>Renter</th>
       <th>Total</th>
     </tr>
     <tr>
@@ -29,19 +15,27 @@
     </tr>
   </table>
 </div>
-<br/>
-<br/>
 <div class="white">
   <table class="cart-table highlight">
     <tr>
-      <th>Rental</th>
+      <th>Rentals Included</th>
     </tr>
     <tbody>
     <% @rentals.each do |rental| %>
       <tr>
-        <td><%= rental.name %></td>
+        <td><%= rental.name.capitalize %></td>
       </tr>
     <% end %>
   </tbody>
   </table>
+</div>
+<hr />
+<div class="black-text">
+  <%= form_for(@order, url: owners_order_path)  do |f| %>
+    <%= f.label :status, "Status" %>
+    <%= f.select :status, @statuses, {prompt: "Update Order Status"} %>
+    <div class="waves-effect waves-light btn">
+      <%= f.submit "Update Status" %>
+    </div>
+  <% end %>
 </div>

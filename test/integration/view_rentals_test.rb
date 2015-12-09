@@ -70,6 +70,6 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
     visit rental_path(Rental.last)
 
     assert page.has_content?("This rental has been retired and may no longer be purchased.")
-    refute page.has_content?("Purchase Trip")
+    refute page.has_content?("Reserve it!")
   end
 end

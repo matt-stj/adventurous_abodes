@@ -5,6 +5,7 @@
   <thead>
     <tr>
       <th class="center">Owner</th>
+      <th class="center">Email</th>
       <th class="center">Status</th>
       <th class="center">Activate/Deactivate</th>
     </tr>
@@ -12,7 +13,8 @@
   <tbody>
     <% @owners.each do |owner| %>
       <tr>
-        <td class="center"><%= link_to owner.username, admin_owner_path(owner) %></td>
+        <td class="center"><%= link_to owner.name, admin_owner_path(owner) %></td>
+        <td class="center"><%= owner.username %></td>
         <td class="center"><div class="chip user_status_<%= owner.owner_status %>">
           <%= owner.owner_status %></div></td>
         <% if owner.active? %>

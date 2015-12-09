@@ -9,10 +9,20 @@ require "simplecov"
 SimpleCov.start "rails"
 
 class ActiveSupport::TestCase
+  def setup
+    create_roles
+  end
+
   def create_roles
     Role.create(title: "platform_admin")
     Role.create(title: "owner")
     Role.create(title: "registered_user")
+  end
+
+  def create_user
+    user = User.create!(username: "cole", name: "Nicole", password: "password")
+    user.roles << Role.find_by(title: "registered_user")
+    user
   end
 end
 
@@ -80,7 +90,7 @@ class ActionDispatch::IntegrationTest
     create_rentals(1, "Castle")
     rental = RentalType.find_by_name("Castle").rentals.first
     visit rental_path(rental)
-    click_link "Purchase Trip"
+    click_link "Reserve it!"
     fill_in "startDate", with: "Dec 26, 2015"
     fill_in "endDate",   with: "Jan 01, 2016"
     click_button "Place Order"

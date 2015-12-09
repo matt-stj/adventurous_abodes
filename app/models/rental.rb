@@ -22,4 +22,8 @@ class Rental < ActiveRecord::Base
   def retired?
     status == "retired"
   end
+
+  def owner
+    User.find(self.user_id)
+  end
 end
