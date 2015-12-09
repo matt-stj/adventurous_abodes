@@ -13,10 +13,6 @@ class Cart
     trips.to_a.count
   end
 
-  def count_of(rental_id)
-    trips[rental_id.to_s]
-  end
-
   def start_date(rental_id)
     trips[rental_id.to_s][:start_date]
   end
@@ -30,9 +26,9 @@ class Cart
   end
 
   def ordered_rentals
-    trips.map do |rental_id, date|
+    trips.map do |rental_id, dates|
       rental = Rental.find(rental_id.to_i)
-      OrderedRental.new(rental_id, rental.price, date["start_date"], date["end_date"])
+      OrderedRental.new(rental_id, rental.price, dates["start_date"], dates["end_date"])
     end
   end
 
