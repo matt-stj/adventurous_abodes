@@ -33,8 +33,8 @@ class Cart
   end
 
   def rentals_in_cart
-    trips.map do |trip_id, dates|
-      [Rental.find(trip_id.to_i), dates["start_date"], dates["end_date"]]
+    trips.map do |rental_id, dates|
+      [Rental.find(rental_id.to_i), dates["start_date"], dates["end_date"]]
     end
   end
 
