@@ -1,3 +1,4 @@
+<!-- spdone -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,52 +7,50 @@
   <%= stylesheet_link_tag 'application' %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <style>
-  nav ul li a {
-    color: black;
-  }
-  </style>
 </head>
-  <main>
+
 
 <body class="Site">
-  <div class = "<%= params[:controller] %>">
-    <header class="nav">
-      <nav>
-        <div class="nav-wrapper white">
-          <a href="/" class="brand-logo black-text"><img src = "http://i.imgur.com/AgDxMQ7.png" height="50px"></a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><%= link_to "Search Rentals", rental_types_path %></li>
-            <% if current_user %>
-            <!-- If we add more fields to owners then we can direct them to the edit controller
-            The form is built. But for now I'm just sending them straight to update -->
-              <li><%= link_to "Become A Host", owner_path(current_user.id), method: :patch %></li>
-            <% else %>
-              <li><%= link_to "Become A Host", new_owner_path %></li>
-            <% end %>
-            <li><%= login_logout_path %></li>
-            <li><%= reservations_display %></li>
-          </ul>
+  <main>
+    <div class = "<%= params[:controller] %>">
+
+      <header class="nav">
+        <nav>
+          <div class="nav-wrapper white">
+            <a href="/" class="brand-logo black-text"><img src = "http://i.imgur.com/AgDxMQ7.png" height="50px"></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><%= link_to "Search Rentals", rental_types_path %></li>
+              <% if current_user %>
+              <!-- If we add more fields to owners then we can direct them to the edit controller
+              The form is built. But for now I'm just sending them straight to update -->
+                <li><%= link_to "Become A Host", owner_path(current_user.id), method: :patch %></li>
+              <% else %>
+                <li><%= link_to "Become A Host", new_owner_path %></li>
+              <% end %>
+              <li><%= login_logout_path %></li>
+              <li><%= reservations_display %></li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+
+      <div class="row">
+        <div class="col s5 offset-s3 m10 offset-m3">
+          <% flash.each do |type, msg| %>
+            <div class="card-panel btn-large waves-effect waves-light green" >
+              <h5><%= content_tag :div, sanitize(msg), class: "flash_#{type}" %></h5>
+            </div>
+          <% end %>
         </div>
-      </nav>
-    </header>
-    <div class="row">
-      <div class="col s5 offset-s3 m10 offset-m3">
-        <% flash.each do |type, msg| %>
-        <div class="card-panel btn-large waves-effect waves-light green" >
-          <h5><%= content_tag :div, sanitize(msg), class: "flash_#{type}" %></h5>
-        </div>
-        <% end %>
+      </div>
+
+      <div class='container'>
+        <%= yield %>
       </div>
     </div>
-
-    <div class='container'>
-      <%= yield %>
-    </div>
   </main>
-    <%= render "shared/footer" %>    ​
+  <%= render "shared/footer" %>    ​
 
   <%= javascript_include_tag 'application' %>
-  </body>
-  </html>
+</body>
+</html>
