@@ -5,7 +5,7 @@ class CartsTest < ActionDispatch::IntegrationTest
     create_rentals(1, "Castle")
     rental = RentalType.find_by_name("Castle").rentals.first
     visit rental_path(rental)
-    click_link "Purchase Trip"
+    click_link "Reserve it!"
 
     assert_equal new_cart_rental_path, current_path
     click_button "Place Order"
