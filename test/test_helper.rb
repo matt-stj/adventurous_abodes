@@ -24,6 +24,14 @@ class ActiveSupport::TestCase
     user.roles << Role.find_by(title: "registered_user")
     user
   end
+
+  def create_rental
+    rental_type = RentalType.create!(name: 'my rental type')
+    rental_type.rentals.create(name: "Name Rental",
+                              description: "Description",
+                              price: 1000 )
+  end
+
 end
 
 class ActionDispatch::IntegrationTest

@@ -34,13 +34,15 @@
 
 <script>
   $(document).ready(function(){
+    var blackOutDates = <%= @black_out_dates %>
     $("#myStartDatePicker").pickadate({
       format: 'mmm dd, yyyy',
-      formatSubmit: 'mm dd, yyyy'
+      formatSubmit: 'mm dd, yyyy',
+      disable: blackOutDates
     });
     $("#myEndDatePicker").pickadate({
       format: 'mmm dd, yyyy',
       formatSubmit: 'mm dd, yyyy'
     });
-  }); //
+  });
 </script>

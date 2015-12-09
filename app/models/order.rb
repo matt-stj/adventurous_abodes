@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
   has_many :rentals, through: :reservations
 
   STATUSES = ["Paid", "Cancelled", "Completed", "Pending"]
-  validates :status, presence: :true, inclusion: { in: STATUSES}
+  validates :status, presence: :true, inclusion: {in: STATUSES}
 
   scope :pending, -> { where owner_status: 'Pending' }
 
@@ -23,9 +23,14 @@ class Order < ActiveRecord::Base
   def self.make_new(cart, current_user)
     order = current_user.orders.create(total: cart.total_cost)
     cart.ordered_rentals.each do |rental|
-      order.reservations.create(rental_id: rental.rental_id,
-                                 price: rental.price)
+      order.reservations.create(
+          rental_id: rental.rental_id,
+          price: rental.price,
+          start_date: rental.start_date,
+          end_date: rental.end_date
+      )
     end
+    order
   end
 
   def update_status(status)

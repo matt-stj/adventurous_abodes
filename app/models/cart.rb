@@ -30,9 +30,9 @@ class Cart
   end
 
   def ordered_rentals
-    trips.map do |rental_id, _, _|
+    trips.map do |rental_id, date|
       rental = Rental.find(rental_id.to_i)
-      OrderedRental.new(rental_id, rental.price)
+      OrderedRental.new(rental_id, rental.price, date["start_date"], date["end_date"])
     end
   end
 

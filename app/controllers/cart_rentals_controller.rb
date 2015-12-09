@@ -12,6 +12,16 @@ class CartRentalsController < ApplicationController
   end
 
   def new
+    today = Date.today
+    @black_out_dates = [[today.year, today.month-1, today.day]]
+
+    rental = Rental.find(params[:id])
+    rental.reservations.each do | reservation |
+      reservation.number_of_nights.times do |i|
+        date = reservation.start_date + i.days
+        @black_out_dates << [date.year, date.month-1, date.day]
+      end
+    end
   end
 
   def show

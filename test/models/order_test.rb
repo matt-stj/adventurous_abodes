@@ -36,4 +36,18 @@ class OrderTest < ActiveSupport::TestCase
     refute order.valid?
   end
 
+  test "make_new makes a reservation" do
+    user = create_user
+    rental = create_rental
+    cart = Cart.new({rental.id => {
+                 start_date: "December 1, 2015",
+                 end_date: "December 3, 2015"
+             }})
+
+    old_count =  Order.count
+    Order.make_new(cart, user)
+    new_count =  Order.count
+    assert old_count+1 == new_count
+  end
+
 end
