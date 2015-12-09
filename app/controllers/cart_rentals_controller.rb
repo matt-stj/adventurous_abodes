@@ -46,7 +46,7 @@ class CartRentalsController < ApplicationController
     first_date       = Date.parse(params[:startDate])
     last_date        = Date.parse(params[:endDate])
     next_reservation = rental.reservations.where("start_date > ?", first_date ).first
-    if first_dte > last_date
+    if first_date > last_date
       redirect_to :back
       flash[:notice] = "End Date must come after Start Date"
     elsif next_reservation != nil && last_date > next_reservation.start_date
