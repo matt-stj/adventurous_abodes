@@ -8,6 +8,8 @@ class CartsTest < ActionDispatch::IntegrationTest
     click_link "Reserve it!"
 
     assert_equal new_cart_rental_path, current_path
+    fill_in "startDate", with: "Dec 26, 2015"
+    fill_in "endDate",   with: "Jan 01, 2016"
     click_button "Place Order"
 
     assert page.has_content?("Reservations: 1")
@@ -62,8 +64,9 @@ class CartsTest < ActionDispatch::IntegrationTest
 
   test "guest can view total cost" do
     add_item_to_cart
+    add_second_item_to_cart
     visit cart_path
 
-    assert page.has_content?("Total: $6,006")
+    assert page.has_content?("Total: $11,011")
   end
 end

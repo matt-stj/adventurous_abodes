@@ -65,12 +65,13 @@ ActiveRecord::Schema.define(version: 20151209184000) do
   add_index "rentals", ["user_id"], name: "index_rentals_on_user_id", using: :btree
 
   create_table "reservations", force: :cascade do |t|
-    t.integer  "travellers"
     t.integer  "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "order_id"
     t.integer  "rental_id"
+    t.date     "start_date"
+    t.date     "end_date"
   end
 
   add_index "reservations", ["order_id"], name: "index_reservations_on_order_id", using: :btree

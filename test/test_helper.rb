@@ -24,6 +24,14 @@ class ActiveSupport::TestCase
     user.roles << Role.find_by(title: "registered_user")
     user
   end
+
+  def create_rental
+    rental_type = RentalType.create!(name: 'my rental type')
+    rental_type.rentals.create(name: "Name Rental",
+                              description: "Description",
+                              price: 1000 )
+  end
+
 end
 
 class ActionDispatch::IntegrationTest
@@ -93,6 +101,16 @@ class ActionDispatch::IntegrationTest
     click_link "Reserve it!"
     fill_in "startDate", with: "Dec 26, 2015"
     fill_in "endDate",   with: "Jan 01, 2016"
+    click_button "Place Order"
+  end
+
+  def add_second_item_to_cart
+    create_rentals(1, "Shack")
+    rental = RentalType.find_by_name("Shack").rentals.first
+    visit rental_path(rental)
+    click_link "Reserve it!"
+    fill_in "startDate", with: "Jan 02, 2016"
+    fill_in "endDate",   with: "Jan 07, 2016"
     click_button "Place Order"
   end
 
