@@ -9,10 +9,20 @@ require "simplecov"
 SimpleCov.start "rails"
 
 class ActiveSupport::TestCase
+  def setup
+    create_roles
+  end
+
   def create_roles
     Role.create(title: "platform_admin")
     Role.create(title: "owner")
     Role.create(title: "registered_user")
+  end
+
+  def create_user
+    user = User.create!(username: "cole", name: "Nicole", password: "password")
+    user.roles << Role.find_by(title: "registered_user")
+    user
   end
 end
 

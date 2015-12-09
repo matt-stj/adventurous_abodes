@@ -28,9 +28,8 @@ class OwnerOrdersTest < ActionDispatch::IntegrationTest
     click_link "View"
 
     assert page.has_content?("Pending")
-
-    fill_in "Order status", with: "Completed"
-    click_button "Update order status"
+    select("Completed", :from => 'order[status]')
+    click_button "Update Status"
 
     assert page.has_content?("Completed")
   end
@@ -50,24 +49,5 @@ class OwnerOrdersTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Owner Order History")
 
     refute page.has_link?(order_id)
-  end
-
-  test "owner must update with a valid order status" do
-    checkout_user
-    order_id = Order.first.id
-    click_link "Logout"
-    visit login_path
-    fill_in "Username", with: "owner0"
-    fill_in "Password", with: "password"
-    click_button "Login"
-    visit owners_orders_path
-    click_link "View"
-
-    assert page.has_content?("Pending")
-
-    fill_in "Order status", with: "Bad Status"
-    click_button "Update order status"
-
-    assert page.has_content?("Invalid Order Status")
   end
 end

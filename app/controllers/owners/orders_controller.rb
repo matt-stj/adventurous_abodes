@@ -5,14 +5,14 @@ class Owners::OrdersController < Owners::BaseController
 
   def show
     @order = Order.find(params[:id])
+    @statuses = Order::STATUSES
     @rentals = @order.rentals.where(id: current_user.rentals.map { |rental| rental.id})
   end
 
   def update
     @order = Order.find(params[:id])
-    valid = ["Paid", "Cancelled", "Completed", "Pending"]
-    if valid.include?(params[:order_status])
-      @order.update_status(params[:order_status])
+    if Order::STATUSES.include?(params[:order][:status])
+      @order.update_status(params[:order][:status])
     else
       flash[:notice] = "Invalid Order Status"
     end
