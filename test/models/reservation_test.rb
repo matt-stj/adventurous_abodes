@@ -4,7 +4,7 @@ class ReservationTest < ActiveSupport::TestCase
   def valid_attributes
     {
       price:      1001,
-      start_date: Date.today,
+      start_date: Time.current,
       end_date:   Date.tomorrow
     }
   end
