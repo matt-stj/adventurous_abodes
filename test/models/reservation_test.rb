@@ -20,4 +20,10 @@ class ReservationTest < ActiveSupport::TestCase
 
     assert_equal 1, reservation.number_of_nights
   end
+
+  test "a reservation can return it's dates" do
+    reservation = Reservation.new(valid_attributes)
+
+    assert_equal [[2015, 11, 10]], reservation.reserved_dates
+  end
 end
