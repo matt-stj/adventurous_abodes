@@ -206,3 +206,15 @@ nav ul li a {
 .hide {
   display: none;
 }
+
+.card .card-image {
+  height: 168px;
+}
+
+.card .rental-card {
+  height: 350px !important;
+}
+
+.card.small {
+  height: 230px !important;
+}
