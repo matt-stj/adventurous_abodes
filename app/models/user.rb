@@ -53,6 +53,14 @@ class User < ActiveRecord::Base
     owner_status == "active"
   end
 
+  def rental_owner?(rental)
+    self.rentals.include?(rental)
+  end
+
+  def show_options?(rental)
+    (self.owner? && self.rental_owner?(rental)) || self.platform_admin?
+  end
+
   def assign_default_role
     self.roles << Role.find_by(title: "registered_user")
   end

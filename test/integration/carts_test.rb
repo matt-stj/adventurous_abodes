@@ -13,7 +13,7 @@ class CartsTest < ActionDispatch::IntegrationTest
     click_button "Place Order"
 
     assert page.has_content?("Reservations: 1")
-    assert_equal rental_types_path, current_path
+    assert_equal cart_path, current_path
     assert page.has_content?("You have added Name 1 to your cart.")
   end
 
@@ -33,7 +33,7 @@ class CartsTest < ActionDispatch::IntegrationTest
     click_button("Remove")
 
     assert_equal "/cart", current_path
-    assert page.has_content?("You have removed the trip Name 1 from your cart.")
+    assert page.has_content?("You have removed the Name 1 from your cart.")
     assert page.has_content?("No items in cart.")
   end
 
