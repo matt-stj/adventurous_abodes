@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      @user.roles << Role.find_by(title: "registered_user")
+      @user.assign_default_role
       redirect_to "/dashboard"
     else
       flash[:notice] = "Invalid user credentials. Please try again."
@@ -46,6 +46,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:username, :password, :name, :owner_status)
+      params.require(:user).permit(:username, :password, :name)
+      # params.require(:user).permit(:username, :password, :name, :owner_status)
     end
 end

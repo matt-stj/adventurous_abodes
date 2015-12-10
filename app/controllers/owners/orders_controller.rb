@@ -6,7 +6,7 @@ class Owners::OrdersController < Owners::BaseController
   def show
     @order    = Order.find(params[:id])
     @statuses = Order::STATUSES
-    @rentals  = @order.rentals.where(id: current_user.rentals.map { |rental| rental.id})
+    @rentals  = @order.gimme_your_rentals(current_user)
   end
 
   def update

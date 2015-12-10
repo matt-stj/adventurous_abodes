@@ -36,4 +36,8 @@ class Order < ActiveRecord::Base
   def update_status(status)
     update(status: status)
   end
+
+  def gimme_your_rentals(current_user)
+    rentals.where(id: current_user.rentals.map { |rental| rental.id})
+  end
 end

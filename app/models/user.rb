@@ -7,12 +7,16 @@ class User < ActiveRecord::Base
 
   has_secure_password
 
-  validates :username, presence: true
-  validates :name, presence: true
-  validates :password, presence: true, unless: :skip_password_validation
+  validates :username,  presence: true
+  validates :name,      presence: true
+  validates :password,  presence: true, unless: :skip_password_validation
 
   scope :pending,       -> { where owner_status: 'pending' }
-  scope :active_owners,       -> { where owner_status: 'active' }
+  scope :active_owners, -> { where owner_status: 'active' }
+
+  def self.owners
+    User.joins(:roles).where("title= ?", "owner")
+  end
 
   def platform_admin?
     roles.exists?(title: "platform_admin")
@@ -55,5 +59,23 @@ class User < ActiveRecord::Base
 
   def show_options?(rental)
     (self.owner? && self.rental_owner?(rental)) || self.platform_admin?
+  end
+
+  def assign_default_role
+    self.roles << Role.find_by(title: "registered_user")
+  end
+
+  def redirect_path
+    if platform_admin?
+      "/admin/dashboard"
+    elsif owner?
+      "/owners/dashboard"
+    else
+      "/dashboard"
+    end
+  end
+
+  def update_owner_status(owner_status)
+    self.update_attribute(:owner_status, owner_status)
   end
 end
