@@ -33,7 +33,7 @@ class CartsTest < ActionDispatch::IntegrationTest
     click_button("Remove")
 
     assert_equal "/cart", current_path
-    assert page.has_content?("You have removed the trip Name 1 from your cart.")
+    assert page.has_content?("You have removed the Name 1 from your cart.")
     assert page.has_content?("No items in cart.")
   end
 
