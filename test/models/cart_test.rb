@@ -24,13 +24,6 @@ class CartTest < ActiveSupport::TestCase
     assert_equal 1, total
   end
 
-  test "cart can return total price of a trip" do
-    skip
-    @cart.add_trip(Rental.last.id, "21 December, 2015", "25 December, 2015")
-
-    assert_equal 3000, @cart.total_cost
-  end
-
   test "cart can remove trips" do
     rental = Rental.create(name: "Castle",
                            description: "Living it up like royalty",
