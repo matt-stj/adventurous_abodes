@@ -62,4 +62,8 @@ class User < ActiveRecord::Base
       "/dashboard"
     end
   end
+
+  def update_to_pending
+    self.update_attribute(:owner_status, "pending")
+  end
 end

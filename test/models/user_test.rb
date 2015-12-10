@@ -134,4 +134,11 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "/admin/dashboard", user.redirect_path
   end
 
+  test "a user can be updated to pending" do
+    user = User.create(valid_attributes)
+    user.update_to_pending
+
+    assert_equal "pending", user.owner_status
+  end
+
 end
