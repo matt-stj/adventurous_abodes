@@ -72,4 +72,13 @@ class ViewRentalsTest < ActionDispatch::IntegrationTest
     assert page.has_content?("Unavailable")
     refute page.has_content?("Reserve it!")
   end
+
+  test "recieve a retired message for retired rentals" do
+    create_rentals(1, "Castle")
+    rental = Rental.last
+    rental.retire
+    visit rental_path(rental.id)
+
+    assert page.has_content?("Unavailable")
+  end
 end
