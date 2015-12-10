@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209184000) do
+ActiveRecord::Schema.define(version: 20151209225324) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,16 +49,24 @@ ActiveRecord::Schema.define(version: 20151209184000) do
     t.text     "name"
     t.text     "description"
     t.integer  "price"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.integer  "rental_type_id"
-    t.text     "status",             default: "active"
+    t.text     "status",                default: "active"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "image"
     t.integer  "user_id"
+    t.string   "english_butler"
+    t.string   "onsite_masseuse"
+    t.string   "private_movie_theater"
+    t.string   "elite_golf_course"
+    t.string   "results_oriented_gym"
+    t.string   "luxury_private_jet"
+    t.string   "olympic_pool"
+    t.string   "in_house_pet_psychic"
   end
 
   add_index "rentals", ["rental_type_id"], name: "index_rentals_on_rental_type_id", using: :btree
