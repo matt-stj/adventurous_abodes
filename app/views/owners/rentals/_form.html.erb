@@ -10,7 +10,7 @@
     <%= f.label :price %>
     <%= f.text_field :price %>
     <%= f.label :status %>
-    <%= f.select :status, ["Active", "Retired"] %>
+    <%= f.select :status, ["active", "retired"] %>
     <%= f.collection_select :rental_type_id, @rental_types, :id, :name, {prompt: "Choose a Rental Type"} %>
     <%= f.label :image, "Attach an Image" %>
     <%= f.file_field :image %>

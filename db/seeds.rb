@@ -1,7 +1,5 @@
 class Seed
 
-  #delete system directory before seeding
-
   def self.start
     seed = Seed.new
     seed.remove_old_images
@@ -48,8 +46,7 @@ class Seed
     rental_type_array.sample
   end
 
-  def generate_rentals(num=5)
-    #update to 50 times when in final production
+  def generate_rentals(num=50)
     rental_types = RentalType.all
     rental_types.each do |rental_type|
       (num).times do |i|
@@ -73,10 +70,6 @@ class Seed
         olympic_pool =          ["Our Olympic-size swimming pool is heated and has a diving board",
                                  "We do not have a swimming pool because the chlorine will turn your hair green"].sample
         status = "active"
-        # image_file_name = ""
-        # image_content_type = ""
-        # image_file_size = ""
-        # image_updated_at = ""
         image = File.open(generate_random_image(rental_type.name.parameterize))
 
         rental_type.rentals.create!(name: name,
@@ -180,8 +173,7 @@ class Seed
 
     def add_rentals(order)
       2.times do |i|
-        #need to put this back to 1..500 before final push
-        rental = Rental.find(Random.new.rand(1..50))
+        rental = Rental.find(Random.new.rand(1..550))
         rental_id = rental.id
         order_id = order.id
         create_reservation(order_id, rental_id)
