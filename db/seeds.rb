@@ -106,7 +106,7 @@ class Seed
 
   def generate_owners
     owner_role = Role.find_by(title: "owner")
-    30.times do |i|
+    300.times do |i|
       name  = Faker::Name.first_name
       username = "andrew#{i}@turing.io"
       password = "password"
