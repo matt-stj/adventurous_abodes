@@ -136,7 +136,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "a user can be updated to pending" do
     user = User.create(valid_attributes)
-    user.update_to_pending
+    user.update_owner_status("pending")
 
     assert_equal "pending", user.owner_status
   end

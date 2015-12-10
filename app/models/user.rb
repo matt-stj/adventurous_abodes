@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
   scope :pending,       -> { where owner_status: 'pending' }
   scope :active_owners, -> { where owner_status: 'active' }
 
+  def self.owners
+    User.joins(:roles).where("title= ?", "owner")
+  end
+
   def platform_admin?
     roles.exists?(title: "platform_admin")
   end
@@ -63,7 +67,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def update_to_pending
-    self.update_attribute(:owner_status, "pending")
+  def update_owner_status(owner_status)
+    self.update_attribute(:owner_status, owner_status)
   end
 end

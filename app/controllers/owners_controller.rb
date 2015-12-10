@@ -8,7 +8,7 @@ class OwnersController < ApplicationController
     if @owner.save
       session[:user_id] = @owner.id
       @owner.assign_default_role
-      @owner.update_to_pending
+      @owner.update_owner_status("pending")
       redirect_to '/pending'
     else
       flash[:notice] = "Invalid credentials. Please try again."

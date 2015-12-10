@@ -3,10 +3,6 @@ class Owners::RentalsController < Owners::BaseController
     @rentals = current_user.rentals
   end
 
-  # def show
-  #   @rental = Rental.find(params[:id])
-  # end
-
   def new
     @rental = Rental.new
     @rental_types = RentalType.all
@@ -49,6 +45,7 @@ class Owners::RentalsController < Owners::BaseController
   private
 
   def rental_params
-    params.require(:rental).permit(:name, :description, :rental_type_id, :price, :image, :user_id, :status)
+    params.require(:rental).permit(:name, :description, :rental_type_id, :price, :image, :status)
+    # params.require(:rental).permit(:name, :description, :rental_type_id, :price, :image, :user_id, :status)
   end
 end

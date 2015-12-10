@@ -1,6 +1,6 @@
 class Admin::OwnersController < Admin::BaseController
   def index
-    @owners = User.joins(:roles).where("title= ?", "owner")
+    @owners = User.owners
   end
 
   def show
@@ -9,7 +9,7 @@ class Admin::OwnersController < Admin::BaseController
 
   def create
     user = User.find(params[:format])
-    user.update_attribute(:owner_status, params[:owner_status])
+    user.update_owner_status(params[:owner_status])
     user.update_role
     redirect_to admin_dashboard_path
   end
@@ -30,7 +30,7 @@ class Admin::OwnersController < Admin::BaseController
         render :edit
       end
     else
-      @owner.update_attribute(:owner_status, params[:owner_status])
+      @owner.update_owner_status(params[:owner_status])
       @owner.toggle_rentals(params[:owner_status])
       redirect_to admin_owners_path
     end
