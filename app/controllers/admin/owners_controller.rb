@@ -36,6 +36,15 @@ class Admin::OwnersController < Admin::BaseController
     end
   end
 
+  def destroy
+    @owner = User.find(params[:id])
+    @owner.roles = []
+    @owner.rentals = []
+    @owner.destroy
+    flash[:notice] = "#{@owner.name} has been deleted and BANNED!!!"
+    redirect_to admin_owners_path
+  end
+
   private
 
   def owner_params
