@@ -35,5 +35,4 @@ class OrderTest < ActiveSupport::TestCase
 
     refute order.valid?
   end
-
 end
