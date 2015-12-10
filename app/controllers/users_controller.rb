@@ -38,6 +38,7 @@ class UsersController < ApplicationController
 
   def destroy
     current_user.roles = []
+    current_user.rentals = []
     current_user.destroy
     session.clear
     redirect_to root_path
@@ -46,7 +47,6 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      current_user.rentals = []
       params.require(:user).permit(:username, :password, :name)
       # params.require(:user).permit(:username, :password, :name, :owner_status)
     end
