@@ -48,4 +48,12 @@ class User < ActiveRecord::Base
   def active?
     owner_status == "active"
   end
+
+  def rental_owner?(rental)
+    self.rentals.include?(rental)
+  end
+
+  def show_options?(rental)
+    (self.owner? && self.rental_owner?(rental)) || self.platform_admin?
+  end
 end

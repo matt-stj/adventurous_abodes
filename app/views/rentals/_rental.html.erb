@@ -14,7 +14,7 @@
       <div class="card-action center-align">
         <%= link_to "Details", rental_path(rental), class: "btn teal lighten-1 white-text" %>
       </div>
-    <% if current_user && current_user.owner? %>
+    <% if current_user && current_user.show_options?(rental) %>
       <p>Status: <%= rental.status.upcase %></p>
       <%= link_to "Edit", edit_owners_rental_path(rental), method: :get, class: "amber-text"%>
       <%= link_to "Delete", owners_rental_path(rental), method: :delete, class: "red-text"%>
