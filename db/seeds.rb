@@ -53,7 +53,7 @@ class Seed
     rental_types = RentalType.all
     rental_types.each do |rental_type|
       (num).times do |i|
-        name  = "#{Faker::Company.buzzword} #{rental_type.name}"
+        name  = "#{Faker::Company.buzzword.capitalize} #{rental_type.name}"
         description = Faker::Lorem.paragraph
         price = Faker::Commerce.price + 1
         english_butler =        ["He's here to serve!",
@@ -78,7 +78,8 @@ class Seed
         # image_file_size = ""
         # image_updated_at = ""
         image = File.open(generate_random_image(rental_type.name.parameterize))
-        rental = rental_type.rentals.create!(name: name,
+
+        rental_type.rentals.create!(name: name,
                                             description: description,
                                             price: price,
                                             english_butler: english_butler,
@@ -168,8 +169,7 @@ class Seed
       10.times do |i|
         status = "Pending"
         total = Faker::Commerce.price
-        order = user.orders.create!(total: total,
-                              status: status)
+        order = user.orders.create!(total: total, status: status)
         add_rentals(order)
         puts "Order #{i+1}: Order for #{user.name} created!"
       end
@@ -184,8 +184,7 @@ class Seed
         rental = Rental.find(Random.new.rand(1..50))
         rental_id = rental.id
         order_id = order.id
-        reservation = Reservation.create!(order_id: order_id,
-                                          rental_id: rental_id)
+        Reservation.create!(order_id: order_id, rental_id: rental_id)
         puts "Added rental to order #{i}."
       end
     end

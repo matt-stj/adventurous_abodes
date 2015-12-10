@@ -44,4 +44,8 @@ class User < ActiveRecord::Base
       rentals.update_all(status: "active")
     end
   end
+
+  def active?
+    owner_status == "active"
+  end
 end

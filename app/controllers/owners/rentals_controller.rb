@@ -29,6 +29,7 @@ class Owners::RentalsController < Owners::BaseController
 
   def edit
     @rental = Rental.find(params[:id])
+    @rental_types = RentalType.all
   end
 
   def update
@@ -38,6 +39,7 @@ class Owners::RentalsController < Owners::BaseController
       redirect_to owners_rentals_path
     else
       flash.now[:errors] = @rental.errors.full_messages.join(" ,")
+      @rental_types = RentalType.all
       render :edit
     end
   end
