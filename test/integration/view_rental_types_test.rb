@@ -7,7 +7,6 @@ class ViewRentalTypesTest < ActionDispatch::IntegrationTest
     click_button "Search All Rentals"
 
     assert_equal rental_types_path, current_path
-
     assert page.has_content?("Rentals")
   end
 
@@ -17,7 +16,13 @@ class ViewRentalTypesTest < ActionDispatch::IntegrationTest
     click_button "Search All Rentals"
 
     assert_equal rental_types_path, current_path
-
     assert page.has_content?("Rentals")
+  end
+
+  test "guest can view rental types show page" do
+    create_rentals(2, "Castle")
+    visit "/rental_types/castle"
+
+    assert page.has_content?("Castle")
   end
 end

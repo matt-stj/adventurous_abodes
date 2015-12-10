@@ -4,7 +4,7 @@ class CartRentalsController < ApplicationController
   def create
     rental = Rental.find(params[:rental_id])
     @start_date = params[:startDate]
-    @end_date = params[:endDate]
+    @end_date   = params[:endDate]
     @cart.add_trip(rental.id, @start_date, @end_date)
 
     session[:cart] = @cart.trips
