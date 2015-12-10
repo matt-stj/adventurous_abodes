@@ -26,6 +26,14 @@ class Rental < ActiveRecord::Base
     User.find(self.user_id)
   end
 
+  def owner_name
+    self.owner.name
+  end
+
+  def owner_username
+    self.owner.username
+  end
+
   def reservation_black_out_dates
     black_out_dates = []
     reservations.each do |reservation|

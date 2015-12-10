@@ -72,10 +72,6 @@ $(document).ready(function() {
         });
     }).change();
 
-
-
-
-
   var $orders = $('.order');
 
   $('#order_filter_status').on('change', function () {

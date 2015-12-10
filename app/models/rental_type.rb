@@ -7,4 +7,8 @@ class RentalType < ActiveRecord::Base
   def generate_slug
     self.slug = name.parameterize
   end
+
+  def active_rentals
+    self.rentals.active
+  end
 end

@@ -25,6 +25,10 @@ module ApplicationHelper
     number_to_currency(price, unit: "$")[0...-3]
   end
 
+  def format_currency_with_nights(price, nights)
+    format_currency(price.to_i * nights)
+  end
+
   def order_date(date)
     date.strftime("%B %d, %Y")
   end

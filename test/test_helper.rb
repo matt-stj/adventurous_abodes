@@ -20,6 +20,7 @@ class ActiveSupport::TestCase
   end
 
   def create_user
+    Role.create(title: "registered_user")
     user = User.create!(username: "cole", name: "Nicole", password: "password")
     user.roles << Role.find_by(title: "registered_user")
     user

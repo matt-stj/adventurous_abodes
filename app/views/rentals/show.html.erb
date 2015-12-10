@@ -19,18 +19,18 @@
             <%= @rental.description %>
            </p>
             <p class="center-align">
-              <%= "Trip price: #{format_currency(@rental.price)}" %>
+              Trip Price: <%= format_currency(@rental.price) %>
             </p>
             <%= render partial: "amenities" %>
-              <% if @rental.status == "inactive" %>
+            <% if @rental.retired? %>
               <div class="btn disabled">
                 Unavailable
               </div>
-              <% else %>
-                <div class="waves-effect waves-light btn white-text">
-                  <%= get_purchase_link_or_retired_notice %>
-                </div>
-              <% end %>
+            <% else %>
+              <div class="waves-effect waves-light btn white-text">
+                <%= get_purchase_link_or_retired_notice %>
+              </div>
+            <% end %>
           </div>
          </span>
        </div>
@@ -48,9 +48,9 @@
            </div>
            <div class="col s9 center-align">
              <span class="black-text">
-               <h4>Meet Your Host: <%= @rental.owner.name %></h4>
+               <h4>Meet Your Host: <%= @rental.owner_name %></h4>
              </span>
-              <h4>Contact: <%= @rental.owner.username %>
+              <h4>Username: <%= @rental.owner_username %>
            </div>
          </div>
        </div>

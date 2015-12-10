@@ -19,7 +19,7 @@
               <p><%= "Price: #{price}" %></p>
               <p><%= "Dates: #{rental_parts[1]} - #{rental_parts[2]}" %></p>
               <p><%= "Number of Nights: #{nights}" %><br></p>
-              <p><%= "Sub-total: #{format_currency(rental.price.to_i * nights)}" %></p>
+              <p>Sub-total: <%= format_currency_with_nights(rental.price, nights) %></p>
             </div>
             <div class="col s2">
               <br/>

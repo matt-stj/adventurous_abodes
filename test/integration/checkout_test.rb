@@ -22,6 +22,5 @@ class CheckoutTest < ActionDispatch::IntegrationTest
     visit "/cart"
 
     assert page.has_content?("No items in cart.")
-    refute page.has_content?("Checkout")
   end
 end
