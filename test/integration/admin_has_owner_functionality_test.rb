@@ -40,7 +40,7 @@ class AdminHasOwnerFunctionalityTest < ActionDispatch::IntegrationTest
     login_platform_admin
     visit admin_owner_path(owner)
     assert page.has_content?("owner0")
-    click_link "Edit Owner's Profile"
+    click_link "Edit"
 
     fill_in "Username", with: "new_username@example.com"
     fill_in "Name", with: "NewName"
@@ -58,7 +58,7 @@ class AdminHasOwnerFunctionalityTest < ActionDispatch::IntegrationTest
     create_platform_admin
     login_platform_admin
     visit admin_owner_path(owner)
-    click_link "Edit Owner's Profile"
+    click_link "Edit"
     fill_in "Username", with: ""
     fill_in "Name", with: "User"
     fill_in "Owner status", with: "active"

@@ -7,6 +7,20 @@
     <p class="grey-text">(username: <%= @owner.username %> )</p>
 </div>
 
+<h2 class="center-align"><%= @owner.name %>'s Dashboard</h2>
+<p class="grey-text center-align">(viewing with admin privlages)</p>
+<div class="center-align">
+  <div class="waves-effect waves-light btn">
+    <%= link_to "Edit #{@owner.name}'s Profile", edit_admin_owner_path(@owner) %>
+  </div>
+  <div class="waves-effect waves-light btn">
+    <%= link_to "View #{@owner.name}'s Orders", admin_orders_path(owner: @owner) %>
+  </div>
+  <div class="waves-effect waves-light btn">
+    <%= link_to "Delete/Ban #{@owner.name}", admin_owner_path(@owner), method: :delete %>
+  </div>
+</div>
+
 <div class="row section">
   <div class="col m8 offset-m2">
     <table class="bordered">
@@ -28,7 +42,3 @@
        </table>
     </div>
   </div>
-
-<div class="center-align section">
-  <%= link_to "Edit Owner's Profile", edit_admin_owner_path(@owner), class: "btn" %>
-</div>

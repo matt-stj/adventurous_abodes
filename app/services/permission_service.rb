@@ -24,8 +24,9 @@ class PermissionService
 
     def platform_admin_permissions
       return true if controller == "admin" && action == "show"
-      return true if controller == "admin/owners" && action.in?(%w(index show edit update create))
+      return true if controller == "admin/owners" && action.in?(%w(index show edit update create destroy))
       return true if controller == "admin/rentals" && action.in?(%w(edit update))
+      return true if controller == "admin/orders" && action.in?(%w(index))
       owner_permissions
     end
 
