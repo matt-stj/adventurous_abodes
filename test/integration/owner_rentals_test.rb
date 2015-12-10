@@ -65,7 +65,6 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
 
     fill_in "Name",   with: "Name"
     fill_in "Price",  with: 650
-
     select("Active", :from => 'rental[status]')
     click_button "Submit"
 
