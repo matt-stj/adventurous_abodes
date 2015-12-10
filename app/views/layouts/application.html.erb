@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Adventure Abodes</title>
+  <title>Adventurous Abodes</title>
   <%= stylesheet_link_tag    'application' %>
+  <%= javascript_include_tag 'application' %>
   <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= csrf_meta_tags %>
@@ -20,9 +21,8 @@
       <div class="row">
         <div class="col s5 offset-s3 m10 offset-m3">
           <% flash.each do |type, msg| %>
-            <div class="card-panel btn-large waves-effect waves-light green" >
-              <h5><%= content_tag :div, sanitize(msg), class: "flash_#{type}" %></h5>
-            </div>
+              <h5 class="hide"><%= content_tag :div, sanitize(msg), class: "flash_#{type}" %></h5>
+                <body onload="Materialize.toast('<%=msg%>', 3500)">
           <% end %>
         </div>
       </div>
@@ -37,7 +37,6 @@
   </main>
   <%= render "shared/footer" %>    ​
 
-  <%= javascript_include_tag 'application' %>
 </body>  ​
   </body>
 </html>
