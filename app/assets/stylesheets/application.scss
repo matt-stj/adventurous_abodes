@@ -63,7 +63,6 @@ footer.page-footer {
   background-size: cover;
 }
 
-
 #nav-mobile {
   margin-right: 20px;
 }
@@ -159,6 +158,7 @@ body .home {
   height: 45rem;
   background-size: cover;
 }
+
 /*// .scrim {
 //   height: 300px;
 // }*/
@@ -170,4 +170,35 @@ body .home {
 .shrink {
   height: 200px;
   width: 200px;
+}
+
+.rentals-bg {
+  background-image: image-url("igloo/igloo4.jpg");
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  height: 40rem;
+  margin-top: -2rem;
+}
+
+.rentals-container {
+  height: 40rem;
+}
+
+.push-down {
+  margin-top: 15rem;
+}
+
+.text-outline {
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+// factored this out of a view, we may not need it - sp
+nav ul li a {
+  color: black;
+}
+
+.overlay {
+  margin-top: -30rem;
 }

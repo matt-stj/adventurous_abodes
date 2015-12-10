@@ -12,7 +12,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     fill_in "Description", with: "Have a ball sleeping in the alps!"
     fill_in "Price", with: 1000
     select("Castle", :from => 'rental[rental_type_id]')
-    click_button "Create Rental"
+    click_button "Submit"
 
     assert_equal "/owners/dashboard", current_path
     assert page.has_content?("The rental 'Brick Castle' has been created")
@@ -28,7 +28,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     fill_in "Description", with: "Have a ball sleeping in the alps!"
     fill_in "Price", with: 1000
     select("Castle", :from => 'rental[rental_type_id]')
-    click_button "Create Rental"
+    click_button "Submit"
 
     assert_equal new_owners_rental_path, current_path
     refute page.has_content?("The rental 'Brick Castle' has been created")
@@ -66,7 +66,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     fill_in "Name",   with: "Name"
     fill_in "Price",  with: 650
     fill_in "Status", with: "Active"
-    click_button "Update Rental"
+    click_button "Submit"
 
     assert owners_dashboard_path, current_path
     assert page.has_content?("Name")
@@ -81,7 +81,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     fill_in "Name",   with: ""
     fill_in "Price",  with: 650
     fill_in "Status", with: "Active"
-    click_button "Update Rental"
+    click_button "Submit"
 
     assert new_owners_rental_path, current_path
     assert page.has_content?("Name can't be blank")

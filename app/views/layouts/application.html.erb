@@ -2,40 +2,42 @@
 <html>
 <head>
   <title>Adventure Abodes</title>
-  <%= javascript_include_tag 'application' %>
   <%= stylesheet_link_tag    'application' %>
   <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-  <style>
-  nav ul li a {
-    color: black;
-  }
-  </style>
 </head>
-  <main>
+
 
 <body class="Site">
-  <div class = "<%= params[:controller] %>">
-    <header class="nav">
-      <%= render "shared/nav_base" %>
-    </header>
-    <div class="row">
-      <div class="col s5 offset-s3 m10 offset-m3">
-        <% flash.each do |type, msg| %>
-        <div class="card-panel btn-large waves-effect waves-light green" >
-          <h5><%= content_tag :div, sanitize(msg), class: "flash_#{type}" %></h5>
+  <main>
+    <div class = "<%= params[:controller] %>">
+      <header class="nav">
+        <%= render "shared/nav_base" %>
+      </header>
+
+      <div class="row">
+        <div class="col s5 offset-s3 m10 offset-m3">
+          <% flash.each do |type, msg| %>
+            <div class="card-panel btn-large waves-effect waves-light green" >
+              <h5><%= content_tag :div, sanitize(msg), class: "flash_#{type}" %></h5>
+            </div>
+          <% end %>
         </div>
-        <% end %>
       </div>
     </div>
-
-    <div class='container'>
+    <% if current_page?("/rental_types") %>
       <%= yield %>
-    </div>
+    <% else %>
+      <div class='container'>
+        <%= yield %>
+      </div>
+    <% end %>
   </main>
-    <%= render "shared/footer" %>    ​
+  <%= render "shared/footer" %>    ​
+
+  <%= javascript_include_tag 'application' %>
+</body>  ​
   </body>
 </html>
