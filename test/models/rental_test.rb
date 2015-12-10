@@ -84,4 +84,20 @@ class RentalTest < ActiveSupport::TestCase
 
     assert rental.retired?
   end
+
+  test "rental knows it's owners name" do
+    owner = create_user
+    rental = Rental.new(valid_attributes)
+    rental.user_id = owner.id
+
+    assert "Nicole", rental.owner_name
+  end
+
+  test "rental knows it's owners username" do
+    owner = create_user
+    rental = Rental.new(valid_attributes)
+    rental.user_id = owner.id
+
+    assert "Nicole", rental.owner_name
+  end
 end
