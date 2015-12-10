@@ -3,9 +3,7 @@ class CartRentalsController < ApplicationController
 
   def create
     rental = Rental.find(params[:rental_id])
-    @start_date = params[:startDate]
-    @end_date   = params[:endDate]
-    @cart.add_trip(rental.id, @start_date, @end_date)
+    @cart.add_trip(rental.id, params[:startDate] , params[:endDate])
 
     session[:cart] = @cart.trips
     flash[:notice] = "You have added #{rental.name} to your cart."
@@ -13,20 +11,10 @@ class CartRentalsController < ApplicationController
   end
 
   def new
-    today = Date.today
-    @black_out_dates = []
+    today    = Date.today
     @minimum = [[today.year, today.month-1, today.day]]
-    rental = Rental.find(params[:id])
-    rental.reservations.each do | reservation |
-      if reservation != nil
-        if reservation.start_date != nil
-          reservation.number_of_nights.times do |i|
-            date = reservation.start_date + i.days
-            @black_out_dates << [date.year, date.month-1, date.day]
-          end
-        end
-      end
-    end
+    rental           = Rental.find(params[:id])
+    @black_out_dates = rental.reservation_black_out_dates
   end
 
   def show
@@ -36,7 +24,6 @@ class CartRentalsController < ApplicationController
   def delete
     trip = Rental.find(params[:rental_id])
     @cart.remove(trip)
-
     flash[:notice] = "You have removed the trip #{view_context.link_to(trip.name, rental_path(trip))} from your cart."
     redirect_to cart_path
   end
@@ -57,4 +44,5 @@ class CartRentalsController < ApplicationController
       flash[:notice] = "You must checkout before the next guest."
     end
   end
+
 end
