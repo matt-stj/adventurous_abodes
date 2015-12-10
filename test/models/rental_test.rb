@@ -55,13 +55,6 @@ class RentalTest < ActiveSupport::TestCase
     refute rental.valid?
   end
 
-  # test "it must have a unique name" do
-  #   rental = Rental.create(valid_attributes)
-  #   rental = Rental.new(valid_attributes)
-  #
-  #   refute rental.valid?
-  # end
-
   test "it must have a price that is greater than zero" do
     rental = Rental.new( { name: "Name Castle",
                            description: "No Dragons allowed!",
