@@ -4,7 +4,6 @@ class CartRentalsController < ApplicationController
   def create
     rental = Rental.find(params[:rental_id])
     @cart.add_trip(rental.id, params[:startDate] , params[:endDate])
-
     session[:cart] = @cart.trips
     flash[:notice] = "You have added #{rental.name} to your cart."
     redirect_to rental_types_path
