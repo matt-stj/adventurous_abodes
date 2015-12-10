@@ -1,6 +1,6 @@
 <h2 class="center-align">Your Rentals</h2>
-  <div class="row">
-    <% @rentals.each do |rental| %>
-      <%= render partial: 'rentals/rental', locals: {rental: rental}  %>
-    <% end %>
-  </div>
+<div class="row">
+  <% @rentals.each do |rental| %>
+    <%= render partial: 'rentals/rental', locals: {rental: rental}  %>
+  <% end %>
+</div>

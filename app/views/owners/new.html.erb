@@ -4,12 +4,12 @@
     <p>Fill in the form below to apply to become a host. We'll let you know when
       you are aproved!</p>
     <%= form_for @owner, url: owners_path(@owner) do |f| %>
-        <%= f.label :username %>
-        <%= f.text_field :username, :value=>@owner.username %>
-        <%= f.label :name %>
-        <%= f.text_field :name, :value=>@owner.name %>
-        <%= f.label :password %>
-        <%= f.password_field :password %>
+      <%= f.label :username %>
+      <%= f.text_field :username, :value=>@owner.username %>
+      <%= f.label :name %>
+      <%= f.text_field :name, :value=>@owner.name %>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
       <div class="waves-effect waves-light btn">
         <%= f.submit "Apply to Be Host" %>
       </div>

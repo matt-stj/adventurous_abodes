@@ -12,7 +12,7 @@ class CartRentalsController < ApplicationController
   def new
     today = Date.today
     @minimum = [[today.year, today.month-1, today.day]]
-    @rental = Rental.find(params[:id])
+    @rental  = Rental.find(params[:id])
     @black_out_dates = @rental.reservation_black_out_dates
   end
 
@@ -52,6 +52,6 @@ class CartRentalsController < ApplicationController
 
   def next_reservation
     rental = Rental.find(params[:rental_id])
-    rental.reservations.where("start_date > ?", parsed_start_date ).first
+    rental.reservations.where("start_date > ?", parsed_start_date).first
   end
 end

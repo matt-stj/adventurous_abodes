@@ -18,8 +18,8 @@
         <div class="row">
           <div class="col s5 offset-s3 m10 offset-m3">
             <% flash.each do |type, msg| %>
-                <h5 class="hide"><%= content_tag :div, sanitize(msg), class: "flash_#{type}" %></h5>
-                  <body onload="Materialize.toast('<%=msg%>', 3500)">
+              <h5 class="hide"><%= content_tag :div, sanitize(msg), class: "flash_#{type}" %></h5>
+              <body onload="Materialize.toast('<%=msg%>', 3500)">
             <% end %>
           </div>
         </div>
@@ -27,9 +27,7 @@
       <% if current_page?("/rental_types") %>
         <%= yield %>
       <% else %>
-        <div class='container'>
-          <%= yield %>
-        </div>
+        <div class='container'><%= yield %></div>
       <% end %>
     </main>
     <%= render "shared/footer" %>

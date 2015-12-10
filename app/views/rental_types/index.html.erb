@@ -11,9 +11,7 @@
 </div>
 
 <div class="container center-align">
-
   <h2 class="section">Select A Rental Type</h2>
-
   <div class="input-field col s12 section">
     <select class = "browser-default">
       <option value="" disabled selected>Where do you want to stay??</option>
@@ -22,7 +20,6 @@
       <% end %>
     </select>
   </div>
-
   <div class="row displayed-rentals hidden section">
   <% @rental_types.each do |rental_type| %>
     <div class="<%= rental_type.name.parameterize %> rentals">
@@ -31,4 +28,5 @@
       <% end %>
     </div>
   <% end %>
+  </div>
 </div>

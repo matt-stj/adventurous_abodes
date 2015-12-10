@@ -1,17 +1,17 @@
 <div class="home-page">
   <div class="home-container">
     <div class="row header-bg center-align">
-          <div class="col s12 overlay">
-            <h1 class="scrim white-text">Your Abode Awaits</h1>
-              <div class=" section waves-effect waves-light btn btn-large home-btn top-margin amber darken-1 white-text">
-                <%= button_to "Search All Rentals", rental_types_path, method: :get %>
-              </div>
-              <% if !current_user %>
-              <div class="waves-effect waves-light btn btn-large home-btn amber top-margin darken-1 white-text">
-                <%= button_to "Search By Owner", owners_path, method: :get %>
-              </div>
-            <% end %>
+      <div class="col s12 overlay">
+        <h1 class="scrim white-text">Your Abode Awaits</h1>
+        <div class=" section waves-effect waves-light btn btn-large home-btn top-margin amber darken-1 white-text">
+          <%= button_to "Search All Rentals", rental_types_path, method: :get %>
+        </div>
+        <% if !current_user %>
+          <div class="waves-effect waves-light btn btn-large home-btn amber top-margin darken-1 white-text">
+            <%= button_to "Search By Owner", owners_path, method: :get %>
           </div>
+        <% end %>
       </div>
     </div>
   </div>
+</div>

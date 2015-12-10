@@ -1,12 +1,11 @@
 <div class="center-align">
-    <h2>Order Details</h2>
+  <h2>Order Details</h2>
   <div class="white-text hide">
     <%= sanitize("Order status: #{content_tag :td, @order.status || 'N/A'}") %>
     <%= sanitize("Total price: #{content_tag :td, format_currency(@order.total)}") %>
     <%= "Order submitted on #{order_date_and_time(@order.created_at)}" %>
     <%= "Last order status update: #{order_date_and_time(@order.updated_at)}" %>
   </div>
-
   <div class="white black-text">
     <table class="cart-table highlight">
       <tr>
