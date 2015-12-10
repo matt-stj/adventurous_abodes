@@ -1,6 +1,6 @@
-<h1>Owner Dashboard</h1>
-
 <div class="center-align">
+  <h1 class="section">Owner Dashboard</h1>
+
   <div class="waves-effect waves-light btn">
     <%= link_to "Edit Account", edit_user_path(@user) %>
   </div>
@@ -20,9 +20,12 @@
   </div>
 </div>
 
-<h2>Rentals</h2>
-<ol>
-  <% @owner.rentals.each do |rental| %>
-    <li><%= rental.name %> - <%= link_to "edit", edit_owners_rental_path(rental) %></li>
-  <% end %>
-</ol>
+<div class="center-align section">
+  <h2>Rentals</h2>
+
+  <div class="row">
+    <% @owner.rentals.each do |rental| %>
+      <%= render partial: "rentals/rental", locals: { :rental => rental } %>
+    <% end %>
+  </div>
+</div>

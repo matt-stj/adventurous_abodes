@@ -1,7 +1,7 @@
 <div class="rental" id="<%= format_url_name(rental.name) %>">
   <div class="col s12 m4">
     <div class="card rental-card">
-      <div class="card-image">
+      <div class="card-image rental-image">
         <%= image_tag(rental.image.url(:thumbnail)) %>
       </div>
       <div class="card-content">
@@ -14,11 +14,11 @@
       <div class="card-action center-align">
         <%= link_to "Details", rental_path(rental), class: "btn teal lighten-1 white-text" %>
       </div>
-    </div>
     <% if current_user && current_user.owner? %>
       <p>Status: <%= rental.status.upcase %></p>
-      <%= link_to "Edit", edit_owners_rental_path(rental), method: :get, class: "btn teal lighten-1 white-text" %>
-      <%= link_to "Delete", owners_rental_path(rental), method: :delete, class: "btn teal lighten-1 white-text" %>
+      <%= link_to "Edit", edit_owners_rental_path(rental), method: :get, class: "amber-text"%>
+      <%= link_to "Delete", owners_rental_path(rental), method: :delete, class: "red-text"%>
     <% end %>
+    </div>
   </div>
 </div>
