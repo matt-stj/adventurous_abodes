@@ -30,20 +30,24 @@ class CartRentalsController < ApplicationController
   private
 
   def validate_dates
-    rental           = Rental.find(params[:rental_id])
-    first_date       = Date.parse(params[:startDate])
-    last_date        = Date.parse(params[:endDate])
+    rental = Rental.find(params[:rental_id])
+    if params[:startDate] != ""
+      first_date = Date.parse(params[:startDate])
+    end
+    if params[:endDate] != ""
+      last_date = Date.parse(params[:endDate])
+    end
     next_reservation = rental.reservations.where("start_date > ?", first_date ).first
+
     if first_date == nil || last_date == nil
       redirect_to :back
       flash[:notice] = "You must choose a start and end date"
     elsif first_date >= last_date
       redirect_to :back
-      flash[:notice] = "End Date must come after Start Date"
+      flash[:notice] = "You must end your trip after the start date"
     elsif next_reservation != nil && last_date > next_reservation.start_date
       redirect_to :back
-      flash[:notice] = "You must checkout before the next guest."
+      flash[:notice] = "You must checkout before the next reservation"
     end
   end
-
 end
