@@ -184,9 +184,20 @@ class Seed
         rental = Rental.find(Random.new.rand(1..50))
         rental_id = rental.id
         order_id = order.id
-        Reservation.create!(order_id: order_id, rental_id: rental_id)
+        create_reservation(order_id, rental_id)
         puts "Added rental to order #{i}."
       end
+    end
+
+    def create_reservation(order_id, rental_id)
+      start_date = Date.today
+      while Reservation.find_by(rental_id: rental_id, start_date: start_date) do
+        start_date = start_date + 1.day
+      end
+      Reservation.create!(order_id: order_id,
+                          rental_id: rental_id,
+                          start_date: start_date,
+                          end_date: start_date + 1.day)
     end
 end
 
