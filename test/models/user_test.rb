@@ -1,11 +1,16 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  def setup
+    create_roles
+  end
+
   def valid_attributes
     {
       name: "Torie",
       username: "Torie@gmail.com",
-      password: "password"
+      password: "password",
+      owner_status: nil
     }
   end
 
@@ -40,7 +45,6 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "user knows if it is a platform admin" do
-    create_roles
     user = User.create(valid_attributes)
     user.roles << Role.find_by(title: "platform_admin")
 
@@ -48,14 +52,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "user knows if it is not a platform admin" do
-    create_roles
     user = User.create(valid_attributes)
 
     refute user.platform_admin?
   end
 
   test "user knows if it is a store admin" do
-    create_roles
     user = User.create(valid_attributes)
     user.roles << Role.find_by(title: "owner")
 
@@ -63,14 +65,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "user knows if it is not a store admin" do
-    create_roles
     user = User.create(valid_attributes)
 
     refute user.owner?
   end
 
   test "user knows if it is a registered user" do
-    create_roles
     user = User.create(valid_attributes)
     user.roles << Role.find_by(title: "registered_user")
 
@@ -78,10 +78,29 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "user knows if it is not a registered user" do
-    create_roles
     user = User.create(valid_attributes)
 
     refute user.registered_user?
+  end
+
+  test "user knows if it's an active owner" do
+    user = User.create(valid_attributes)
+    user.owner_status = "active"
+
+    assert user.active?
+  end
+
+  test "user knows if it's not an active owner with inactive status" do
+    user = User.create(valid_attributes)
+    user.owner_status = "inactive"
+
+    refute user.active?
+  end
+
+  test "user knows if it's not an active owner with no status" do
+    user = User.create(valid_attributes)
+
+    refute user.active?
   end
 
 end

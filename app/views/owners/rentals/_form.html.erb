@@ -1,9 +1,8 @@
-<!-- spdone -->
-<h1>Update Rental</h1>
-
-<div>
-  <%= form_for @rental, url: admin_rental_path do |f| %>
-    <%= f.hidden_field :owner_id, value: @owner.id %>
+<div class="black-text">
+  <%= form_for @rental, url: { action: action}  do |f| %>
+    <div class="hidden-field">
+      <%= f.hidden_field(:user_id, :value => current_user.id) if current_user %>
+    </div>
     <%= f.label :name %>
     <%= f.text_field :name %>
     <%= f.label :description %>
@@ -11,7 +10,8 @@
     <%= f.label :price %>
     <%= f.text_field :price %>
     <%= f.label :status %>
-    <%= f.text_field :status %>
+    <%= f.select :status, ["Active", "Retired"] %>
+    <%= f.collection_select :rental_type_id, @rental_types, :id, :name, {prompt: "Choose a Rental Type"} %>
     <%= f.label :image, "Attach an Image" %>
     <%= f.file_field :image %>
     <div class="waves-effect waves-light btn">
