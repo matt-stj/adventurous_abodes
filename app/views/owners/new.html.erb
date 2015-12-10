@@ -1,25 +1,15 @@
-<h3 class="black-text">Become A Host</h3>
+<h2 class="center-align">Become A Host</h2>
 <div class="row">
   <div class="col s6 black-text">
     <p>Fill in the form below to apply to become a host. We'll let you know when
       you are aproved!</p>
     <%= form_for @owner, url: owners_path(@owner) do |f| %>
-      <div class="input-field">
         <%= f.label :username %>
-        <%= f.text_field :username, :value=>@owner.username
-        %>
-      </div>
-      <br/>
-      <div class="input-field">
+        <%= f.text_field :username, :value=>@owner.username %>
         <%= f.label :name %>
         <%= f.text_field :name, :value=>@owner.name %>
-      </div>
-      <br/>
-      <div class="input-field">
         <%= f.label :password %>
         <%= f.password_field :password %>
-      </div>
-      <br/>
       <div class="waves-effect waves-light btn">
         <%= f.submit "Apply to Be Host" %>
       </div>

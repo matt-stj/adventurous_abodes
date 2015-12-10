@@ -26,4 +26,12 @@ class Rental < ActiveRecord::Base
   def owner
     User.find(self.user_id)
   end
+
+  def owner_name
+    self.owner.name
+  end
+
+  def owner_username
+    self.owner.username
+  end
 end
