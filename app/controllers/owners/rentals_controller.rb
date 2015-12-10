@@ -13,11 +13,7 @@ class Owners::RentalsController < Owners::BaseController
   end
 
   def create
-
-    # rental_type = Rental.create(params[:rental][:rental_type])
     @rental = current_user.rentals.new(rental_params)
-    # rental_type = RentalType.find_or_create_by(name: params[:rental][:rental_type])
-    # @rental = rental_type.rentals.new(rental_params)
     if @rental.save
       flash[:notice] = "The rental '#{@rental.name}' has been created"
       redirect_to owners_dashboard_path

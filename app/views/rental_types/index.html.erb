@@ -1,6 +1,20 @@
-<h1 class="center-align">Rentals</h1>
+<div class="rentals-container">
+  <div class="rentals-bg">
+    <div class="row">
+      <div class="row center-align">
+        <div class="col s12">
+          <h1 class="white-text text-outline push-down">A home for your next adventure.</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <div class="input-field col s12">
+<div class="container center-align">
+
+  <h2 class="section">Select A Rental Type</h2>
+
+  <div class="input-field col s12 section">
     <select class = "browser-default">
       <option value="" disabled selected>Where do you want to stay??</option>
       <% @rental_types.each do |rental_type| %>
@@ -9,7 +23,7 @@
     </select>
   </div>
 
-<div class="row displayed-rentals hidden">
+  <div class="row displayed-rentals hidden section">
   <% @rental_types.each do |rental_type| %>
     <div class="<%= rental_type.name.downcase %> rentals">
       <% rental_type.active_rentals.each do |rental| %>

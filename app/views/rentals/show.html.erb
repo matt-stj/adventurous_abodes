@@ -21,15 +21,16 @@
             <p class="center-align">
               Trip Price: <%= format_currency(@rental.price) %>
             </p>
-              <% if @rental.retired? %>
+            <%= render partial: "amenities" %>
+            <% if @rental.retired? %>
               <div class="btn disabled">
                 Unavailable
               </div>
-              <% else %>
-                <div class="waves-effect waves-light btn white-text">
-                  <%= get_purchase_link_or_retired_notice %>
-                </div>
-              <% end %>
+            <% else %>
+              <div class="waves-effect waves-light btn white-text">
+                <%= get_purchase_link_or_retired_notice %>
+              </div>
+            <% end %>
           </div>
          </span>
        </div>

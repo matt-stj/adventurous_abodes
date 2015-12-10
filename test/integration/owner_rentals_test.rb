@@ -66,7 +66,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
 
     fill_in "Name",   with: "Name"
     fill_in "Price",  with: 650
-    fill_in "Status", with: "Active"
+    select("Active", :from => 'rental[status]')
     click_button "Submit"
 
     assert owners_dashboard_path, current_path
@@ -82,7 +82,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     click_link "Edit"
     fill_in "Name",   with: ""
     fill_in "Price",  with: 650
-    fill_in "Status", with: "Active"
+    select("Active", :from => 'rental[status]')
     click_button "Submit"
 
     assert new_owners_rental_path, current_path
