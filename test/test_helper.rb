@@ -83,6 +83,15 @@ class ActionDispatch::IntegrationTest
     click_button "Login"
   end
 
+  def create_rentals_login_owner_view_rentals(num, type)
+    create_rentals(num, type)
+    visit login_path
+    fill_in "Username", with: @owner.username
+    fill_in "Password", with: "password"
+    click_button "Login"
+    click_link ("View All Rentals")
+  end
+
   def create_rentals(num, rental_type)
     @owner = create_owners(1, "active")
     num.times do |i|
