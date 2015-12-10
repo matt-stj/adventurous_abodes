@@ -56,6 +56,12 @@ footer.page-footer {
 	font-size: inherit;
 }
 
+.header-bg {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 #nav-mobile {
   margin-right: 20px;
@@ -153,12 +159,6 @@ body .home {
   background-size: cover;
 }
 
-.header-bg {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
 /*// .scrim {
 //   height: 300px;
 // }*/
@@ -201,4 +201,8 @@ nav ul li a {
 
 .overlay {
   margin-top: -30rem;
+}
+
+.hide {
+  display: none;
 }
