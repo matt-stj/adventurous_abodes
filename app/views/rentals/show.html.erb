@@ -5,36 +5,41 @@
     </h1>
   <br/>
   <div class="row">
-    <div class="col s4">
-      <div class="card">
-            <div class="card-image">
-              <%= image_tag(@rental.image.url, class: "responsive-img") %>
+    <div class="col s12">
+      <div class="row">
+      <div class="col s6 offset-s3">
+        <div class="card materialboxed">
+              <div class="card-image">
+                <%= image_tag(@rental.image.url, class: "responsive-img") %>
+              </div>
             </div>
-          </div>
+      </div>
+      <div class="col s8 offset-s2">
+        <div class="card-panel ">
+           <span class="black-text">
+             <p>Description:
+              <%= @rental.description %>
+             </p>
+              <%= render partial: "amenities" %>
+              <div class="section"></div>
+              <p class="center-align">
+                Rate: <%= format_currency(@rental.price) %>/night
+              </p>
+              <% if @rental.retired? %>
+                <div class="btn disabled">
+                  Unavailable
+                </div>
+              <% else %>
+                <div class="waves-effect waves-light btn white-text">
+                  <%= get_purchase_link_or_retired_notice %>
+                </div>
+              <% end %>
+            </div>
+           </span>
+         </div>
+        </p>
+      </div>
     </div>
-    <div class="col s8">
-      <div class="card-panel ">
-         <span class="black-text">
-           <p>Description:
-            <%= @rental.description %>
-           </p>
-            <p class="center-align">
-              Trip Price: <%= format_currency(@rental.price) %>
-            </p>
-            <%= render partial: "amenities" %>
-            <% if @rental.retired? %>
-              <div class="btn disabled">
-                Unavailable
-              </div>
-            <% else %>
-              <div class="waves-effect waves-light btn white-text">
-                <%= get_purchase_link_or_retired_notice %>
-              </div>
-            <% end %>
-          </div>
-         </span>
-       </div>
-      </p>
     </div>
   </div>
 </div>
