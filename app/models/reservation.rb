@@ -6,7 +6,7 @@ class Reservation < ActiveRecord::Base
     (end_date - start_date).to_i
   end
 
-  def sub_total
+  def subtotal
     number_of_nights * price
   end
 

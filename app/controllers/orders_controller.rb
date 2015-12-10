@@ -1,7 +1,6 @@
 class OrdersController < ApplicationController
   def show
     @order = current_user.orders.find_by(id: params[:id])
-    binding.pry
     render file: "./test/public/404" if @order.nil?
   end
 

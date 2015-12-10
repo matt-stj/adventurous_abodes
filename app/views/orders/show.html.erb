@@ -1,20 +1,30 @@
 <div class="center-align">
-  <h2>Order Details</h2>
-  <%= sanitize("Order status: #{content_tag :td, @order.status || 'N/A'}") %>
-  <%= sanitize("Total price: #{content_tag :td, format_currency(@order.total)}") %>
-  <%= "Order submitted on #{order_date_and_time(@order.created_at)}" %>
-  <%= "Last order status update: #{order_date_and_time(@order.updated_at)}" %>
+    <h2>Order Details</h2>
+  <div class="white-text hide">
+    <%= sanitize("Order status: #{content_tag :td, @order.status || 'N/A'}") %>
+    <%= sanitize("Total price: #{content_tag :td, format_currency(@order.total)}") %>
+    <%= "Order submitted on #{order_date_and_time(@order.created_at)}" %>
+    <%= "Last order status update: #{order_date_and_time(@order.updated_at)}" %>
+  </div>
+
   <div class="white black-text">
     <table class="cart-table highlight">
       <tr>
         <th>Name</th>
         <th>Dates</th>
-        <th>Dates</th>
+        <th>Nights</th>
+        <th>$/night</th>
+        <th>Sub-total</th>
         <th>Retired?</th>
       </tr>
-      <% @order.rentals.each do |rental| %>
+      <% @order.reservations.each do |reservation| %>
         <tr>
-          <%= content_tag :td, rental.name %>
+          <td><%= reservation.rental.name %></td>
+          <td><%= reservation.start_date.strftime("%m/%d/%Y") %> -- <%= reservation.end_date.strftime("%m/%d/%Y") %></td>
+          <td><%= reservation.number_of_nights %></td>
+          <td>$<%= reservation.price %></td>
+          <td>$<%= reservation.subtotal %></td>
+          <td><%= reservation.rental.status %></td>
         </tr>
       <% end %>
     </table>
