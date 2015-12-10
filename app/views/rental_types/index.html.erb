@@ -1,5 +1,5 @@
+<!-- spdone -->
 <h1 class="black-text">Rentals</h1>
-
 
   <div class="input-field col s12">
     <select class = "browser-default">
@@ -13,28 +13,9 @@
 <div class="row displayed-rentals hidden">
   <% @rental_types.each do |rental_type| %>
     <div class="<%= rental_type.name.downcase %> rentals">
-      <% @rental_types.find_by(name: rental_type.name ).rentals.active.each do |rental| %>
+      <% rental_type.active_rentals.each do |rental| %>
         <%= render partial: 'rentals/rental', locals: {rental: rental}  %>
       <% end %>
     </div>
   <% end %>
 </div>
-<!--
-  <div class="dungeon rentals">Dungeon</div>
-  <div class="shack rentals">Shack</div> -->
-
-
-  <!-- <div class="col m4">
-    <div class="card medium">
-        <li><%#= link_to rental_type.name.pluralize, rental_type_path(slug: rental_type.slug), class: "btn" %>
-      <div class="card-image waves-effect waves-block waves-light">
-        <%#= image_tag "house-06.jpg" %>
-      </div>
-      <div class="card-content">
-        <span class="card-title item-title activator grey-text text-darken-4">
-        <%#= link_to rental_type.name.pluralize, rental_type_path(slug: rental_type.slug), class: "btn" %>
-        </span>
-      </div>
-  </div>
-</div> -->
-<!-- </div> -->
