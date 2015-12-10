@@ -103,4 +103,35 @@ class UserTest < ActiveSupport::TestCase
     refute user.active?
   end
 
+  test "a new user is assigned the default role" do
+    user = User.create(valid_attributes)
+    role = Role.find_by(title: "registered_user")
+
+    assert_equal [], user.roles
+
+    user.assign_default_role
+
+    assert_equal role, user.roles.first
+  end
+
+  test "a user knows where to redirect to" do
+    user = User.create(valid_attributes)
+
+    assert_equal "/dashboard", user.redirect_path
+  end
+
+  test "an owner knows where to redirect to" do
+    user = User.create(valid_attributes)
+    user.roles << Role.find_by(title: "owner")
+
+    assert_equal "/owners/dashboard", user.redirect_path
+  end
+
+  test "an admin knows where to redirect to" do
+    user = User.create(valid_attributes)
+    user.roles << Role.find_by(title: "platform_admin")
+
+    assert_equal "/admin/dashboard", user.redirect_path
+  end
+
 end
