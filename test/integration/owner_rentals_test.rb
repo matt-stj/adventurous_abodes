@@ -55,7 +55,6 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
 
   test "owner can edit an existing rental" do
     create_rentals_login_owner_view_rentals(1, "Castle")
-
     click_link "Edit"
     assert "/owners/rentals/#{Rental.first.id}/edit", current_path
 
@@ -71,6 +70,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
 
   test "owner can edit an existing rental and must have name" do
     create_rentals_login_owner_view_rentals(1, "Castle")
+
 
     click_link "Edit"
     fill_in "Name",   with: ""

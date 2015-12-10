@@ -14,7 +14,6 @@ class Rental < ActiveRecord::Base
 
   scope :active, -> { where status: 'active' }
 
-
   def retire
     self.update(status: "retired")
   end
@@ -33,5 +32,13 @@ class Rental < ActiveRecord::Base
 
   def owner_username
     self.owner.username
+  end
+
+  def reservation_black_out_dates
+    black_out_dates = []
+    reservations.each do |reservation|
+      black_out_dates += reservation.reserved_dates
+    end
+    black_out_dates
   end
 end
