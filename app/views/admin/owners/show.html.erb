@@ -1,7 +1,6 @@
 <h2 class="center-align"><%= @owner.name %>'s Dashboard</h2>
 <p class="grey-text">(viewing with admin privlages)</p>
 
-
 <div class="center-align section">
   <h4>Properties belonging to <%= @owner.name %></h4>
     <p class="grey-text">(username: <%= @owner.username %> )</p>
@@ -24,21 +23,25 @@
 <div class="row section">
   <div class="col m8 offset-m2">
     <table class="bordered">
-         <thead>
-           <tr>
-               <th class="center">Property</th>
-               <th class="center">Status</th>
-           </tr>
-         </thead>
-         <tbody>
-          <% @owner.rentals.each do |rental| %>
-           <tr>
-             <td class="center"><%= link_to rental.name, rental_path(rental) %> </td>
-             <td class="center"><div class="chip user_status_<%= rental.status %>"><%= rental.status %></div></td>
-             <td class="center"><%= link_to "edit", edit_admin_rental_path(rental, owner: @owner) %></td>
-           </tr>
-             <% end %>
-         </tbody>
-       </table>
-    </div>
+      <thead>
+        <tr>
+          <th class="center">Property</th>
+          <th class="center">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @owner.rentals.each do |rental| %>
+        <tr>
+          <td class="center"><%= link_to rental.name, rental_path(rental) %> </td>
+          <td class="center"><div class="chip user_status_<%= rental.status %>"><%= rental.status %></div></td>
+          <td class="center"><%= link_to "edit", edit_admin_rental_path(rental, owner: @owner) %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
+</div>
+
+<div class="center-align section">
+  <%= link_to "Edit Owner's Profile", edit_admin_owner_path(@owner), class: "btn" %>
+</div>

@@ -46,6 +46,5 @@ class Owners::RentalsController < Owners::BaseController
 
   def rental_params
     params.require(:rental).permit(:name, :description, :rental_type_id, :price, :image, :status)
-    # params.require(:rental).permit(:name, :description, :rental_type_id, :price, :image, :user_id, :status)
   end
 end

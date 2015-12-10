@@ -52,6 +52,6 @@ class CartRentalsController < ApplicationController
 
   def next_reservation
     rental = Rental.find(params[:rental_id])
-    rental.reservations.where("start_date > ?", parsed_start_date ).first
+    rental.reservations.where("start_date > ?", parsed_start_date).first
   end
 end
