@@ -42,6 +42,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
 
     assert "/owners/rentals", current_path
     assert page.has_content?("Rentals")
+
     assert page.has_content?("Name 1")
     assert page.has_content?("Name 2")
   end
@@ -77,6 +78,7 @@ class OwnerRentalsTest < ActionDispatch::IntegrationTest
     create_rentals(1, "Castle")
     create_and_login_owner
     click_link ("View All Rentals")
+
     click_link "Edit"
     fill_in "Name",   with: ""
     fill_in "Price",  with: 650

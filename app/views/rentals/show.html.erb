@@ -19,9 +19,9 @@
             <%= @rental.description %>
            </p>
             <p class="center-align">
-              <%= "Trip price: #{format_currency(@rental.price)}" %>
+              Trip Price: <%= format_currency(@rental.price) %>
             </p>
-              <% if @rental.status == "inactive" %>
+              <% if @rental.retired? %>
               <div class="btn disabled">
                 Unavailable
               </div>
