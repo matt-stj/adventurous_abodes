@@ -63,8 +63,8 @@ $(document).ready(function() {
             }
             else if($(this).attr("value")=="Storage Container"){
               $(".displayed-rentals").removeClass("hidden");
-                $(".rentals").not(".storage").hide();
-                $(".storage").show();
+                $(".rentals").not(".storage-container").hide();
+                $(".storage-container").show();
             }
             else{
                 $(".rentals").hide();

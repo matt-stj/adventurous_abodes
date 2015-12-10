@@ -13,7 +13,7 @@ class CartsTest < ActionDispatch::IntegrationTest
     click_button "Place Order"
 
     assert page.has_content?("Reservations: 1")
-    assert_equal rental_types_path, current_path
+    assert_equal cart_path, current_path
     assert page.has_content?("You have added Name 1 to your cart.")
   end
 

@@ -6,7 +6,7 @@ class CartRentalsController < ApplicationController
     @cart.add_trip(rental.id, params[:startDate] , params[:endDate])
     session[:cart] = @cart.trips
     flash[:notice] = "You have added #{rental.name} to your cart."
-    redirect_to rental_types_path
+    redirect_to cart_path
   end
 
   def new
