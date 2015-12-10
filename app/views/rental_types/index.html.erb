@@ -2,15 +2,13 @@
   <div class="rentals-bg">
     <div class="row">
       <div class="row center-align">
-      <div class="col s12">
-        <h1 class="white-text text-outline push-down">A home for your next adventure.</h1>
+        <div class="col s12">
+          <h1 class="white-text text-outline push-down">A home for your next adventure.</h1>
+        </div>
       </div>
     </div>
   </div>
 </div>
-</div>
-
-<!-- <%#= render 'shared/featured_rentals', locals: {rental_types: @rental_types} %> -->
 
 <div class="container center-align">
 
@@ -28,11 +26,9 @@
   <div class="row displayed-rentals hidden section">
   <% @rental_types.each do |rental_type| %>
     <div class="<%= rental_type.name.downcase %> rentals">
-      <% @rental_types.find_by(name: rental_type.name ).rentals.active.each do |rental| %>
+      <% rental_type.active_rentals.each do |rental| %>
         <%= render partial: 'rentals/rental', locals: {rental: rental}  %>
       <% end %>
     </div>
   <% end %>
-</div>
-</div>
 </div>

@@ -55,13 +55,6 @@ class RentalTest < ActiveSupport::TestCase
     refute rental.valid?
   end
 
-  # test "it must have a unique name" do
-  #   rental = Rental.create(valid_attributes)
-  #   rental = Rental.new(valid_attributes)
-  #
-  #   refute rental.valid?
-  # end
-
   test "it must have a price that is greater than zero" do
     rental = Rental.new( { name: "Name Castle",
                            description: "No Dragons allowed!",
@@ -83,5 +76,21 @@ class RentalTest < ActiveSupport::TestCase
     rental.retire
 
     assert rental.retired?
+  end
+
+  test "rental knows it's owners name" do
+    owner = create_user
+    rental = Rental.new(valid_attributes)
+    rental.user_id = owner.id
+
+    assert "Nicole", rental.owner_name
+  end
+
+  test "rental knows it's owners username" do
+    owner = create_user
+    rental = Rental.new(valid_attributes)
+    rental.user_id = owner.id
+
+    assert "Nicole", rental.owner_name
   end
 end

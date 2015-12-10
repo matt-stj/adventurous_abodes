@@ -1,11 +1,11 @@
 class Owners::RentalsController < Owners::BaseController
   def index
-    @rental_types = RentalType.all
+    @rentals = current_user.rentals
   end
 
-  def show
-    @rental = Rental.find(params[:id])
-  end
+  # def show
+  #   @rental = Rental.find(params[:id])
+  # end
 
   def new
     @rental = Rental.new

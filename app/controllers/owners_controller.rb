@@ -29,7 +29,7 @@ class OwnersController < ApplicationController
   end
 
   def index
-    @active_owners = User.active_owners
+    @owners = User.active_owners
   end
 
   def show
