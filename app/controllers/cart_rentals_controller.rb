@@ -12,7 +12,7 @@ class CartRentalsController < ApplicationController
   def new
     today = Date.today
     @minimum = [[today.year, today.month-1, today.day]]
-    @rental  = Rental.find(params[:id])
+    @rental = Rental.find(params[:id])
     @black_out_dates = @rental.reservation_black_out_dates
   end
 
