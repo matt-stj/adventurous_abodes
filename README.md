@@ -1,6 +1,6 @@
 ## Project Description  
 
-A Project for the Turing School of Software and Design where a team of 4 students converted an existing merchant codebase into a multi-tenancy hotel booking platform.
+A Project for the Turing School of Software and Design where a team of 4 students converted an existing merchant codebase into a multi-tenant hotel booking platform.
 
 ## Live App  
 
